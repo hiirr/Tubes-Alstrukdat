@@ -1,6 +1,8 @@
 #ifndef PRIORITY_QUEUE_H
 #define PRIORITY_QUEUE_H
 
+#define PRIORITY_QUEUE_CAPACITY 20
+
 typedef struct PriorityQueueElement {
     int value;
     int priority;
@@ -8,10 +10,9 @@ typedef struct PriorityQueueElement {
 
 
 typedef struct PriorityQueue {
-    PriorityQueueElement *queue;
+    PriorityQueueElement queue[PRIORITY_QUEUE_CAPACITY];
     int head;
     int tail;
-    int capacity;
 } PriorityQueue;
 
 void create_priority_queue(PriorityQueue *p);
