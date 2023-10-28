@@ -12,6 +12,18 @@ void create_tree(Tree *t) {
 void add_edge(Tree *t, int parent, int child) {
     t->nodes[child] = true;
     insert_last_dynamic_list(&(t->adj[parent]), child);
+    t->parent[child] = parent;
+}
+
+void delete_node(Tree *t, int node) {
+    t->nodes[node] = false;
+    for (int i = 0; i < t->adj[node].length; ++i) {
+        delete_node(t, t->adj[node].list[i]);
+    }
+    erase_all_dynamic_list(&(t->adj[node]));
+    
+    int parent = t->parent[node];
+    remove_by_value_dynamic_list(&(t->adj[parent]), node);
 }
 
 void print_tree_from_any(Tree *t, int node, int space) {

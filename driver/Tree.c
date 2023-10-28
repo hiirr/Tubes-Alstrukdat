@@ -19,6 +19,7 @@ int main() {
         add_edge(&t, 5, 11);
     add_edge(&t, 0, 14);
     print_tree(&t);
-
-
+    
+    delete_node(&t, 3);
+    print_tree(&t);
 }

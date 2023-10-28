@@ -6,7 +6,8 @@
 
 typedef struct Tree {
     DynamicList adj[1000]; // Adjacency list. Root at 0
-    boolean nodes[1000]; 
+    boolean nodes[1000];
+    int parent[1000];
 } Tree;
 
 void create_tree(Tree *t);
