@@ -1,4 +1,4 @@
-#include "ADT\LinkedList.h"
+#include "../ADT/LinkedList.h"
 #include <stdio.h>
 
 int main(){
@@ -13,10 +13,13 @@ int main(){
     insertAt_linked_list(&l, 3, 2);
     insertAt_linked_list(&l, 4, 3);
     displayList_linked_list(l);
+    printf("\n");
 
     setElmt_linked_list(&l, 2, 10);
+    displayList_linked_list(l);
+    printf("\n");
     printf("element ketiga: %i\n", getElmt_linked_list(l, 2));
-    printf("indeks ke 0: %i\n", indexOf_linked_list(l, 0));
+    printf("indeks dari 4: %i\n", indexOf_linked_list(l, 4));
     printf("panjang list: %i\n", length_linked_list(l));
 
     deleteFirst_linked_list(&l, &val);
