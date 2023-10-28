@@ -35,6 +35,7 @@ void enqueue(PriorityQueue *p, PriorityQueueElement element) {
             else left = middle + 1;
         }
         int idx = left;
+        idx %= PRIORITY_QUEUE_CAPACITY;
 
         if (element.priority > p->queue[idx].priority) {
             ++p->head;
