@@ -13,6 +13,9 @@ void create_dynamic_list(DynamicList *l, int capacity);
 
 void insert_last_dynamic_list(DynamicList *l, int element);
 void remove_last_dynamic_list(DynamicList *l, int *element);
+void remove_by_value_dynamic_list(DynamicList *l, int element);
+
+void erase_all_dynamic_list(DynamicList *l);
 
 void print_dynamic_list(DynamicList *l);
 

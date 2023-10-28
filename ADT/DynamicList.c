@@ -29,6 +29,26 @@ void remove_last_dynamic_list(DynamicList *l, int *element) {
     *element = l->list[l->length];
 }
 
+void remove_by_value_dynamic_list(DynamicList *l, int element) {
+    int idx = -1;
+    for (int i = 0; i < l->length; ++i) {
+        if (l->list[i] == element) {
+            idx = i;
+            break;
+        }
+    }
+    if (idx != -1) {
+        for (int i = idx; i < l->length - 1; ++i) {
+            l->list[i] = l->list[i+1];
+        }   
+        --(l->length);
+    }
+}
+
+void erase_all_dynamic_list(DynamicList *l) {
+    l->length = 0;
+}
+
 void print_dynamic_list(DynamicList *l) {
     printf("[");
     for (int i = 0; i < l->length - 1; ++i) {
