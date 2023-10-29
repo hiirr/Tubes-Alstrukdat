@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "boolean.h"
 #include "Wordmachine.h"
 
 Word current_word;
@@ -43,20 +44,31 @@ void my_getline(char *line, int size, FILE *file) {
     remove_new_line(line);
 }
 
+boolean my_isspace(char c) {
+    return (
+        (c == ' ') ||
+        (c == '\f') ||
+        (c == '\n') ||
+        (c == '\r') ||
+        (c == '\t') ||
+        (c == '\v')
+    );
+}
+
 void ignore_whitespaces() {
-    while ((current_char == ' ' || current_char == '\n') && current_char != MARK) {
+    while ((my_isspace(current_char)) && current_char != MARK) {
         ADV();
     }
 }
 
 void copy_word() {
     int i = 0;
-    while (current_char != MARK && current_char != ' ' && current_char != '\n' && i < WORD_CAPACITY) {
+    while (current_char != MARK && !my_isspace(current_char) && i < WORD_CAPACITY) {
         current_word.word[i] = current_char;
         ADV();
         ++i;
     }
-    while (current_char != MARK && current_char != ' ' && current_char != '\n') ADV();
+    while (current_char != MARK && !my_isspace(current_char)) ADV();
     current_word.length = i;
 
     if (current_char == MARK) EndWord = true;

@@ -28,6 +28,8 @@ void my_getline(char *line, int size, FILE *file);
 
 void remove_new_line(char* string);
 
+boolean my_isspace(char c);
+
 void ignore_whitespaces();
 
 // void read_word_with_limit(int limit);
