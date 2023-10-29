@@ -25,6 +25,7 @@ char *my_strcat(char *destination, const char *source);
 
 int my_strcmp(const char *s1, const char *s2);
 
+void remove_new_line(char* string);
 
 void IgnoreBlanksAndNewLine();
 
