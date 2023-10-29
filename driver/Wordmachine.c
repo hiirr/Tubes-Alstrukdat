@@ -1,23 +1,7 @@
 #include <stdio.h>
-#include "database/database.h"
-
-#include "features/load.h"
-
 #include "ADT/Wordmachine.h"
 
 int main() {
-    
-    printf(
-".______    __    __  .______      .______    __  .______      \n"
-"|   _  \\  |  |  |  | |   _  \\     |   _  \\  |  | |   _  \\     \n"
-"|  |_)  | |  |  |  | |  |_)  |    |  |_)  | |  | |  |_)  |    \n"
-"|   _  <  |  |  |  | |      /     |   _  <  |  | |      /     \n"
-"|  |_)  | |  `--'  | |  |\\  \\----.|  |_)  | |  | |  |\\  \\----.\n"
-"|______/   \\______/  | _| `._____||______/  |__| | _| `._____|\n\n\n");
-
-    setup_database();
-    load();
-
     while (true) {
         printf(">> ");
         START();
@@ -44,13 +28,12 @@ int main() {
             get_paragraph();
             print_word();
 
+            printf("Input paragraph 2: ");
             START();
             get_paragraph();
 
             print_word();
         } 
-        
-        
         else {
             printf("Belum...\n");
             print_word();
