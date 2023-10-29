@@ -1,4 +1,4 @@
-#include "charmachine.h"
+#include "Charmachine.h"
 #include <stdio.h>
 
 char currentChar;

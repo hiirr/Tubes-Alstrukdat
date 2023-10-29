@@ -1,5 +1,5 @@
 #include "User.h"
-#include "../ADT/WordMachine.h"
+#include "../ADT/Wordmachine.h"
 #include <stdlib.h>
 
 void set_user_name(User *s, char *name) {

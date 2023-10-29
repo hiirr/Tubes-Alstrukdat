@@ -2,7 +2,7 @@
 #define WORDMACHINE_H
 
 #include "boolean.h"
-#include "charmachine.h"
+#include "Charmachine.h"
 #include <stdlib.h>
 
 #define NMax 279

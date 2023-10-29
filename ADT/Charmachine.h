@@ -1,5 +1,5 @@
-#ifndef __CHAR_MACHINE_H__
-#define __CHAR_MACHINE_H__
+#ifndef CHAR_MACHINE_H
+#define CHAR_MACHINE_H
 
 #include "boolean.h"
 
