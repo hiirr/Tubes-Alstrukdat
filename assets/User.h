@@ -35,4 +35,6 @@ void set_user_phone(User *s, char *phone);
 
 void set_user_weton(User *s, char *weton);
 
+void print_profile_picture(User *s);
+
 #endif

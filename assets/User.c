@@ -1,5 +1,6 @@
 #include "User.h"
 #include "../ADT/Wordmachine.h"
+#include "../ADT/pcolor.h"
 #include <stdlib.h>
 
 void set_user_name(User *s, char *name) {
@@ -40,4 +41,17 @@ void set_user_weton(User *s, char *weton) {
     my_strlen(weton, &length);
     s->weton = malloc((length + 1) * sizeof(char));
     my_strcpy(s->weton, weton);
+}
+
+void print_profile_picture(User *s) {
+    for (int row = 0; row < 5; ++row) {
+        for (int col = 0; col < 5; ++col) {
+            int color = s->profile_picture.matrix[row][2 * col];
+            int character = s->profile_picture.matrix[row][2 * col + 1];
+            if ((char)color == 'R') print_red(character);
+            else if ((char)color == 'G') print_green(character);
+            else print_blue(character);
+        }
+        printf("\n");
+    }
 }

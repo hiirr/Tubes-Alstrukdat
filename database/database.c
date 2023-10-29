@@ -22,12 +22,18 @@ void setup_database() {
     current_user = -1;
     // users
     for (int i = 0; i < MAX_USER; ++i) {
+        users[i].is_public = true;
+        for (int row = 0; row < 5; ++row) {
+            for (int col = 0; col < 5; ++col) {
+                users[i].profile_picture.matrix[row][2 * col] = 'R';
+                users[i].profile_picture.matrix[row][2 * col + 1] = '*';
+            }
+        }
         users[i].name = malloc(sizeof(char));
         users[i].password = malloc(sizeof(char));
         users[i].bio = malloc(sizeof(char));
         users[i].phone = malloc(sizeof(char));
         users[i].weton = malloc(sizeof(char));
-        users[i].is_public = true;
 
         create_matrix(&users[i].profile_picture, 5, 10);
 
