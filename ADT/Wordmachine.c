@@ -4,7 +4,7 @@
 #include "Wordmachine.h"
 
 Word current_word;
-boolean EndWord;
+boolean end_word;
 
 void my_strlen(const char *str, size_t *len) {
     for (*len = 0; str[*len]; (*len)++);
@@ -71,31 +71,50 @@ void copy_word() {
     while (current_char != MARK && !my_isspace(current_char)) ADV();
     current_word.length = i;
 
-    if (current_char == MARK) EndWord = true;
+    if (current_char == MARK) end_word = true;
 }
 
-void STARTWORD() {
-    START();
+void copy_paragraph() {
+    int i = 0;
+    while (current_char != MARK && i < WORD_CAPACITY) {
+        current_word.word[i] = current_char;
+        ADV();
+        ++i;
+    }
+    while (current_char != MARK && !my_isspace(current_char)) ADV();
+    current_word.length = i;
+}
+
+void get_paragraph() {
+    copy_paragraph();
+}
+
+void get_word() {
     ignore_whitespaces();
     if (current_char == MARK) {
         current_word.length = 0;
-        EndWord = true;
+        end_word = true;
     } else {
-        EndWord = false;
+        end_word = false;
         copy_word();
     }
 }
 
-void ADVWORD() {
-    ignore_whitespaces();
-    if (current_char == MARK) {
-        current_word.length = 0;
-        EndWord = true;
-    } else {
-        copy_word();
-        ignore_whitespaces();
-    }
+void clear_new_line() {
+    char c;
+    scanf("%c", &c);
 }
+
+// void ADVWORD() {
+//     ignore_whitespaces();
+//     if (current_char == MARK) {
+//         current_word.length = 0;
+//         end_word = true;
+//     } else {
+//         copy_word();
+//         ignore_whitespaces();
+//     }
+// }
 
 // /* Baca baris input
 //    leading BLANK dan newLine serta trailing BLANK dan newLine tidak disimpan ke current_word.word*/
@@ -139,13 +158,12 @@ void print_word() {
 }
 
 // Check apakah kata pertama dari current_word sama dengan suatu string
-boolean is_word_equal(char string[]) {
-    int i = 0;
-    while (string[i] != '\0') {
-        if (current_word.word[i] != string[i]) {
-            return false;
-        }
-        i++;
+boolean is_current_word_equal(char *string) {
+    size_t length;
+    my_strlen(string, &length);
+    if (length != current_word.length) return false;
+    for (int i = 0; i < length; ++i) {
+        if (current_word.word[i] != string[i]) return false;
     }
     return true;
 }

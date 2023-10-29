@@ -13,7 +13,7 @@ typedef struct Word {
 	int length;
 } Word;
 
-extern boolean EndWord;
+extern boolean end_word;
 extern Word current_word;
 
 void my_strlen(const char *str, size_t *len);
@@ -38,12 +38,18 @@ void ignore_whitespaces();
 
 void copy_word();
 
-void STARTWORD();
+void copy_paragraph();
 
-void ADVWORD();
+void get_paragraph();
+
+void get_word();
+
+void clear_new_line();
+
+// void ADVWORD();
 
 void print_word();
 
-boolean is_word_equal(char string[]);
+boolean is_current_word_equal(char *string);
 
 #endif
