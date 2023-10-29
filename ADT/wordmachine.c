@@ -1,6 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "wordmachine.h"
+#include "WordMachine.h"
+
+
+
+void my_strlen(const char *str, size_t *len) {
+    for (*len = 0; str[*len]; (*len)++);
+}
+char *my_strcpy(char *str_destination, const char *str_source) {
+    char *temp = str_destination;
+    while ( (*(str_destination++) = *(str_source++)) );
+    return temp;
+}
+
+char *my_strcat(char *destination, const char *source) {
+    char *r_destination = destination;
+    while (*destination) destination++;
+    while ((*destination++ = *source++));
+    return r_destination;
+}
+
+int my_strcmp(const char *s1, const char *s2) {
+    while(*s1 && (*s1 == *s2)) {
+        s1++;
+        s2++;
+    }
+    return *(const unsigned char*)s1 - *(const unsigned char*)s2;
+}
+
 
 Word currentWord;
 
