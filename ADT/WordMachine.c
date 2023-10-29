@@ -2,11 +2,12 @@
 #include <stdlib.h>
 #include "WordMachine.h"
 
-
+Word currentWord;
 
 void my_strlen(const char *str, size_t *len) {
     for (*len = 0; str[*len]; (*len)++);
 }
+
 char *my_strcpy(char *str_destination, const char *str_source) {
     char *temp = str_destination;
     while ( (*(str_destination++) = *(str_source++)) );
@@ -28,8 +29,13 @@ int my_strcmp(const char *s1, const char *s2) {
     return *(const unsigned char*)s1 - *(const unsigned char*)s2;
 }
 
-
-Word currentWord;
+void remove_new_line(char* string) {
+    size_t length;
+    my_strlen(string, &length);
+    if((length > 0) && (string[length-1] == '\n')) {
+        string[length-1] ='\0';
+    }
+}
 
 void IgnoreBlanksAndNewLine(){
     while (currentChar == BLANK || currentChar == '\n') {
