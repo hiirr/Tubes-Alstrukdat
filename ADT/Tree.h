@@ -2,7 +2,7 @@
 #define TREE_H
 
 #include "DynamicList.h"
-#include "../boolean.h"
+#include "boolean.h"
 
 typedef struct Tree {
     DynamicList adj[1000]; // Adjacency list. Root at 0

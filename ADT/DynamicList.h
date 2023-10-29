@@ -1,7 +1,7 @@
 #ifndef DYNAMIC_LIST_H
 #define DYNAMIC_LIST_H
 
-#include "../boolean.h"
+#include "boolean.h"
 
 typedef struct DynamicList {
     int *list;

@@ -1,7 +1,7 @@
 #include "Tree.h"
 
 #include <stdio.h>
-#include "../boolean.h"
+#include "boolean.h"
 
 void create_tree(Tree *t) {
     for (int i = 0; i < 1000; ++i) {

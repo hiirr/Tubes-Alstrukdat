@@ -1,7 +1,7 @@
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
 
-#include "../boolean.h"
+#include "boolean.h"
 
 typedef int ElType;
 typedef struct node* Address;
