@@ -25,5 +25,14 @@ typedef struct User {
     StackDraft drafts;
 } User;
 
+void set_user_name(User *s, char *name);
+
+void set_user_password(User *s, char *password);
+
+void set_user_bio(User *s, char *bio);
+
+void set_user_phone(User *s, char *phone);
+
+void set_user_weton(User *s, char *weton);
 
 #endif
