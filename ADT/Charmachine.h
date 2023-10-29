@@ -5,7 +5,7 @@
 
 #define MARK ';'
 
-extern char currentChar;
+extern char current_char;
 
 void START();
 

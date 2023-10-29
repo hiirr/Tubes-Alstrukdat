@@ -1,10 +1,10 @@
 #include "Charmachine.h"
 #include <stdio.h>
 
-char currentChar;
+char current_char;
 
 static FILE *pita;
-static int retval;
+static int return_value;
 
 void START() {
     pita = stdin;
@@ -12,5 +12,5 @@ void START() {
 }
 
 void ADV() {
-    retval = fscanf(pita, "%c", &currentChar);
+    return_value = fscanf(pita, "%c", &current_char);
 }

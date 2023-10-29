@@ -3,19 +3,18 @@
 
 #include "boolean.h"
 #include "Charmachine.h"
+#include <stdio.h>
 #include <stdlib.h>
 
-#define NMax 279
-#define BLANK ' '
+#define WORD_CAPACITY 1000
 
-typedef struct {
-   char TabWord[NMax];
-   int Length;
+typedef struct Word {
+	char word[WORD_CAPACITY];
+	int length;
 } Word;
 
 extern boolean EndWord;
-extern Word currentWord;
-
+extern Word current_word;
 
 void my_strlen(const char *str, size_t *len);
 
@@ -25,16 +24,24 @@ char *my_strcat(char *destination, const char *source);
 
 int my_strcmp(const char *s1, const char *s2);
 
+void my_getline(char *line, int size, FILE *file);
+
 void remove_new_line(char* string);
 
-void IgnoreBlanksAndNewLine();
+void ignore_whitespaces();
 
-void READWORD();
+// void read_word_with_limit(int limit);
 
-void CopyWord();
+// void copy_word_with_limit(int limit);
 
-void printCurrentWord();
+void copy_word();
 
-boolean isCWordEqual(char string[]);
+void STARTWORD();
+
+void ADVWORD();
+
+void print_word();
+
+boolean is_word_equal(char string[]);
 
 #endif

@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include "Wordmachine.h"
 
-Word currentWord;
+Word current_word;
+boolean EndWord;
 
 void my_strlen(const char *str, size_t *len) {
     for (*len = 0; str[*len]; (*len)++);
@@ -37,56 +38,99 @@ void remove_new_line(char* string) {
     }
 }
 
-void IgnoreBlanksAndNewLine(){
-    while (currentChar == BLANK || currentChar == '\n') {
+void my_getline(char *line, int size, FILE *file) {
+    fgets(line, size, file);
+    remove_new_line(line);
+}
+
+void ignore_whitespaces() {
+    while ((current_char == ' ' || current_char == '\n') && current_char != MARK) {
         ADV();
-    }
-};
-
-void CopyWord(int NChar){
-    int i = 0;
-    while ((currentChar != MARK) && (i < NChar)) {
-        currentWord.TabWord[i] = currentChar;
-        ADV();
-        i++;
-    }
-    currentWord.Length = i;
-    if (i == NChar) {
-        while (currentChar != MARK) {
-            ADV(); // consume sisa character hingga MARK jika input character >280;
-        }
-    }
-    ADV(); // consume newLine
-    // remove trailing BLANK and newLine
-    i = 0;
-    int idx = currentWord.Length - 1;
-    while (currentWord.TabWord[idx - i] == BLANK || currentWord.TabWord[idx - i] == '\n') {
-        currentWord.Length--;
-        i++;
-    }
-    
-};
-
-/* Baca baris input
-   leading BLANK dan newLine serta trailing BLANK dan newLine tidak disimpan ke currentWord.Tabword*/
-void READWORD(int NChar) {
-    START();
-    IgnoreBlanksAndNewLine();
-    CopyWord(NChar);
-};
-
-void printCurrentWord() {
-    int i;
-    for (i = 0; i < currentWord.Length; i++) {
-        printf("%c", currentWord.TabWord[i]);
     }
 }
 
-//check apakah kata pertama dari currentWord sama dengan suatu string
-boolean isCWordEqual(char string[]) {
+void copy_word() {
+    int i = 0;
+    while (current_char != MARK && current_char != ' ' && current_char != '\n' && i < WORD_CAPACITY) {
+        current_word.word[i] = current_char;
+        ADV();
+        ++i;
+    }
+    while (current_char != MARK && current_char != ' ' && current_char != '\n') ADV();
+    current_word.length = i;
+
+    if (current_char == MARK) EndWord = true;
+}
+
+void STARTWORD() {
+    START();
+    ignore_whitespaces();
+    if (current_char == MARK) {
+        current_word.length = 0;
+        EndWord = true;
+    } else {
+        EndWord = false;
+        copy_word();
+    }
+}
+
+void ADVWORD() {
+    ignore_whitespaces();
+    if (current_char == MARK) {
+        current_word.length = 0;
+        EndWord = true;
+    } else {
+        copy_word();
+        ignore_whitespaces();
+    }
+}
+
+// /* Baca baris input
+//    leading BLANK dan newLine serta trailing BLANK dan newLine tidak disimpan ke current_word.word*/
+// void read_word_with_limit(int limit) {
+//     START();
+//     ignore_characters();
+//     copy_word_with_limit(limit);
+// }
+
+// void copy_word_with_limit(int limit) {
+//     int i = 0;
+//     while ((current_char != MARK) && (i < limit)) {
+//         current_word.word[i] = current_char;
+//         ADV();
+//         i++;
+//     }
+//     current_word.length = i;
+//     if (i == limit) {
+//         while (current_char != MARK) {
+//             ADV();
+//         }
+//     }
+//     // ADV(); // consume newLine
+
+//     // remove trailing BLANK and newLine
+//     i = 0;
+//     int idx = current_word.length - 1;
+//     while (current_word.word[idx - i] == ' ' || current_word.word[idx - i] == '\n') {
+//         current_word.length--;
+//         i++;
+//     }
+    
+// }
+
+void print_word() {
+    printf("(");
+    for (int i = 0; i < current_word.length; i++) {
+        printf("%c", current_word.word[i]);
+    }
+    printf(")\n");
+}
+
+// Check apakah kata pertama dari current_word sama dengan suatu string
+boolean is_word_equal(char string[]) {
     int i = 0;
     while (string[i] != '\0') {
-        if (currentWord.TabWord[i] != string[i]) {
+        if (current_word.word[i] != string[i]) {
             return false;
         }
         i++;
