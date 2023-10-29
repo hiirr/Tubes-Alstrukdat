@@ -1,35 +1,27 @@
-#ifndef stackt_H
-#define stackt_H
+#ifndef STACK_H
+#define STACK_H
 
-#include "../boolean.h"
+#define STACK_CAPACITY 1000
 
-#define Nil -1
-#define MaxEl 100
+#include "boolean.h"
 
-typedef int infotype;
-typedef int address;
-
-typedef struct { 
-  infotype T[MaxEl];
-  address TOP;
+typedef struct Stack { 
+	int stack[STACK_CAPACITY];
+	int top;
 } Stack;
 
-#define Top(S) (S).TOP
-#define InfoTop(S) (S).T[(S).TOP]
+void create_stack(Stack *s);
 
-/* *** Konstruktor/Kreator *** */
-void CreateEmpty(Stack *S);
+boolean is_stack_empty(Stack *s);
 
-/* ************ Predikat Untuk test keadaan KOLEKSI ************ */
-boolean IsEmpty(Stack S);
+boolean is_stack_full(Stack *s);
 
-boolean IsFull(Stack S);
+void push_stack(Stack *s, int element);
 
-/* ************ Menambahkan sebuah elemen ke Stack ************ */
-void Push(Stack * S, infotype X);
+void pop_stack(Stack *s, int *element);
 
-/* ************ Menghapus sebuah elemen Stack ************ */
-void Pop(Stack * S, infotype* X);
+int top_stack(Stack *s);
 
+void print_stack(Stack *s);
 
 #endif

@@ -1,29 +1,27 @@
-#include "..\ADT\Stack.h"
 #include <stdio.h>
+#include "ADT/Stack.h"
+
 
 int main() {
-    Stack S;
-    infotype x;
-
-    CreateEmpty(&S);
-
-    if (IsEmpty(S)) {
-        printf("stack kosong\n");
+    Stack s;
+    create_stack(&s);
+    print_stack(&s);
+    if (is_stack_empty(&s)) {
+        printf("is_stack_empty == true\n");
     }
+    push_stack(&s, 5);
+    push_stack(&s, 6);
+    push_stack(&s, 7);
+    print_stack(&s);
 
-    Push(&S, 10);
-    Push(&S, 20);
-    Push(&S, 30);
-
-    if (IsFull(S)) {
-        printf("stack penuh\n");
-    }
-
-    Pop(&S, &x);
-    printf("elemen diambil: %d\n", x);
-
-    Pop(&S, &x);
-    printf("elemen diambil: %d\n", x);
-
-    return 0;
+    int popped;
+    pop_stack(&s, &popped);
+    printf("Popped %d\n", popped);
+    print_stack(&s);
+    pop_stack(&s, &popped);
+    printf("Popped %d\n", popped);
+    print_stack(&s);
+    pop_stack(&s, &popped);
+    printf("Popped %d\n", popped);
+    print_stack(&s);
 }
