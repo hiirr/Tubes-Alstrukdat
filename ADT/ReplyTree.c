@@ -36,6 +36,8 @@ void delete_reply_node(ReplyTree *t, int node) {
 
     free(t->tweets[node].text);
     free(t->tweets[node].datetime);
+    t->tweets[node].text = malloc(sizeof(char));
+    t->tweets[node].datetime = malloc(sizeof(char));
 }
 
 void print_reply_tree_from_any_node(ReplyTree *t, int node, int space) {
