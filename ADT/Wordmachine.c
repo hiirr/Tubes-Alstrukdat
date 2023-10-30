@@ -149,7 +149,7 @@ void clear_new_line() {
     
 // }
 
-void print_word() {
+void print_input() {
     printf("(");
     for (int i = 0; i < current_word.length; i++) {
         printf("%c", current_word.word[i]);

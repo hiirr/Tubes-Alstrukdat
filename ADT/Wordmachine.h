@@ -48,7 +48,7 @@ void clear_new_line();
 
 // void ADVWORD();
 
-void print_word();
+void print_input();
 
 boolean is_current_word_equal(char *string);
 
