@@ -1,4 +1,4 @@
-#include "load.h"
+#include "muat.h"
 
 #include <stdio.h>
 #include <stdlib.h>

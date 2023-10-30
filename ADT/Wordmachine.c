@@ -100,7 +100,7 @@ void get_word() {
     }
 }
 
-void clear_new_line() {
+void clear_next_character() {
     char c;
     scanf("%c", &c);
 }
@@ -177,4 +177,12 @@ boolean is_two_string_equal(char *first, char *second) {
         if (first[i] != second[i]) return false;
     }
     return true;
+}
+
+int word_to_int() {
+    int num = 0;
+    for (int i = 0; i < current_word.length; ++i) {
+        num = 10 * num + (current_word.word[i] - '0');
+    }
+    return num;
 }

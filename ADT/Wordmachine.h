@@ -44,7 +44,7 @@ void get_paragraph();
 
 void get_word();
 
-void clear_new_line();
+void clear_next_character();
 
 // void ADVWORD();
 
@@ -53,5 +53,7 @@ void print_input();
 boolean is_current_word_equal(char *string);
 
 boolean is_two_string_equal(char *first, char *second);
+
+int word_to_int();
 
 #endif
