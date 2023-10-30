@@ -18,3 +18,18 @@ void set_tweet_datetime(int id, char *datetime) {
     tweets[id].datetime = malloc((length + 1) * sizeof(char));
     my_strcpy(tweets[id].datetime, datetime);
 }
+
+void print_tweet(Tweet *t) {
+    printf(
+        "ID: %d"
+        "Text: %s\n"
+        "Likes: %d\n"
+        "Author: %s\n"
+        "Datetime: %s\n",
+        
+        t->id,
+        t->text,
+        t->likes,
+        users[t->author_id].name,
+        t->datetime);
+}

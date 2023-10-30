@@ -16,4 +16,6 @@ void set_tweet_text(int id, char *text);
 
 void set_tweet_datetime(int id, char *datetime);
 
+void print_tweet(Tweet *t);
+
 #endif

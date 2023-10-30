@@ -4,7 +4,7 @@
 #include "../assets/Tweet.h"
 
 #include "../ADT/Matrix.h"
-#include "../ADT/Tree.h"
+#include "../ADT/ReplyTree.h"
 
 #include <stdlib.h>
 
@@ -15,7 +15,7 @@ Matrix friends;
 int latest_tweet = 1;
 Tweet tweets[MAX_TWEET];
 int latest_reply[MAX_TWEET];
-Tree replies[MAX_TWEET];
+ReplyTree replies[MAX_TWEET];
 
 void setup_database() {
     // current_user
@@ -67,6 +67,6 @@ void setup_database() {
     }
     // replies
     for (int i = 0; i < MAX_TWEET; ++i) {
-        create_tree(&replies[i]);
+        create_reply_tree(&replies[i]);
     }
 }
