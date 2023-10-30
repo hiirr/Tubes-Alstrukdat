@@ -7,4 +7,6 @@ void load_users(char *folder_name);
 
 void load_tweets(char *folder_name);
 
+void load_replies(char *folder_name);
+
 #endif

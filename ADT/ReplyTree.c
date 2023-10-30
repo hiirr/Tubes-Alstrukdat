@@ -39,8 +39,8 @@ void delete_reply_node(ReplyTree *t, int node) {
 }
 
 void print_reply_tree_from_any_node(ReplyTree *t, int node, int space) {
-    for (int i = 0; i < space; ++i) printf("\t");
-    print_tweet(&t->tweets[node]);
+    // for (int i = 0; i < space; ++i) printf("\t");
+    print_tweet(&t->tweets[node], space);
 
     for (int i = 0; i < t->adj[node].length; ++i) {
         print_reply_tree_from_any_node(t, t->adj[node].list[i], space + 1);

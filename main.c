@@ -48,6 +48,8 @@ int main() {
             get_paragraph();
 
             print_word();
+        } else if (is_current_word_equal("TEST2")) {
+
         } 
         
         
