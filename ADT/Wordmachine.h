@@ -52,4 +52,6 @@ void print_word();
 
 boolean is_current_word_equal(char *string);
 
+boolean is_two_string_equal(char *first, char *second);
+
 #endif

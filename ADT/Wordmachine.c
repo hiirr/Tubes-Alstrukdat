@@ -167,3 +167,14 @@ boolean is_current_word_equal(char *string) {
     }
     return true;
 }
+
+boolean is_two_string_equal(char *first, char *second) {
+    size_t first_length, second_length;
+    my_strlen(first, &first_length);
+    my_strlen(second, &second_length);
+    if (first_length != second_length) return false;
+    for (int i = 0;i < first_length; ++i) {
+        if (first[i] != second[i]) return false;
+    }
+    return true;
+}

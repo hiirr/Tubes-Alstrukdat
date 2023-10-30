@@ -20,6 +20,10 @@ void load() {
     my_getline(folder_name, 1024, stdin);
     // printf("Folder name: (%s)\n", folder_name);
 
+    load_users(folder_name);
+}
+
+void load_users(char *folder_name) {
     char pengguna_file_location[1024];
     my_strcpy(pengguna_file_location, folder_name);
     my_strcat(pengguna_file_location, "/pengguna.config");
@@ -59,7 +63,7 @@ void load() {
 
 
         my_getline(line, 1024, file);
-        users[i].is_public = (my_strcmp(line, "Publik") == 0);
+        users[i].is_public = is_two_string_equal(line, "Publik"); // (my_strcmp(line, "Publik") == 0);
 
         for (int row = 0; row < 5; ++row) {
             my_getline(line, 1024, file);
@@ -71,7 +75,33 @@ void load() {
             }
         }
     }
-    
+    for (int i = 0; i < total_users; ++i) {
+        my_getline(line, 1024, file);
+        for (int j = 0; j < total_users; ++j) {
+            friends.matrix[i][j] = line[2 * j] - '0';
+        }
+    }
+
+    my_getline(line, 1024, file);
+    int total_friend_requests;
+    sscanf(line, "%d", &total_friend_requests);
+    // printf("Total friend requests: %d\n", total_friend_requests);
+
+    for (int i = 0; i < total_friend_requests; ++i) {
+        my_getline(line, 1024, file);
+        int a, b, c;
+        sscanf(line, "%d %d %d", &a, &b, &c);
+        FriendRequest request; request.user_id = a; request.current_total_friends = c;
+        enqueue_friend_request(&users[b].friend_requests, request);
+        // printf("its %d %d %d\n", a, b, c);
+    }
+
+    // for (int i = 0; i < total_users; ++i) {
+    //     for (int j = 0; j < total_users; ++j) {
+    //         printf("%d ", friends.matrix[i][j]);
+    //     }
+    //     printf("\n");
+    // }
     // for (int i = 0; i < total_users; ++i) {
     //     printf("Nama: (%s)\n", users[i].name);
     //     printf("pass: (%s)\n", users[i].password);
@@ -82,4 +112,8 @@ void load() {
     //     print_profile_picture(&users[i]);
     //     printf("\n\n");
     // }
+}
+
+void load_tweets(char *folder_name) {
+    
 }
