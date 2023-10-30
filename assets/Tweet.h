@@ -12,4 +12,8 @@ typedef struct Tweet {
     // LinkedListTweet threads;    
 } Tweet;
 
+void set_tweet_text(int id, char *text);
+
+void set_tweet_datetime(int id, char *datetime);
+
 #endif
