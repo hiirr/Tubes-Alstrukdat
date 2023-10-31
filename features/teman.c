@@ -1,6 +1,6 @@
 #include "teman.h"
 #include "../assets/User.h"
-#include "../ADT/Matrix.h"
+#include "../ADT/GraphMatrix.h"
 #include "../database/database.h"
 #include "../ADT/PriorityQueueFriendRequest.h"
 #include "../ADT/Wordmachine.h"
@@ -24,7 +24,7 @@ void print_friend_list() {
         return;
     }
     if (users[current_user].total_friends == 0) {
-        printf("\n%s belum mempunyai teman.\n");
+        printf("\n%s belum mempunyai teman.\n", users[current_user].name);
         return;
     }
     printf("\n%s memiliki %d teman\n", users[current_user].name, users[current_user].total_friends);
@@ -44,20 +44,23 @@ void remove_friend() {
     }
     printf("\nMasukkan nama pengguna:\n");
     get_paragraph();
-    char *friend_name = current_word.word;
+    char *friend_name = input_to_string();
     int id = search_id(friend_name);
     if (id == -1) {
-        printf("%s bukan teman Anda.\n", friend_name);
-    } else {
-        printf("\nApakah anda yakin ingin menghapus Bob dari daftar teman anda?(YA/TIDAK) ");
-        get_paragraph();
-        if (my_strcmp(current_word.word, "YA") == 0) {
-            delete_relation(&friends, current_user, id);
-            printf("\n%s berhasil dihapus dari daftar teman Anda.\n", friend_name);
-        } else {
-            printf("\n Penghapusan teman dibatalkan.\n");
-        }
+        printf("\n%s bukan teman Anda.\n", friend_name);
+        return;
     }
+    printf("\nApakah anda yakin ingin menghapus %s dari daftar teman anda?(YA/TIDAK) ", friend_name);
+    get_paragraph();
+    char *input_option = input_to_string();
+    if (my_strcmp(input_option, "YA") == 0) {
+        delete_relation(&friends, current_user, id);
+        users[current_user].total_friends--;
+        printf("\n%s berhasil dihapus dari daftar teman Anda.\n", friend_name);
+    } else {
+        printf("\nPenghapusan teman dibatalkan.\n");
+    }
+    //NOTE: Belum implementasi Update popularitas current user di semua permintaan teman lain
 };
 
 void send_friend_request() {
@@ -65,6 +68,26 @@ void send_friend_request() {
         printf("\nAnda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n");
         return;
     }
+    if (!is_empty_priority_queue_friend_request(users[current_user].friend_requests)) {
+        printf("\nTerdapat permintaan pertemanan yang belum Anda setujui. Silakan kosongkan daftar permintaan pertemanan untuk Anda terlebih dahulu.\n");
+        return;
+    }
+    printf("\nMasukkan nama pengguna:\n");
+    get_paragraph();
+    char *friend_name = input_to_string();
+    int id = search_id(friend_name);
+    if (id == -1) {
+        printf("\nPengguna bernama %s tidak ditemukan\n", friend_name);
+        return;
+    }
+    FriendRequest req;
+    create_friend_request(&req, current_user, users[current_user].total_friends);
+    if (is_in_priority_queue_friend_request(users[id].friend_requests, req)) {
+        printf("\nAnda sudah mengirimkan permintaan pertemanan kepada %s. Silakan tunggu hingga permintaan Anda disetujui.\n", friend_name);
+        return;
+    }
+    enqueue_friend_request(&users[id].friend_requests, req);
+    printf("\nPermintaan pertemanan kepada Bob telah dikirim. Tunggu beberapa saat hingga permintaan Anda disetujui.\n");
 };
 
 void cancel_friend_request() {

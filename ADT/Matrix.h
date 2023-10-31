@@ -13,13 +13,8 @@ typedef struct Matrix {
    int col;
 } Matrix;
 
-
 void create_matrix(Matrix *m, int row, int col);
 
 void print_matrix(Matrix *m);
-
-void add_relation(Matrix *m, int row, int col);
-
-void delete_relation(Matrix *m, int row, int col);
 
 #endif

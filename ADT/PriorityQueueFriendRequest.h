@@ -4,6 +4,7 @@
 #define PRIORITY_QUEUE_FRIEND_REQUEST_CAPACITY 20
 
 #include "../assets/FriendRequest.h"
+#include "../ADT/boolean.h"
 
 typedef struct PriorityQueueFriendRequest {
     FriendRequest queue[PRIORITY_QUEUE_FRIEND_REQUEST_CAPACITY];
@@ -12,6 +13,10 @@ typedef struct PriorityQueueFriendRequest {
 } PriorityQueueFriendRequest;
 
 void create_priority_queue_friend_request(PriorityQueueFriendRequest *p);
+
+boolean is_empty_priority_queue_friend_request(PriorityQueueFriendRequest p);
+
+boolean is_in_priority_queue_friend_request(PriorityQueueFriendRequest p, FriendRequest element);
 
 int length_priority_queue_friend_request(PriorityQueueFriendRequest *p);
 

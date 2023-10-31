@@ -8,11 +8,30 @@ void create_priority_queue_friend_request(PriorityQueueFriendRequest *p) {
     p->tail = -1;
 }
 
-int length_priority_queue_friend_request(PriorityQueueFriendRequest *p) {
-    if (p->head == -1) return 0;
-    int end = p->head;
-    if (end < p->tail) end += PRIORITY_QUEUE_FRIEND_REQUEST_CAPACITY;
-    return end - p->tail + 1;
+boolean is_empty_priority_queue_friend_request(PriorityQueueFriendRequest p) {
+    return (p.head == -1 && p.tail == -1);
+};
+
+boolean is_in_priority_queue_friend_request(PriorityQueueFriendRequest p, FriendRequest element) {
+    if (is_empty_priority_queue_friend_request(p)) return false;
+    int length = length_priority_queue_friend_request(p);
+    int i = 0;
+    int idx = p.head;
+    for (i = 0; i < length; i++) {
+        if (p.queue[idx].user_id == element.user_id) {
+            return true;
+        } else {
+            idx = (idx + 1) % PRIORITY_QUEUE_FRIEND_REQUEST_CAPACITY;
+        }
+    }
+    return false;
+};
+
+int length_priority_queue_friend_request(PriorityQueueFriendRequest p) {
+    if (p.head == -1) return 0;
+    int end = p.head;
+    if (end < p.tail) end += PRIORITY_QUEUE_FRIEND_REQUEST_CAPACITY;
+    return end - p.tail + 1;
 }
 
 void enqueue_friend_request(PriorityQueueFriendRequest *p, FriendRequest element) {
@@ -55,10 +74,10 @@ void enqueue_friend_request(PriorityQueueFriendRequest *p, FriendRequest element
 }
 
 void dequeue_friend_request(PriorityQueueFriendRequest *p, FriendRequest *element) {
-    if (length_priority_queue_friend_request(p) == 0) {
+    if (length_priority_queue_friend_request(*p) == 0) {
         element = 0;
         return;
-    } else if (length_priority_queue_friend_request(p) == 1) {
+    } else if (length_priority_queue_friend_request(*p) == 1) {
         *element = p->queue[p->head];
         p->head = -1;
         p->tail = -1;
@@ -80,6 +99,6 @@ void print_priority_queue_friend_request(PriorityQueueFriendRequest *p) {
         int actual_idx = i % PRIORITY_QUEUE_FRIEND_REQUEST_CAPACITY;
         printf("%d,", p->queue[actual_idx].user_id);
     }
-    if (length_priority_queue_friend_request(p) != 0) printf("%d", p->queue[end].user_id);
-    printf("], length = %d\n", length_priority_queue_friend_request(p));
+    if (length_priority_queue_friend_request(*p) != 0) printf("%d", p->queue[end].user_id);
+    printf("], length = %d\n", length_priority_queue_friend_request(*p));
 }

@@ -2,7 +2,7 @@
 #define FRIEND_H
 
 #include "../assets/User.h"
-#include "../ADT/Matrix.h"
+#include "../ADT/GraphMatrix.h"
 #include "../database/database.h"
 #include "../ADT/PriorityQueueFriendRequest.h"
 #include "../ADT/Wordmachine.h"
