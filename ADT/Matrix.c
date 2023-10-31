@@ -23,3 +23,13 @@ void print_matrix(Matrix *m){
        }
     }
 }
+
+void add_relation(Matrix *m, int row, int col) {
+    m->matrix[row][col] = 1;
+    m->matrix[col][row] = 1;
+}
+
+void delete_relation(Matrix *m, int row, int col) {
+    m->matrix[row][col] = 0;
+    m->matrix[col][row] = 0;
+}

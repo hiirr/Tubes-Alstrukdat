@@ -12,7 +12,7 @@
 
 extern int current_user;
 extern User users[MAX_USER];
-extern  Matrix friends;
+extern Matrix friends;
 
 extern int latest_tweet;
 extern Tweet tweets[MAX_TWEET];
