@@ -6,8 +6,7 @@
 #include "../ADT/Wordmachine.h"
 #include <stdio.h>
 
-//search if "username" is in users, return id
-//private function
+//search if "username" is in users, return id, PRIVATE FUNCTION only in teman.c
 int search_id(char *username) {
     int i;
     for (i = 0; i < 20; i++) {
