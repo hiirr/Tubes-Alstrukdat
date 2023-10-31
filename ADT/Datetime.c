@@ -1,4 +1,5 @@
 #include "Datetime.h"
+#include "Wordmachine.h"
 
 #include <time.h>
 
@@ -8,5 +9,9 @@ char *current_time() {
 
     time(&raw_time);
     time_info = localtime(&raw_time);
-    return asctime(time_info);
+
+    char *cur_time = asctime(time_info);
+    remove_new_line(cur_time);
+
+    return cur_time;
 }
