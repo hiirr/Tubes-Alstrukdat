@@ -56,4 +56,6 @@ boolean is_two_string_equal(char *first, char *second);
 
 int word_to_int();
 
+char *input_to_string();
+
 #endif

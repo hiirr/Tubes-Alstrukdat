@@ -186,3 +186,12 @@ int word_to_int() {
     }
     return num;
 }
+
+char *input_to_string() {
+    char *string = malloc((current_word.length + 1) * sizeof(char));
+    for (int i = 0; i < current_word.length; ++i) {
+        string[i] = current_word.word[i];
+    }
+    string[current_word.length] = '\0';
+    return string;
+}
