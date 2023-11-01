@@ -123,3 +123,21 @@ void update_priority_queue_friend_request(PriorityQueueFriendRequest *p, int use
         }
     }
 };
+
+void remove_request_from_queue(PriorityQueueFriendRequest *p, int user_id) {
+    FriendRequest req_buffer[20];
+    int i = 0;
+    FriendRequest temp_req;
+    while (!is_empty_priority_queue_friend_request(*p)) {
+        dequeue_friend_request(p, &temp_req);
+        if (temp_req.user_id == user_id) {
+            break;
+        }
+        req_buffer[i] = temp_req;
+        i++;
+    }
+    int buffer_length = i;
+    for (i = 0; i < buffer_length; i++) {
+        enqueue_friend_request(p, req_buffer[i]);
+    }
+};

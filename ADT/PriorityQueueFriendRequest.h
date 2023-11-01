@@ -18,7 +18,7 @@ boolean is_empty_priority_queue_friend_request(PriorityQueueFriendRequest p);
 
 boolean is_in_priority_queue_friend_request(PriorityQueueFriendRequest p, int user_id);
 
-int length_priority_queue_friend_request(PriorityQueueFriendRequest *p);
+int length_priority_queue_friend_request(PriorityQueueFriendRequest p);
 
 void enqueue_friend_request(PriorityQueueFriendRequest *p, FriendRequest element);
 
@@ -27,5 +27,7 @@ void dequeue_friend_request(PriorityQueueFriendRequest *p, FriendRequest *elemen
 void print_priority_queue_friend_request(PriorityQueueFriendRequest *p);
 
 void update_priority_queue_friend_request(PriorityQueueFriendRequest *p, int user_id, int new_popularity);
+
+void remove_request_from_queue(PriorityQueueFriendRequest *p, int user_id);
 
 #endif
