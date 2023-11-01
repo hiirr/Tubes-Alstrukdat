@@ -16,7 +16,7 @@ boolean is_in_priority_queue_friend_request(PriorityQueueFriendRequest p, int us
     if (is_empty_priority_queue_friend_request(p)) return false;
     int length = length_priority_queue_friend_request(p);
     int i = 0;
-    int idx = p.head;
+    int idx = p.tail;
     for (i = 0; i < length; i++) {
         if (p.queue[idx].user_id == user_id) {
             return true;
@@ -89,17 +89,18 @@ void dequeue_friend_request(PriorityQueueFriendRequest *p, FriendRequest *elemen
     }
 }
 
-void print_priority_queue_friend_request(PriorityQueueFriendRequest *p) {
-    int end = p->head;
-    if (end < p->tail) end += PRIORITY_QUEUE_FRIEND_REQUEST_CAPACITY;
-
-    printf("[");
-    for (int i = p->tail; i <= end-1; ++i) {
-        int actual_idx = i % PRIORITY_QUEUE_FRIEND_REQUEST_CAPACITY;
-        printf("%d,", p->queue[actual_idx].user_id);
+void print_priority_queue_friend_request(PriorityQueueFriendRequest p) {
+    int start_idx = p.head;
+    int i;
+    for (i = 0; i < length_priority_queue_friend_request(p); i++) {
+        int index = start_idx - i;
+        if (index < 0) {
+            index += PRIORITY_QUEUE_FRIEND_REQUEST_CAPACITY;
+        }
+        printf("\n| Priority: %d\n", i + 1);
+        printf("| Id: %d\n", p.queue[index].user_id);
+        printf("| Jumlah teman: %d\n", p.queue[index].current_total_friends);
     }
-    if (length_priority_queue_friend_request(*p) != 0) printf("%d", p->queue[end].user_id);
-    printf("], length = %d\n", length_priority_queue_friend_request(*p));
 }
 
 void update_priority_queue_friend_request(PriorityQueueFriendRequest *p, int user_id, int new_popularity) {

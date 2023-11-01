@@ -6,7 +6,7 @@
 #include "../ADT/Wordmachine.h"
 #include <stdio.h>
 
-//search if "username" is in users, return id, PRIVATE FUNCTION only in teman.c
+//PRIVATE FUNCTION
 int search_id(char *username) {
     int i;
     for (i = 0; i < MAX_USER; i++) {
@@ -15,8 +15,22 @@ int search_id(char *username) {
         }
     }
     return -1;
-};
+}; //search if username is in users, return id
 
+void print_friend_request(PriorityQueueFriendRequest p) {
+    int start_idx = p.head;
+    int i;
+    for (i = 0; i < length_priority_queue_friend_request(p); i++) {
+        int index = start_idx - i;
+        if (index < 0) {
+            index += PRIORITY_QUEUE_FRIEND_REQUEST_CAPACITY;
+        }
+        printf("\n| %s\n", users[p.queue[index].user_id].name);
+        printf("| Jumlah teman: %d\n", p.queue[index].current_total_friends);
+    }
+}
+
+//Feature
 void print_friend_list() {
     if (current_user == -1) {
         printf("\nAnda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n");
@@ -26,8 +40,8 @@ void print_friend_list() {
         printf("\n%s belum mempunyai teman.\n", users[current_user].name);
         return;
     }
-    printf("\n%s memiliki %d teman\n", users[current_user].name, users[current_user].total_friends);
-    printf("Daftar teman %s\n\n", users[current_user].name);
+    printf("\n%s memiliki %d teman.\n", users[current_user].name, users[current_user].total_friends);
+    printf("Daftar teman %s:\n", users[current_user].name);
     int i;
     for (i = 0; i < MAX_USER; i++) {
         if (friends.matrix[current_user][i] == 1) {
@@ -42,15 +56,25 @@ void remove_friend() {
         return;
     }
     printf("\nMasukkan nama pengguna:\n");
-    get_paragraph();
+    START();
+    get_word();
     char *friend_name = input_to_string();
     int friend_id = search_id(friend_name);
     if (friend_id == -1) {
+        printf("\n%s tidak terdaftar dalam layanan BurBir.\n", friend_name);
+        return;
+    }
+    if (friend_id == current_user) {
+        printf("\nTidak dapat menghapus pertemanan dengan diri sendiri.\n");
+        return;
+    }
+    if (friends.matrix[current_user][friend_id] == 0) {
         printf("\n%s bukan teman Anda.\n", friend_name);
         return;
     }
     printf("\nApakah anda yakin ingin menghapus %s dari daftar teman anda?(YA/TIDAK) ", friend_name);
-    get_paragraph();
+    START();
+    get_word();
     char *input_option = input_to_string();
     if (my_strcmp(input_option, "YA") == 0) {
         delete_relation(&friends, current_user, friend_id);
@@ -81,11 +105,20 @@ void send_friend_request() {
         return;
     }
     printf("\nMasukkan nama pengguna:\n");
-    get_paragraph();
+    START();
+    get_word();
     char *friend_name = input_to_string();
     int friend_id = search_id(friend_name);
     if (friend_id == -1) {
-        printf("\nPengguna bernama %s tidak ditemukan\n", friend_name);
+        printf("\nPengguna bernama %s tidak ditemukan.\n", friend_name);
+        return;
+    }
+    if (friend_id == current_user) {
+        printf("\nTidak dapat mengirim permintaan pertemanan kepada diri sendiri.\n");
+        return;
+    }
+    if (friends.matrix[friend_id][current_user] == 1) {
+        printf("\nAnda sudah berteman dengan %s. Tidak dapat mengirim permintaan pertemanan.\n", friend_name);
         return;
     }
     FriendRequest req;
@@ -95,7 +128,7 @@ void send_friend_request() {
         return;
     }
     enqueue_friend_request(&users[friend_id].friend_requests, req);
-    printf("\nPermintaan pertemanan kepada Bob telah dikirim. Tunggu beberapa saat hingga permintaan Anda disetujui.\n");
+    printf("\nPermintaan pertemanan kepada %s telah dikirim. Tunggu beberapa saat hingga permintaan Anda disetujui.\n", friend_name);
 };
 
 void cancel_friend_request() {
@@ -104,18 +137,23 @@ void cancel_friend_request() {
         return;
     }
     printf("\nMasukkan nama pengguna:\n");
-    get_paragraph();
+    START();
+    get_word();
     char *friend_name = input_to_string();
     int friend_id = search_id(friend_name);
     if (friend_id == - 1) {
         printf("\nPengguna bernama %s tidak ditemukan.\n", friend_name);
         return;
     }
+    if (friend_id == current_user) {
+        printf("\nTidak dapat menghapus permintaan pertemanan kepada diri sendiri.\n");
+        return;
+    }
     if (is_in_priority_queue_friend_request(users[friend_id].friend_requests, current_user)) {
         remove_request_from_queue(&users[friend_id].friend_requests, current_user);
-        printf("\nPermintaan pertemanan kepada Bob telah dibatalkan.\n");
+        printf("\nPermintaan pertemanan kepada %s telah dibatalkan.\n", friend_name);
     } else {
-        printf("\nAnda belum mengirimkan permintaan pertemanan kepada Bob.\n");
+        printf("\nAnda belum mengirimkan permintaan pertemanan kepada %s.\n", friend_name);
     }
 };
 
@@ -130,13 +168,7 @@ void print_friend_requests() {
     }
     int length = length_priority_queue_friend_request(users[current_user].friend_requests);
     printf("\nTerdapat %d permintaan pertemanan untuk Anda.\n", length);
-    int i;
-    for (i = 0; i < length; i++) {
-        int id = users[current_user].friend_requests.queue[i].user_id;
-        int n_friend = users[current_user].friend_requests.queue[i].current_total_friends;
-        printf("\n| %s\n", users[id].name);
-        printf("| Jumlah teman: %d\n", n_friend);
-    }
+    print_friend_request(users[current_user].friend_requests);
 };
 
 void accept_friend_request() {
@@ -150,11 +182,12 @@ void accept_friend_request() {
     }
     FriendRequest req;
     dequeue_friend_request(&users[current_user].friend_requests, &req);
-    printf("Permintaan pertemanan teratas dari %s.\n", users[req.user_id].name);
+    printf("\nPermintaan pertemanan teratas dari %s.\n", users[req.user_id].name);
     printf("\n| %s\n", users[req.user_id].name);
     printf("| Jumlah teman: %d\n", req.current_total_friends);
     printf("\nApakah Anda ingin menyetujui permintaan pertemanan ini? (YA/TIDAK) ");
-    get_paragraph();
+    START();
+    get_word();
     char *input_option = input_to_string();
     if (my_strcmp(input_option, "YA") == 0) {
         int friend_id = req.user_id;

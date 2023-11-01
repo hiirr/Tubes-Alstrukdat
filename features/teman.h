@@ -17,6 +17,6 @@ void cancel_friend_request();
 
 void print_friend_requests();
 
-void accept_friend();
+void accept_friend_request();
 
 #endif
