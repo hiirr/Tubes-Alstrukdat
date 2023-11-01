@@ -9,7 +9,7 @@
 //PRIVATE FUNCTION
 int search_id(char *username) {
     int i;
-    for (i = 0; i < MAX_USER; i++) {
+    for (i = 0; i < total_user; i++) {
         if (my_strcmp(users[i].name, username) == 0) {
             return i;
         }
@@ -43,7 +43,7 @@ void print_friend_list() {
     printf("\n%s memiliki %d teman.\n", users[current_user].name, users[current_user].total_friends);
     printf("Daftar teman %s:\n", users[current_user].name);
     int i;
-    for (i = 0; i < MAX_USER; i++) {
+    for (i = 0; i < total_user; i++) {
         if (friends.matrix[current_user][i] == 1) {
             printf("| %s\n", users[i].name);
         };
@@ -81,7 +81,7 @@ void remove_friend() {
         users[current_user].total_friends--;
         users[friend_id].total_friends--;
         int i;
-        for (i = 0; i < MAX_USER; i++) {
+        for (i = 0; i < total_user; i++) {
             if (i != current_user) {
                 update_priority_queue_friend_request(&users[i].friend_requests, current_user, users[current_user].total_friends);
             }
@@ -195,7 +195,7 @@ void accept_friend_request() {
         users[current_user].total_friends++;
         users[friend_id].total_friends++;
         int i;
-        for (i = 0; i < MAX_USER; i++) {
+        for (i = 0; i < total_user; i++) {
             if (i != current_user) {
                 update_priority_queue_friend_request(&users[i].friend_requests, current_user, users[current_user].total_friends);
             }

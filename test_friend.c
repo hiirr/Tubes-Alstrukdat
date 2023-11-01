@@ -16,6 +16,7 @@ void add_friend(int id1, int id2) {
 }
 
 void setup_user_for_friend_testing() {
+    total_user = 7;
     users[0].name = "USER0";
     users[1].name = "USER1";
     users[2].name = "USER2";
@@ -28,11 +29,6 @@ void setup_user_for_friend_testing() {
     add_friend(2, 3);
     add_friend(0, 4);
 }
-
-
-
-
-
 
 int main() {
     
