@@ -29,7 +29,7 @@ void print_friend_list() {
     printf("\n%s memiliki %d teman\n", users[current_user].name, users[current_user].total_friends);
     printf("Daftar teman %s\n", users[current_user].name);
     int i;
-    for (i = 0; i < 20; i++) {
+    for (i = 0; i < MAX_USER; i++) {
         if (friends.matrix[current_user][i] == 1) {
             printf("| %s\n", users[i].name);
         };
@@ -55,11 +55,14 @@ void remove_friend() {
     if (my_strcmp(input_option, "YA") == 0) {
         delete_relation(&friends, current_user, id);
         users[current_user].total_friends--;
+        int i;
+        for (i = 0; i < MAX_USER; i++) {
+            update_priority_queue_friend_request(&users[i].friend_requests, current_user, users[current_user].total_friends);
+        }
         printf("\n%s berhasil dihapus dari daftar teman Anda.\n", friend_name);
     } else {
         printf("\nPenghapusan teman dibatalkan.\n");
     }
-    //NOTE: Belum implementasi Update popularitas current user di semua permintaan teman lain
 };
 
 void send_friend_request() {
@@ -81,7 +84,7 @@ void send_friend_request() {
     }
     FriendRequest req;
     create_friend_request(&req, current_user, users[current_user].total_friends);
-    if (is_in_priority_queue_friend_request(users[id].friend_requests, req)) {
+    if (is_in_priority_queue_friend_request(users[id].friend_requests, req.user_id)) {
         printf("\nAnda sudah mengirimkan permintaan pertemanan kepada %s. Silakan tunggu hingga permintaan Anda disetujui.\n", friend_name);
         return;
     }

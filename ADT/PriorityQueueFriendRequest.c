@@ -12,17 +12,16 @@ boolean is_empty_priority_queue_friend_request(PriorityQueueFriendRequest p) {
     return (p.head == -1 && p.tail == -1);
 };
 
-boolean is_in_priority_queue_friend_request(PriorityQueueFriendRequest p, FriendRequest element) {
+boolean is_in_priority_queue_friend_request(PriorityQueueFriendRequest p, int user_id) {
     if (is_empty_priority_queue_friend_request(p)) return false;
     int length = length_priority_queue_friend_request(p);
     int i = 0;
     int idx = p.head;
     for (i = 0; i < length; i++) {
-        if (p.queue[idx].user_id == element.user_id) {
+        if (p.queue[idx].user_id == user_id) {
             return true;
-        } else {
-            idx = (idx + 1) % PRIORITY_QUEUE_FRIEND_REQUEST_CAPACITY;
         }
+        idx = (idx + 1) % PRIORITY_QUEUE_FRIEND_REQUEST_CAPACITY;
     }
     return false;
 };
@@ -102,3 +101,25 @@ void print_priority_queue_friend_request(PriorityQueueFriendRequest *p) {
     if (length_priority_queue_friend_request(*p) != 0) printf("%d", p->queue[end].user_id);
     printf("], length = %d\n", length_priority_queue_friend_request(*p));
 }
+
+void update_priority_queue_friend_request(PriorityQueueFriendRequest *p, int user_id, int new_popularity) {
+    if (is_in_priority_queue_friend_request(*p, user_id)) {
+        FriendRequest req_buffer[20];
+        int i = 0;
+        FriendRequest temp_req;
+        while (!is_empty_priority_queue_friend_request(*p)) {
+            dequeue_friend_request(p, &temp_req);
+            if (temp_req.user_id == user_id) {
+                temp_req.current_total_friends = new_popularity;
+                enqueue_friend_request(p, temp_req);
+                break;
+            }
+            req_buffer[i] = temp_req;
+            i++;
+        }
+        int buffer_length = i;
+        for (i = 0; i < buffer_length; i++) {
+            enqueue_friend_request(p, req_buffer[i]);
+        }
+    }
+};
