@@ -11,6 +11,7 @@
 #define MAX_USER 20
 
 extern int current_user;
+extern int total_user;
 extern User users[MAX_USER];
 extern  Matrix friends;
 
