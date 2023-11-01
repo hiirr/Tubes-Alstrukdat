@@ -10,6 +10,7 @@
 #include <stdlib.h>
 
 int current_user = -1;
+int total_user = 0;
 User users[MAX_USER];
 GraphMatrix friends;
 
@@ -21,6 +22,7 @@ ReplyTree replies[MAX_TWEET];
 void setup_database() {
     // current_user
     current_user = -1;
+    total_user = 0;
     // users
     for (int i = 0; i < MAX_USER; ++i) {
         users[i].is_public = true;
