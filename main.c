@@ -3,6 +3,7 @@
 
 // Include file features di yang sudah diimplementasikan
 #include "features/muat.h"
+#include "features/suka_kicauan.h"
 
 #include "ADT/Wordmachine.h"
 
@@ -35,7 +36,12 @@ int main() {
 
         }
 
-
+        else if (is_current_word_equal("SUKA_KICAUAN")) {
+            get_word();
+            int id_kicau = word_to_int();
+            printf("ID_kicau = %d\n", id_kicau);
+            suka_kicauan(id_kicau);
+        }
 
         else if (is_current_word_equal("CONTOH_1")) {
             // Misal contoh commandnya "CONTOH_1 22 27;".
@@ -76,6 +82,7 @@ int main() {
             // ini buat print input (bisa word atau paragraph). ini bisa buat debugging kalau ada masalah.
         }
         
+
         
         else {
             printf("Belum...\n");
