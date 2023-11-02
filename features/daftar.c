@@ -23,7 +23,7 @@ void daftar(){
                 printf("Wah, sayang sekali nama tersebut telah diambil.\n");
             }
         }
-        while (is_valid_name);
+        while (!is_valid_name);
         printf("Masukkan kata sandi:\n");
         START();
         get_paragraph();
