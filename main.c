@@ -3,6 +3,7 @@
 
 // Include file features di yang sudah diimplementasikan
 #include "features/muat.h"
+#include "features/balas.h"
 
 #include "ADT/Wordmachine.h"
 
@@ -35,7 +36,16 @@ int main() {
 
         }
 
+        else if (is_current_word_equal("BALAS")) {
+            get_word();
+            int id_kicau = word_to_int();
 
+            get_word();
+            int id_balasan = word_to_int();
+            // printf("Id_kicau = %d, id_balasan = %d\n", id_kicau, id_balasan);
+
+            balas(id_kicau, id_balasan);
+        }
 
         else if (is_current_word_equal("CONTOH_1")) {
             // Misal contoh commandnya "CONTOH_1 22 27;".
