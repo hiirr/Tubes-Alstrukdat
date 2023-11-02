@@ -17,4 +17,6 @@ void suka_kicauan(int id_kicau) {
     }
 
     tweets[id_kicau].likes++;
+
+    print_tweet(&tweets[id_kicau], 0);
 }
