@@ -3,6 +3,7 @@
 #include "../database/database.h"
 #include "../ADT/Wordmachine.h"
 #include "../ADT/Datetime.h"
+#include "../ADT/DynamicList.h"
 #include "../assets/Tweet.h"
 
 void kicau() {
@@ -25,7 +26,8 @@ void kicau() {
     tweets[latest_tweet].author_id = current_user;
     set_tweet_text(&tweets[latest_tweet], text);
     set_tweet_datetime(&tweets[latest_tweet], time);
-
+    
+    insert_last_dynamic_list(&users[current_user].tweets, latest_tweet);
 
     printf("Kicauan berhasil diterbitkan:\n");
     print_tweet(&tweets[latest_tweet], 0);
