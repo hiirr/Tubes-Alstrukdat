@@ -203,7 +203,6 @@ boolean is_all_int(char *string){
         if (current_word.word[i] == '0' || current_word.word[i] == '1' || current_word.word[i] == '2' || current_word.word[i] == '3' || current_word.word[i] == '4' || current_word.word[i] == '5' || current_word.word[i] == '6' || current_word.word[i] == '7' || current_word.word[i] == '8' || current_word.word[i] == '9'){
             return true;
         } else {
-            break;
             return false;
         }
     }
