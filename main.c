@@ -3,6 +3,7 @@
 
 // Include file features di yang sudah diimplementasikan
 #include "features/muat.h"
+#include "features/kicauan.h"
 
 #include "ADT/Wordmachine.h"
 
@@ -76,7 +77,10 @@ int main() {
             // ini buat print input (bisa word atau paragraph). ini bisa buat debugging kalau ada masalah.
         }
         
-        
+        else if (is_current_word_equal("KICAUAN")) {
+
+        }
+
         else {
             printf("Belum...\n");
             print_input();
