@@ -3,7 +3,7 @@
 
 // Include file features di yang sudah diimplementasikan
 #include "features/muat.h"
-#include "features/suka_kicauan.h"
+#include "features/ubah_kicauan.h"
 
 #include "ADT/Wordmachine.h"
 
@@ -36,11 +36,11 @@ int main() {
 
         }
 
-        else if (is_current_word_equal("SUKA_KICAUAN")) {
+        else if (is_current_word_equal("UBAH_KICAUAN")) {
             get_word();
             int id_kicau = word_to_int();
             printf("ID_kicau = %d\n", id_kicau);
-            suka_kicauan(id_kicau);
+            ubah_kicauan(id_kicau);
         }
 
         else if (is_current_word_equal("CONTOH_1")) {
