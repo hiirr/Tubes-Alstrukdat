@@ -2,6 +2,19 @@
 #include "../database/database.h"
 #include <stdlib.h>
 #include "../ADT/Wordmachine.h"
+#include "../ADT/Datetime.h"
+
+Tweet new_tweet(char *text, int tweet_id, int author_id) {
+    Tweet tweet;
+
+    tweet.id = tweet_id;
+    tweet.text = text;
+    tweet.likes = 0;
+    tweet.author_id = author_id;
+    tweet.datetime = current_time();
+
+    return tweet;
+}
 
 void set_tweet_text_from_id(int id, char *text) {
     free(tweets[id].text);

@@ -12,9 +12,11 @@ void create_reply_tree(ReplyTree *t) {
         create_dynamic_list(&(t->adj[i]), 1);
     }
     for (int i = 0; i < 1000; ++i) {
+        t->nodes[i] = false;
         t->tweets[i].text = malloc(sizeof(char));
         t->tweets[i].datetime = malloc(sizeof(char));
     }
+    t->nodes[0] = true;
 }
 
 void add_reply_edge(ReplyTree *t, int parent, int child, Tweet child_tweet) {
