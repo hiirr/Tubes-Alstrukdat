@@ -75,3 +75,31 @@ void print_tweet(Tweet *t, int spaces) {
     //     users[t->author_id].name,
     //     t->datetime);
 }
+
+void print_private_tweet(Tweet *t, int spaces) {
+    for (int i = 0; i < spaces; ++i) printf("\t");
+    printf("ID: %d\n", t->id);
+
+    for (int i = 0; i < spaces; ++i) printf("\t");
+    printf("PRIVAT");
+
+    for (int i = 0; i < spaces; ++i) printf("\t");
+    printf("PRIVAT");
+
+    for (int i = 0; i < spaces; ++i) printf("\t");
+    printf("PRIVAT");
+
+    for (int i = 0; i < spaces; ++i) printf("\t");
+    printf("PRIVAT");
+    // printf("ID: %d\n"
+    //     "Text: %s\n"
+    //     "Likes: %d\n"
+    //     "Author: %s\n"
+    //     "Datetime: %s\n",
+        
+    //     t->id,
+    //     t->text,
+    //     t->likes,
+    //     users[t->author_id].name,
+    //     t->datetime);
+}
