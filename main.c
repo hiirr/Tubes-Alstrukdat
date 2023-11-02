@@ -5,6 +5,7 @@
 #include "features/muat.h"
 #include "features/balas.h"
 #include "features/balasan.h"
+#include "features/hapus_balasan.h"
 
 #include "ADT/Wordmachine.h"
 
@@ -50,6 +51,15 @@ int main() {
             get_word();
             int id_kicau = word_to_int();
             balasan(id_kicau);
+        } else if (is_current_word_equal("HAPUS_BALASAN")) {
+            get_word();
+            int id_kicau = word_to_int();
+
+            get_word();
+            int id_balasan = word_to_int();
+            // printf("Id_kicau = %d, id_balasan = %d\n", id_kicau, id_balasan);
+
+            hapus_balasan(id_kicau, id_balasan);
         }
 
         else if (is_current_word_equal("CONTOH_1")) {
