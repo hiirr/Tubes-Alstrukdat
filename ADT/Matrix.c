@@ -11,10 +11,22 @@ void create_matrix(Matrix *m, int row, int col) {
     }
 }
 
-void print_matrix(Matrix *m) {
-    for(int i = 0; i < m->row; i++) {
-       for(int j = 0; j < m->col; j++) {
-            if (j < m->col - 1) {
+void read_matrix(Matrix *m, int row, int col) {
+    m->row = row;
+    m->col = col;
+    create_matrix(m, row, col);
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            scanf("%c", m->matrix[i][j]);
+        }
+    }
+}
+
+
+void print_matrix(Matrix *m){
+    for(int i = 0; i < m->row; i++){
+       for(int j = 0; j < m->col; j++){
+            if (j < m->col - 1){
                 printf("%d ", m->matrix[i][j]);
             } else {
                 printf("%d\n", m->matrix[i][j]);

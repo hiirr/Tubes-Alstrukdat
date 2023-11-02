@@ -15,6 +15,8 @@ typedef struct Matrix {
 
 void create_matrix(Matrix *m, int row, int col);
 
+void read_matrix(Matrix *m, int row, int col);
+
 void print_matrix(Matrix *m);
 
 #endif
