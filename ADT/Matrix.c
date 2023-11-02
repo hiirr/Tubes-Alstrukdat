@@ -11,6 +11,17 @@ void create_matrix(Matrix *m, int row, int col) {
     }
 }
 
+void read_matrix(Matrix *m, int row, int col) {
+    m->row = row;
+    m->col = col;
+    create_matrix(m, row, col);
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            scanf("%c", m->matrix[i][j]);
+        }
+    }
+}
+
 
 void print_matrix(Matrix *m){
     for(int i = 0; i < m->row; i++){
