@@ -36,7 +36,9 @@ int main() {
 
         }
 
-
+        else if (is_current_word_equal("KICAUAN")) {
+            kicauan();
+        }
 
         else if (is_current_word_equal("CONTOH_1")) {
             // Misal contoh commandnya "CONTOH_1 22 27;".

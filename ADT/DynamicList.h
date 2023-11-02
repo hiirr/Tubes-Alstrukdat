@@ -19,4 +19,6 @@ void erase_all_dynamic_list(DynamicList *l);
 
 void print_dynamic_list(DynamicList *l);
 
+void sort_descending_dynamic_list(DynamicList *l);
+
 #endif
