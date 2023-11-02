@@ -3,6 +3,7 @@
 
 // Include file features di yang sudah diimplementasikan
 #include "features/muat.h"
+#include "features/kicau.h"
 
 #include "ADT/Wordmachine.h"
 
@@ -35,7 +36,9 @@ int main() {
 
         }
 
-
+        else if (is_current_word_equal("KICAU")) {
+            kicau();
+        }
 
         else if (is_current_word_equal("CONTOH_1")) {
             // Misal contoh commandnya "CONTOH_1 22 27;".
