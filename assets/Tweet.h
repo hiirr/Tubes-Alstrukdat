@@ -24,4 +24,6 @@ void set_tweet_datetime(Tweet *t, char *datetime);
 
 void print_tweet(Tweet *t, int spaces);
 
+void print_private_tweet(Tweet *t, int spaces);
+
 #endif
