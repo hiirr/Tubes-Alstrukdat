@@ -195,3 +195,15 @@ char *input_to_string() {
     string[current_word.length] = '\0';
     return string;
 }
+
+boolean is_all_int(char *string){
+    size_t length;
+    my_strlen(string, &length);
+    for (int i = 0; i < length; ++i) {
+        if (current_word.word[i] == '0' || current_word.word[i] == '1' || current_word.word[i] == '2' || current_word.word[i] == '3' || current_word.word[i] == '4' || current_word.word[i] == '5' || current_word.word[i] == '6' || current_word.word[i] == '7' || current_word.word[i] == '8' || current_word.word[i] == '9'){
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
