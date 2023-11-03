@@ -7,4 +7,6 @@ typedef struct Thread {
     char *text;
 } Thread;
 
+void print_utas(Thread *t);
+
 #endif
