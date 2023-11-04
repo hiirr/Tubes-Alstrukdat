@@ -60,4 +60,6 @@ char *input_to_string();
 
 boolean is_all_int(char *string);
 
+char to_lower(char c);
+
 #endif
