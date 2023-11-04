@@ -207,3 +207,13 @@ boolean is_all_int(char *string){
         }
     }
 }
+
+char to_lower(char c){
+    if ('a' <= c && c <= 'z'){
+        return c;
+    } else if ('A' <= c && c <= 'Z'){
+        return c +'a' - 'A';
+    } else {
+        return '\0';
+    }
+}
