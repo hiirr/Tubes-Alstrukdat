@@ -1,6 +1,10 @@
-#include "ADT/boolean.h";
-#include "ADT/Wordmachine.h";
-#include "assets/User.h";
-#include "database/database.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-void ganti_profil(int id_user);
+#include "../ADT/boolean.h"
+#include "../ADT/Wordmachine.h"
+
+#include "../assets/User.h"
+#include "../database/database.h"
+
+void ganti_profil();
