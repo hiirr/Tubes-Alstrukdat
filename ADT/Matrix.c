@@ -34,3 +34,12 @@ void print_matrix(Matrix *m){
        }
     }
 }
+
+void copy_matrix(Matrix *mIn, Matrix *mOut){
+    create_matrix(mOut, mIn->row, mIn->col);
+    for(int i = 0; i < mIn->row; i++){
+        for(int j = 0; j < mIn->col; j++){
+            mIn->matrix[i][j] = mOut->matrix[i][j];
+        }
+    }
+}

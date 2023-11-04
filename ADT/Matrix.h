@@ -20,4 +20,6 @@ void read_matrix(Matrix *m, int row, int col);
 
 void print_matrix(Matrix *m);
 
+void copy_matrix(Matrix *mIn, Matrix *mOut);
+
 #endif
