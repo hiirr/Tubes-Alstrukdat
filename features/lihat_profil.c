@@ -1,27 +1,41 @@
-#include "ADT/boolean.h"
-#include "ADT/Wordmachine.h"
-#include "assets/User.h"
-#include "database/database.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "lihat_profil.h"
 
-User user[MAX_USER];
+#include "../ADT/boolean.h"
+#include "../ADT/Wordmachine.h"
+
+#include "../assets/User.h"
+#include "../database/database.h"
 
 void lihat_profil(char *name){
+    if (current_user == -1){
+        printf("Anda belum login\n");
+        return;
+    }
+
     int id_user = -1;
     for (int i = 0; i < MAX_USER; i++){
-        if (is_current_word_equal(user[i].name)){
+        if (is_two_string_equal(&name, &users[i].name)){
             id_user = i;
             break;
         }
     }
-
-    if (!user[id_user].is_public){
-        printf("Sayangnya akun %c diprivat:( Ikuti dulu yuk biar bisa lihat profil %c!\n", user[id_user].name, user[id_user].name);
+    
+    if (id_user == -1){
+        printf("Tidak ada profil dengan nama tersebut!");
+        return; 
     } else {
-        printf("| Nama: %c\n", user[id_user].name);
-        printf("| Bio Akun: %c\n", user[id_user].bio);
-        printf("| No HP: %c\n", user[id_user].phone);
-        printf("| Weton: %c\n", user[id_user].weton);
-        printf("Foto profil akun %c\n", user[id_user].name);
-        print_profile_picture(&user[id_user]);
+        if (!users[id_user].is_public){
+            printf("Sayangnya akun %s diprivat:( Ikuti dulu yuk biar bisa lihat profil %s!\n", users[id_user].name, users[id_user].name);
+        } else {
+            printf("| Nama: %s\n", users[id_user].name);
+            printf("| Bio Akun: %s\n", users[id_user].bio);
+            printf("| No HP: %s\n", users[id_user].phone);
+            printf("| Weton: %s\n", users[id_user].weton);
+            printf("Foto profil akun %s\n", users[id_user].name);
+            print_profile_picture(&users[id_user]);
+        }
+        return;
     }
 }
