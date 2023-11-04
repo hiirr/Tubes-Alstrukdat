@@ -1,8 +1,10 @@
-#include "ADT/boolean.h"
-#include "ADT/Wordmachine.h"
-#include "assets/User.h"
-#include "database/database.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-User user[MAX_USER];
+#include "../ADT/boolean.h"
+#include "../ADT/Wordmachine.h"
 
-void atur_jenis_akun(int id_user);
+#include "../assets/User.h"
+#include "../database/database.h"
+
+void atur_jenis_akun();
