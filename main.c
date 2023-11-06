@@ -21,8 +21,9 @@ int main() {
 
     setup_database();
     load();
+    boolean is_program_ongoing = true;
 
-    while (true) {
+    while (is_program_ongoing) {
         printf(">> ");
         START();
 
@@ -35,7 +36,8 @@ int main() {
         } else if (is_current_word_equal("KELUAR")) { 
         
         } else if (is_current_word_equal("TUTUP_PROGRAM")) {
-
+            is_program_ongoing = false;
+            printf("Anda telah keluar dari program BurBir. Sampai jumpa di penjelajahan berikutnya.\n");
         }
 
         else if (is_current_word_equal("BALAS")) {
