@@ -13,7 +13,6 @@ typedef struct Matrix {
    int col;
 } Matrix;
 
-
 void create_matrix(Matrix *m, int row, int col);
 
 void read_matrix(Matrix *m, int row, int col);
