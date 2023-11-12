@@ -4,6 +4,10 @@
 // Include file features di yang sudah diimplementasikan
 #include "features/muat.h"
 #include "features/kicauan.h"
+#include "features/ubah_kicauan.h"
+#include "features/balas.h"
+#include "features/balasan.h"
+#include "features/hapus_balasan.h"
 
 #include "ADT/Wordmachine.h"
 
@@ -19,8 +23,9 @@ int main() {
 
     setup_database();
     load();
+    boolean is_program_ongoing = true;
 
-    while (true) {
+    while (is_program_ongoing) {
         printf(">> ");
         START();
 
@@ -33,11 +38,40 @@ int main() {
         } else if (is_current_word_equal("KELUAR")) { 
         
         } else if (is_current_word_equal("TUTUP_PROGRAM")) {
-
+            is_program_ongoing = false;
+            printf("Anda telah keluar dari program BurBir. Sampai jumpa di penjelajahan berikutnya.\n");
         }
+
+        else if (is_current_word_equal("UBAH_KICAUAN")) {
+            get_word();
+            int id_kicau = word_to_int();
+            printf("ID_kicau = %d\n", id_kicau);
+            ubah_kicauan(id_kicau);
+        }
+        else if (is_current_word_equal("BALAS")) {
+            get_word();
+            int id_kicau = word_to_int();
 
         else if (is_current_word_equal("KICAUAN")) {
             kicauan();
+            get_word();
+            int id_balasan = word_to_int();
+            // printf("Id_kicau = %d, id_balasan = %d\n", id_kicau, id_balasan);
+
+            balas(id_kicau, id_balasan);
+        } else if (is_current_word_equal("BALASAN")) {
+            get_word();
+            int id_kicau = word_to_int();
+            balasan(id_kicau);
+        } else if (is_current_word_equal("HAPUS_BALASAN")) {
+            get_word();
+            int id_kicau = word_to_int();
+
+            get_word();
+            int id_balasan = word_to_int();
+            // printf("Id_kicau = %d, id_balasan = %d\n", id_kicau, id_balasan);
+
+            hapus_balasan(id_kicau, id_balasan);
         }
 
         else if (is_current_word_equal("CONTOH_1")) {
@@ -83,6 +117,9 @@ int main() {
 
         }
 
+
+
+        
         else {
             printf("Belum...\n");
             print_input();

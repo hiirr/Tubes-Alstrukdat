@@ -4,6 +4,7 @@
 #include "../assets/Tweet.h"
 
 #include "../ADT/Matrix.h"
+#include "../ADT/GraphMatrix.h"
 #include "../ADT/ReplyTree.h"
 
 #include <stdlib.h>
@@ -11,7 +12,7 @@
 int current_user = -1;
 int total_user = 0;
 User users[MAX_USER];
-Matrix friends;
+GraphMatrix friends;
 
 int latest_tweet = 1;
 Tweet tweets[MAX_TWEET];
@@ -47,12 +48,7 @@ void setup_database() {
         create_stack_draft(&users[i].drafts);
     }
     // friends
-    create_matrix(&friends, 20, 20);
-    for (int i = 0; i < 20; ++i) {
-        for (int j = 0; j < 20; ++j) {
-            friends.matrix[i][j] = 0;
-        }
-    }
+    create_graph_matrix(&friends, 20, 20);
     // latest_tweet
     latest_tweet = 1;
     // tweets

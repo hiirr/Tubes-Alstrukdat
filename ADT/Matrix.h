@@ -13,9 +13,12 @@ typedef struct Matrix {
    int col;
 } Matrix;
 
-
 void create_matrix(Matrix *m, int row, int col);
 
+void read_matrix(Matrix *m, int row, int col);
+
 void print_matrix(Matrix *m);
+
+void copy_matrix(Matrix *mIn, Matrix *mOut);
 
 #endif
