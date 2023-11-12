@@ -2,6 +2,10 @@
 #include "database/database.h"
 
 // Include file features di yang sudah diimplementasikan
+#include "features/daftar.h"
+#include "features/masuk.h"
+#include "features/keluar.h"
+
 #include "features/muat.h"
 #include "features/kicau.h"
 #include "features/kicauan.h"
@@ -22,25 +26,25 @@ int main() {
 "|  |_)  | |  `--'  | |  |\\  \\----.|  |_)  | |  | |  |\\  \\----.\n"
 "|______/   \\______/  | _| `._____||______/  |__| | _| `._____|\n\n\n");
 
-    setup_database();
-    load();
-    boolean is_program_ongoing = true;
+    create_database();
+    // load();
 
-    while (is_program_ongoing) {
+    START();
+
+    while (true) {
         printf(">> ");
-        START();
 
         get_word();
 
-        if (is_current_word_equal("DAFTAR")) {
-            
-        } else if (is_current_word_equal("MASUK")) {
-
-        } else if (is_current_word_equal("KELUAR")) { 
-        
-        } else if (is_current_word_equal("TUTUP_PROGRAM")) {
-            is_program_ongoing = false;
+        if (is_input_equal("DAFTAR")) {
+            daftar();
+        } else if (is_input_equal("MASUK")) {
+            masuk();
+        } else if (is_input_equal("KELUAR")) { 
+            keluar();
+        } else if (is_input_equal("TUTUP_PROGRAM")) {
             printf("Anda telah keluar dari program BurBir. Sampai jumpa di penjelajahan berikutnya.\n");
+            return 0;
         }
 
         else if (is_current_word_equal("UBAH_KICAUAN")) {

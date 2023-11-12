@@ -14,6 +14,12 @@ User create_user() {
     user.weton = NULL;
 
     create_matrix(&user.profile_picture, 5, 10);
+    for (int row = 0; row < 5; ++row) {
+        for (int col = 0; col < 5; ++col) {
+            user.profile_picture.matrix[row][2 * col] = 'R';
+            user.profile_picture.matrix[row][2 * col + 1] = '*';
+        }
+    }
 
     user.total_friends = 0;
     create_priority_queue_friend_request(&user.friend_requests);

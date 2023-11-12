@@ -20,6 +20,6 @@ extern Tweet tweets[MAX_TWEET];
 extern int latest_reply[MAX_TWEET];
 extern ReplyTree replies[MAX_TWEET];
 
-void setup_database();
+void create_database();
 
 #endif
