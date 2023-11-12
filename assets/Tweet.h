@@ -13,6 +13,10 @@ typedef struct Tweet {
     LinkedThread thread; 
 } Tweet;
 
+Tweet create_tweet();
+
+void delete_tweet(Tweet *t);
+
 Tweet new_tweet(char *text, int tweet_id, int author_id);
 
 void set_tweet_text_from_id(int id, char *text);

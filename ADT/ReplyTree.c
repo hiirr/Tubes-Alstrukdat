@@ -8,13 +8,12 @@
 #include "boolean.h"
 
 void create_reply_tree(ReplyTree *t) {
-    for (int i = 0; i < 1000; ++i) {
+    for (int i = 0; i < REPLY_TREE_CAPACITY; ++i) {
         create_dynamic_list(&(t->adj[i]), 1);
     }
-    for (int i = 0; i < 1000; ++i) {
+    for (int i = 0; i < REPLY_TREE_CAPACITY; ++i) {
         t->nodes[i] = false;
-        t->tweets[i].text = malloc(sizeof(char));
-        t->tweets[i].datetime = malloc(sizeof(char));
+        t->tweets[i] = create_tweet();
     }
     t->nodes[0] = true;
 }
@@ -36,10 +35,7 @@ void delete_reply_node(ReplyTree *t, int node) {
     int parent = t->parent[node];
     remove_by_value_dynamic_list(&(t->adj[parent]), node);
 
-    free(t->tweets[node].text);
-    free(t->tweets[node].datetime);
-    t->tweets[node].text = malloc(sizeof(char));
-    t->tweets[node].datetime = malloc(sizeof(char));
+    delete_tweet(&t->tweets[node]);
 }
 
 void print_reply_tree_from_any_node(ReplyTree *t, int node, int space) {

@@ -25,6 +25,8 @@ typedef struct User {
     StackDraft drafts;
 } User;
 
+User create_user();
+
 void set_user_name(User *s, char *name);
 
 void set_user_password(User *s, char *password);

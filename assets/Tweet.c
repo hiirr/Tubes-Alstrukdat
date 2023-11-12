@@ -4,36 +4,31 @@
 #include "../ADT/Wordmachine.h"
 #include "../ADT/Datetime.h"
 
-Tweet new_tweet(char *text, int tweet_id, int author_id) {
+Tweet create_tweet() {
     Tweet tweet;
-
-    tweet.id = tweet_id;
-    tweet.text = text;
+    tweet.id = -1;
+    tweet.text = NULL;
     tweet.likes = 0;
-    tweet.author_id = author_id;
-    tweet.datetime = current_time();
+    tweet.author_id = -1;
+    tweet.datetime = NULL;
 
     return tweet;
 }
 
-void set_tweet_text_from_id(int id, char *text) {
-    free(tweets[id].text);
-    size_t length;
-    my_strlen(text, &length);
-    tweets[id].text = malloc((length + 1) * sizeof(char));
-    my_strcpy(tweets[id].text, text);
-}
-
-void set_tweet_datetime_from_id(int id, char *datetime) {
-    free(tweets[id].datetime);
-    size_t length;
-    my_strlen(datetime, &length);
-    tweets[id].datetime = malloc((length + 1) * sizeof(char));
-    my_strcpy(tweets[id].datetime, datetime);
+void delete_tweet(Tweet *t) {
+    t->id = -1;
+    free(t->text);
+    t->text = NULL;
+    t->likes = 0;
+    t->author_id = -1;
+    free(t->datetime);
+    t->datetime = NULL;
 }
 
 void set_tweet_text(Tweet *t, char *text) {
-    free(t->text);
+    if (t->text != NULL) {
+        free(t->text);
+    }
     size_t length;
     my_strlen(text, &length);
     t->text = malloc((length + 1) * sizeof(char));
@@ -41,12 +36,16 @@ void set_tweet_text(Tweet *t, char *text) {
 }
 
 void set_tweet_datetime(Tweet *t, char *datetime) {
-    free(t->datetime);
+    if (t->datetime != NULL) {
+        free(t->datetime);
+    }
     size_t length;
     my_strlen(datetime, &length);
     t->datetime = malloc((length + 1) * sizeof(char));
     my_strcpy(t->datetime, datetime);
 }
+
+
 
 void print_tweet(Tweet *t, int spaces) {
     for (int i = 0; i < spaces; ++i) printf("\t");
@@ -103,3 +102,31 @@ void print_private_tweet(Tweet *t, int spaces) {
     //     users[t->author_id].name,
     //     t->datetime);
 }
+
+// Tweet new_tweet(char *text, int tweet_id, int author_id) {
+//     Tweet tweet;
+
+//     tweet.id = tweet_id;
+//     tweet.text = text;
+//     tweet.likes = 0;
+//     tweet.author_id = author_id;
+//     tweet.datetime = current_time();
+
+//     return tweet;
+// }
+
+// void set_tweet_text_from_id(int id, char *text) {
+//     free(tweets[id].text);
+//     size_t length;
+//     my_strlen(text, &length);
+//     tweets[id].text = malloc((length + 1) * sizeof(char));
+//     my_strcpy(tweets[id].text, text);
+// }
+
+// void set_tweet_datetime_from_id(int id, char *datetime) {
+//     free(tweets[id].datetime);
+//     size_t length;
+//     my_strlen(datetime, &length);
+//     tweets[id].datetime = malloc((length + 1) * sizeof(char));
+//     my_strcpy(tweets[id].datetime, datetime);
+// }

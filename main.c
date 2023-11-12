@@ -52,14 +52,16 @@ int main() {
         else if (is_current_word_equal("BALAS")) {
             get_word();
             int id_kicau = word_to_int();
-
+        }
         else if (is_current_word_equal("KICAUAN")) {
             kicauan();
             get_word();
             int id_balasan = word_to_int();
             // printf("Id_kicau = %d, id_balasan = %d\n", id_kicau, id_balasan);
-
+        }
         else if (is_current_word_equal("KICAU")) {
+            int id_kicau;
+            int id_balasan;
             kicau();
             balas(id_kicau, id_balasan);
         } else if (is_current_word_equal("BALASAN")) {

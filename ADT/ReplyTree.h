@@ -5,11 +5,13 @@
 #include "boolean.h"
 #include "../assets/Tweet.h"
 
+#define REPLY_TREE_CAPACITY 1000
+
 typedef struct ReplyTree {
-    DynamicList adj[1000]; // Adjacency list. Root at 0
-    boolean nodes[1000];
-    int parent[1000];
-    Tweet tweets[1000];
+    DynamicList adj[REPLY_TREE_CAPACITY]; // Adjacency list. Root at 0
+    boolean nodes[REPLY_TREE_CAPACITY];
+    int parent[REPLY_TREE_CAPACITY];
+    Tweet tweets[REPLY_TREE_CAPACITY];
 } ReplyTree;
 
 void create_reply_tree(ReplyTree *t);

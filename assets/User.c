@@ -3,8 +3,30 @@
 #include "../ADT/pcolor.h"
 #include <stdlib.h>
 
+User create_user() {
+    User user;
+    user.name = NULL;
+    user.password = NULL;
+
+    user.is_public = true;
+    user.bio = NULL;
+    user.phone = NULL;
+    user.weton = NULL;
+
+    create_matrix(&user.profile_picture, 5, 10);
+
+    user.total_friends = 0;
+    create_priority_queue_friend_request(&user.friend_requests);
+
+    create_dynamic_list(&user.tweets, 1);
+
+    create_stack_draft(&user.drafts);
+}
+
 void set_user_name(User *s, char *name) {
-    free(s->name);
+    if (s->name != NULL) {
+        free(s->name);
+    }
     size_t length;
     my_strlen(name, &length);
     s->name = malloc((length + 1) * sizeof(char));
@@ -12,7 +34,9 @@ void set_user_name(User *s, char *name) {
 }
 
 void set_user_password(User *s, char *password) {
-    free(s->password);
+    if (s->password != NULL) {
+        free(s->password);
+    }
     size_t length;
     my_strlen(password, &length);
     s->password = malloc((length + 1) * sizeof(char));
@@ -20,7 +44,9 @@ void set_user_password(User *s, char *password) {
 }
 
 void set_user_bio(User *s, char *bio) {
-    free(s->bio);
+    if (s->bio != NULL) {
+        free(s->bio);
+    }
     size_t length;
     my_strlen(bio, &length);
     s->bio = malloc((length + 1) * sizeof(char));
@@ -28,7 +54,9 @@ void set_user_bio(User *s, char *bio) {
 }
 
 void set_user_phone(User *s, char *phone) {
-    free(s->phone);
+    if (s->phone != NULL) {
+        free(s->phone);
+    }
     size_t length;
     my_strlen(phone, &length);
     s->phone = malloc((length + 1) * sizeof(char));
@@ -36,7 +64,9 @@ void set_user_phone(User *s, char *phone) {
 }
 
 void set_user_weton(User *s, char *weton) {
-    free(s->weton);
+    if (s->weton != NULL) {
+        free(s->weton);
+    }
     size_t length;
     my_strlen(weton, &length);
     s->weton = malloc((length + 1) * sizeof(char));
