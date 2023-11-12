@@ -6,4 +6,8 @@ typedef struct Draft {
     char *text;
 } Draft;
 
+Draft new_draft(char *text);
+
+void print_draft(Draft *d);
+
 #endif
