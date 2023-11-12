@@ -3,6 +3,7 @@
 
 // Include file features di yang sudah diimplementasikan
 #include "features/muat.h"
+#include "features/kicau.h"
 #include "features/kicauan.h"
 #include "features/ubah_kicauan.h"
 #include "features/balas.h"
@@ -58,6 +59,8 @@ int main() {
             int id_balasan = word_to_int();
             // printf("Id_kicau = %d, id_balasan = %d\n", id_kicau, id_balasan);
 
+        else if (is_current_word_equal("KICAU")) {
+            kicau();
             balas(id_kicau, id_balasan);
         } else if (is_current_word_equal("BALASAN")) {
             get_word();
