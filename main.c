@@ -5,6 +5,10 @@
 #include "features/daftar.h"
 #include "features/masuk.h"
 #include "features/keluar.h"
+#include "features/ganti_profil.h"
+#include "features/lihat_profil.h"
+#include "features/atur_jenis_akun.h"
+#include "features/ubah_foto_profil.h"
 
 #include "features/muat.h"
 #include "features/kicau.h"
@@ -45,7 +49,21 @@ int main() {
         } else if (is_input_equal("TUTUP_PROGRAM")) {
             printf("Anda telah keluar dari program BurBir. Sampai jumpa di penjelajahan berikutnya.\n");
             return 0;
+        } else if (is_input_equal("GANTI_PROFIL")) {
+            ganti_profil();
+        } else if (is_input_equal("LIHAT_PROFIL")) {
+            clear_next_character();
+            get_paragraph();
+            char *name = input_to_string();
+            lihat_profil(name);
+            free(name);
+        } else if (is_input_equal("ATUR_JENIS_AKUN")) {
+            atur_jenis_akun();
+        } else if (is_input_equal("UBAH_FOTO_PROFIL")) {
+            ubah_foto_profil();
         }
+        
+
 
         else if (is_current_word_equal("UBAH_KICAUAN")) {
             get_word();

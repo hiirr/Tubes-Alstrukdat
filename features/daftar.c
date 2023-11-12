@@ -49,6 +49,11 @@ void daftar() {
     
     set_user_name(&users[total_user], name);
     set_user_password(&users[total_user], password);
+    
+    set_user_bio(&users[total_user], "");
+    set_user_phone(&users[total_user], "");
+    set_user_weton(&users[total_user], "");
+
     total_user += 1;
 
     printf("Pengguna telah berhasil terdaftar. Masuk untuk menikmati fitur-fitur BurBir.\n");
