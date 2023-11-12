@@ -14,11 +14,14 @@
 #include "features/tambah_teman.h"
 #include "features/daftar_permintaan_pertemanan.h"
 #include "features/setujui_pertemanan.h"
-
-#include "features/muat.h"
 #include "features/kicau.h"
 #include "features/kicauan.h"
+#include "features/suka_kicauan.h"
 #include "features/ubah_kicauan.h"
+
+
+#include "features/muat.h"
+
 #include "features/balas.h"
 #include "features/balasan.h"
 #include "features/hapus_balasan.h"
@@ -76,6 +79,22 @@ int main() {
             daftar_permintaan_pertemanan();
         } else if (is_input_equal("SETUJUI_PERTEMANAN")) {
             setujui_pertemanan();
+        } else if (is_input_equal("KICAU")) {
+            kicau();
+        } else if (is_input_equal("KICAUAN")) {
+            kicauan();
+        } else if (is_input_equal("SUKA_KICAUAN")) {
+            clear_next_character();
+            get_word();
+            int tweet_id = input_to_int();
+            suka_kicauan(tweet_id);
+        } else if (is_input_equal("UBAH_KICAUAN")) {
+            clear_next_character();
+            get_word();
+            int tweet_id = input_to_int();
+            ubah_kicauan(tweet_id);
+        } else if (is_input_equal("")) {
+            
         }
 
 

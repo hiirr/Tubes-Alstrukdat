@@ -17,15 +17,15 @@ void kicauan() {
     create_dynamic_list(&visible_tweets, 1);
 
     for (int i = 0; i < total_user; ++i) {
-        if (!users[i].is_public) return;
+        if (!users[i].is_public) continue;;
         for (int j = 0; j < users[i].tweets.length; ++j) {
             insert_last_dynamic_list(&visible_tweets, users[i].tweets.list[j]);
         }
     }
 
     for (int i = 0; i < total_user; ++i) {
-        if (!friends.matrix[current_user][i]) return;
-        if (users[i].is_public) return;
+        if (!friends.matrix[current_user][i]) continue;
+        if (users[i].is_public) continue;
         for (int j = 0; j < users[i].tweets.length; ++j) {
             insert_last_dynamic_list(&visible_tweets, users[i].tweets.list[j]);
         }

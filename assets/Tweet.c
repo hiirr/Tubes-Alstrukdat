@@ -25,6 +25,16 @@ void delete_tweet(Tweet *t) {
     t->datetime = NULL;
 }
 
+Tweet new_tweet(int tweet_id, char *text, int author_id) {
+    Tweet t = create_tweet();
+    t.id = tweet_id;
+    t.text = text;
+    t.likes = 0;
+    t.author_id = author_id;
+    set_tweet_datetime(&t, current_time());
+    return t;
+}
+
 void set_tweet_text(Tweet *t, char *text) {
     if (t->text != NULL) {
         free(t->text);
@@ -62,6 +72,8 @@ void print_tweet(Tweet *t, int spaces) {
 
     for (int i = 0; i < spaces; ++i) printf("\t");
     printf("Datetime: %s\n", t->datetime);
+
+    printf("\n\n");
     // printf("ID: %d\n"
     //     "Text: %s\n"
     //     "Likes: %d\n"

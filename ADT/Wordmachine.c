@@ -128,6 +128,17 @@ boolean is_all_int(char *string) {
     return true;
 }
 
+boolean is_all_space(char *string) {
+    size_t length;
+    my_strlen(string, &length);
+    for (int i = 0; i < length; ++i) {
+        if (!my_isspace(string[i])) {
+            return false;
+        }
+    }
+    return true;
+}
+
 char to_lower(char c) {
     if ('a' <= c && c <= 'z'){
         return c;

@@ -37,6 +37,8 @@ char *input_to_string();
 
 boolean is_all_int(char *string);
 
+boolean is_all_space(char *string);
+
 char to_lower(char c);
 
 void my_strlen(const char *str, size_t *len);
