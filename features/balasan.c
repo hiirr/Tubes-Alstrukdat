@@ -3,8 +3,8 @@
 #include "../database/database.h"
 
 void conditionally_print(ReplyTree *t, int node, int space) {
-    // for (int i = 0; i < space; ++i) printf("\t");
-    if (t->tweets[node].author_id != current_user && !users[t->tweets[node].author_id].is_public && !friends.matrix[current_user][t->tweets[node].author_id]) {
+    int author_id = t->tweets[node].author_id;
+    if (author_id != current_user && !users[author_id].is_public && !friends.matrix[current_user][author_id]) {
         print_private_tweet(&t->tweets[node], space);
     } else {
         print_tweet(&t->tweets[node], space);
@@ -15,19 +15,20 @@ void conditionally_print(ReplyTree *t, int node, int space) {
     }
 }
 
-void balasan(int id_kicau) {
+void balasan(int tweet_id) {
     if (current_user == -1) {
         printf("Anda belum log in.");
         return;
     }
-    if (id_kicau >= latest_tweet) {
-        printf("Tidak ada kicauan dengan ID %d\n", id_kicau);
+    if (tweet_id >= latest_tweet) {
+        printf("Tidak ada kicauan dengan ID %d\n", tweet_id);
         return;
     }
-    if (tweets[id_kicau].author_id != current_user && !users[tweets[id_kicau].author_id].is_public && !friends.matrix[current_user][tweets[id_kicau].author_id]) {
-        printf("Tidak dapat membalas karena kicauan privat dan anda belum berteman dengan pemilik kicauan.\n\n");
+    int author_id = tweets[tweet_id].author_id;
+    if (author_id != current_user && !users[author_id].is_public && !friends.matrix[current_user][author_id]) {
+        printf("Tidak dapat melihat balasan karena kicauan privat dan anda belum berteman dengan pemilik kicauan.\n\n");
         return;
     }
 
-    conditionally_print(&replies[id_kicau], 0, 0);
+    conditionally_print(&replies[tweet_id], 0, 0);
 }

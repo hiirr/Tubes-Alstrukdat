@@ -4,39 +4,65 @@
 #include "../ADT/ReplyTree.h"
 
 
-void balas(int id_kicau, int id_balas) {
+void balas(int tweet_id, int reply_id) {
     if (current_user == -1) {
         printf("Anda belum login.\n\n");
         return;
     }
-    if (id_kicau < latest_tweet) {
-        printf("Tidak ada kicauan dengan ID %d\n\n", id_kicau);
+    if (tweet_id >= latest_tweet) {
+        printf("Tidak ada kicauan dengan ID %d.\n\n", tweet_id);
         return;
     }
-    if (tweets[id_kicau].author_id != current_user && !users[tweets[id_kicau].author_id].is_public && !friends.matrix[current_user][tweets[id_kicau].author_id]) {
+    int tweet_author_id = tweets[tweet_id].author_id;
+    if (tweet_author_id != current_user && !users[tweet_author_id].is_public && !friends.matrix[current_user][tweet_author_id]) {
         printf("Tidak dapat membalas karena kicauan privat dan anda belum berteman dengan pemilik kicauan.\n\n");
         return;
     }
-    if (replies[id_kicau].tweets[id_balas].author_id != current_user && !users[replies[id_kicau].tweets[id_balas].author_id].is_public && !friends.matrix[current_user][replies[id_kicau].tweets[id_balas].author_id]) {
+    if (reply_id == -1) {
+        char *text;
+        while (true) {
+            printf("Masukkan balasan:\n");
+            get_paragraph();
+            if (current_input.length > 280) {
+                printf("Teks terlalu panjang (%d karakter); melebihi 280 karakter.\n");
+                continue;
+            }
+            text = input_to_string();
+            break;
+        }
+        Tweet reply = new_tweet(text, latest_reply[tweet_id], current_user);
+        add_reply_edge(&replies[tweet_id], 0, latest_reply[tweet_id], reply);
+        printf("Balasan telah diterbitkan.\n");
+        print_tweet(&replies[tweet_id].tweets[latest_reply[tweet_id]], 0);
+        ++latest_reply[tweet_id];
+        return;
+    }
+    if (!replies[tweet_id].nodes[reply_id]) {
+        printf("Tidak ada balasan dengan ID %d.\n", reply_id);
+        return;
+    }
+    int reply_author_id = replies[tweet_id].tweets[reply_id].author_id;
+    if (reply_author_id != current_user && !users[reply_author_id].is_public && !friends.matrix[current_user][reply_author_id]) {
         printf("Tidak dapat membalas karena pemilik balasan adalah privat dan anda belum berteman dengan pemilik balasan.\n\n");
         return;
     }
 
-    clear_next_character();
-    START();
-    get_paragraph();
-    char *text = input_to_string();
-    // printf("(%s)", text);
-
-    Tweet reply = new_tweet(text, latest_reply[id_kicau], current_user);
-
-    if (id_balas == -1) {
-        add_reply_edge(&replies[id_kicau], 0, latest_reply[id_kicau], reply);
-    } else {
-        add_reply_edge(&replies[id_kicau], id_balas, latest_reply[id_kicau], reply);
+    char *text;
+    while (true) {
+        printf("Masukkan balasan:\n");
+        get_paragraph();
+        if (current_input.length > 280) {
+            printf("Teks terlalu panjang (%d karakter); melebihi 280 karakter.\n");
+            continue;
+        }
+        text = input_to_string();
+        break;
     }
+    Tweet reply = new_tweet(text, latest_reply[tweet_id], current_user);
 
-    ++latest_reply[id_kicau];
+
+    add_reply_edge(&replies[tweet_id], tweet_id, latest_reply[tweet_id], reply);
+    ++latest_reply[tweet_id];
 
     printf("Balasan telah diterbitkan.\n\n");
 

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "database/database.h"
+#include "ADT/Wordmachine.h"
 
-// Include file features di yang sudah diimplementasikan
 #include "features/daftar.h"
 #include "features/masuk.h"
 #include "features/keluar.h"
@@ -18,15 +18,12 @@
 #include "features/kicauan.h"
 #include "features/suka_kicauan.h"
 #include "features/ubah_kicauan.h"
-
-
-#include "features/muat.h"
-
 #include "features/balas.h"
 #include "features/balasan.h"
 #include "features/hapus_balasan.h"
 
-#include "ADT/Wordmachine.h"
+#include "features/muat.h"
+
 
 int main() {
     
@@ -93,9 +90,23 @@ int main() {
             get_word();
             int tweet_id = input_to_int();
             ubah_kicauan(tweet_id);
-        } else if (is_input_equal("")) {
-            
-        }
+        } else if (is_input_equal("BALAS")) {
+            get_word();
+            int tweet_id = input_to_int();
+            get_word();
+            int reply_id = input_to_int();
+            balas(tweet_id, reply_id);
+        } else if (is_input_equal("BALASAN")) {
+            get_word();
+            int tweet_id = input_to_int();
+            balasan(tweet_id);
+        } else if (is_input_equal("HAPUS_BALASAN")) {
+            get_word();
+            int tweet_id = input_to_int();
+            get_word();
+            int reply_id = input_to_int();
+            hapus_balasan(tweet_id, reply_id);
+        } 
 
 
 

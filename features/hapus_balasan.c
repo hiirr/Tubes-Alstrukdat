@@ -3,23 +3,24 @@
 #include "../database/database.h"
 #include "../ADT/ReplyTree.h"
 
-void hapus_balasan(int id_kicau, int id_balas) {
+void hapus_balasan(int tweet_id, int reply_id) {
     if (current_user == -1) {
         printf("Anda belum login.\n\n");
         return;
     }
-    if (id_kicau >= latest_tweet) {
-        printf("Tidak ada kicauan dengan ID %d\n\n", id_kicau);
+    if (tweet_id >= latest_tweet) {
+        printf("Tidak ada kicauan dengan ID %d\n\n", tweet_id);
         return;
     }
-    if (!replies[id_kicau].nodes[id_balas]) {
-        printf("Tidak ada balasan dengan ID %d\n\n", id_balas);
+    if (!replies[tweet_id].nodes[reply_id]) {
+        printf("Tidak ada balasan dengan ID %d\n\n", reply_id);
         return;
     }
-    if (replies[id_kicau].tweets[id_balas].author_id != current_user) {
+    int author_id = replies[tweet_id].tweets[reply_id].author_id;
+    if (author_id != current_user) {
         printf("Balasan bukan milik anda.\n\n");
         return;
     }
-
-    delete_reply_node(&replies[id_kicau], id_balas);
+    delete_reply_node(&replies[tweet_id], reply_id);
+    printf("Balasan berhasil dihapus.\n\n");
 }

@@ -7,7 +7,6 @@
 
 void conditionally_print(ReplyTree *t, int node, int space);
 
-
-void balasan(int id_kicau);
+void balasan(int tweet_id);
 
 #endif
