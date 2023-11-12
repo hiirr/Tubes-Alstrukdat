@@ -57,3 +57,15 @@ void print_dynamic_list(DynamicList *l) {
     if (l->length != 0) printf("%d", l->list[l->length - 1]);
     printf("] length = %d, capacity = %d\n", l->length, l->capacity);
 }
+
+void sort_descending_dynamic_list(DynamicList *l) {
+    for (int i = 0; i < l->length; ++i) {
+        for (int j = i + 1; j < l->length; ++j) {
+            if (l->list[i] < l->list[j]) {
+                int temp = l->list[i];
+                l->list[i] = l->list[j];
+                l->list[j] = temp;
+            }
+        }
+    }
+}

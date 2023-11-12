@@ -3,12 +3,11 @@
 
 // Include file features di yang sudah diimplementasikan
 #include "features/muat.h"
+#include "features/kicauan.h"
 #include "features/ubah_kicauan.h"
-
 #include "features/balas.h"
 #include "features/balasan.h"
 #include "features/hapus_balasan.h"
-
 
 #include "ADT/Wordmachine.h"
 
@@ -53,6 +52,8 @@ int main() {
             get_word();
             int id_kicau = word_to_int();
 
+        else if (is_current_word_equal("KICAUAN")) {
+            kicauan();
             get_word();
             int id_balasan = word_to_int();
             // printf("Id_kicau = %d, id_balasan = %d\n", id_kicau, id_balasan);
@@ -112,6 +113,11 @@ int main() {
             // ini buat print input (bisa word atau paragraph). ini bisa buat debugging kalau ada masalah.
         }
         
+        else if (is_current_word_equal("KICAUAN")) {
+
+        }
+
+
 
         
         else {
