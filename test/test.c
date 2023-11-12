@@ -9,6 +9,9 @@ void debug_input() {
 }
 
 int main() {
+    // int a[3][3];
+    // int (*p)[3][3] = a;
+    
     // while (true) { 
     START();
     // get_word();
@@ -20,6 +23,7 @@ int main() {
 
     get_paragraph();
     debug_input();
+    clear_next_character();
     get_paragraph();
     debug_input();
     // }

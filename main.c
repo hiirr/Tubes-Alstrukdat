@@ -9,6 +9,11 @@
 #include "features/lihat_profil.h"
 #include "features/atur_jenis_akun.h"
 #include "features/ubah_foto_profil.h"
+#include "features/daftar_teman.h"
+#include "features/hapus_teman.h"
+#include "features/tambah_teman.h"
+#include "features/daftar_permintaan_pertemanan.h"
+#include "features/setujui_pertemanan.h"
 
 #include "features/muat.h"
 #include "features/kicau.h"
@@ -61,8 +66,18 @@ int main() {
             atur_jenis_akun();
         } else if (is_input_equal("UBAH_FOTO_PROFIL")) {
             ubah_foto_profil();
+        } else if (is_input_equal("DAFTAR_TEMAN")) {
+            daftar_teman();
+        } else if (is_input_equal("HAPUS_TEMAN")) {
+            hapus_teman();
+        } else if (is_input_equal("TAMBAH_TEMAN")) {
+            tambah_teman();
+        } else if (is_input_equal("DAFTAR_PERMINTAAN_PERTEMANAN")) {
+            daftar_permintaan_pertemanan();
+        } else if (is_input_equal("SETUJUI_PERTEMANAN")) {
+            setujui_pertemanan();
         }
-        
+
 
 
         else if (is_current_word_equal("UBAH_KICAUAN")) {

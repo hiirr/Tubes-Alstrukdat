@@ -52,8 +52,7 @@ void get_word() {
 }
 
 void clear_next_character() {
-    char c;
-    scanf("%c", &c);
+    ADV();
 }
 
 void print_input() {

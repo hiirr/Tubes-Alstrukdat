@@ -26,8 +26,6 @@ void dequeue_friend_request(PriorityQueueFriendRequest *p, FriendRequest *elemen
 
 void print_priority_queue_friend_request(PriorityQueueFriendRequest p);
 
-void update_priority_queue_friend_request(PriorityQueueFriendRequest *p, int user_id, int new_popularity);
-
 void remove_request_from_queue(PriorityQueueFriendRequest *p, int user_id);
 
 #endif

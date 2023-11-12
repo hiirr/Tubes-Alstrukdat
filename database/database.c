@@ -6,6 +6,7 @@
 #include "../ADT/Matrix.h"
 #include "../ADT/GraphMatrix.h"
 #include "../ADT/ReplyTree.h"
+#include "../ADT/Wordmachine.h"
 
 #include <stdlib.h>
 
@@ -45,4 +46,12 @@ void create_database() {
     for (int i = 0; i < MAX_TWEET; ++i) {
         create_reply_tree(&replies[i]);
     }
+}
+int search_id_by_name(char *name) {
+    for (int i = 0; i < total_user; i++) {
+        if (is_two_string_equal(users[i].name, name)) {
+            return i;
+        }
+    }
+    return -1;
 }

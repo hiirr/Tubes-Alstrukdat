@@ -22,4 +22,6 @@ extern ReplyTree replies[MAX_TWEET];
 
 void create_database();
 
+int search_id_by_name(char *name);
+
 #endif

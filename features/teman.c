@@ -7,15 +7,15 @@
 #include <stdio.h>
 
 //PRIVATE FUNCTION
-int search_id(char *username) {
-    int i;
-    for (i = 0; i < total_user; i++) {
-        if (my_strcmp(users[i].name, username) == 0) {
-            return i;
-        }
-    }
-    return -1;
-}; //search if username is in users, return id
+// int search_id(char *username) {
+//     int i;
+//     for (i = 0; i < total_user; i++) {
+//         if (my_strcmp(users[i].name, username) == 0) {
+//             return i;
+//         }
+//     }
+//     return -1;
+// }; //search if username is in users, return id
 
 void print_friend_request(PriorityQueueFriendRequest p) {
     int start_idx = p.head;
@@ -93,7 +93,7 @@ void remove_friend() {
     } else {
         printf("\nPenghapusan teman dibatalkan.\n");
     }
-};
+}
 
 void send_friend_request() {
     if (current_user == -1) {
@@ -129,7 +129,7 @@ void send_friend_request() {
     }
     enqueue_friend_request(&users[friend_id].friend_requests, req);
     printf("\nPermintaan pertemanan kepada %s telah dikirim. Tunggu beberapa saat hingga permintaan Anda disetujui.\n", friend_name);
-};
+}
 
 void cancel_friend_request() {
     if (current_user == -1) {
@@ -155,7 +155,7 @@ void cancel_friend_request() {
     } else {
         printf("\nAnda belum mengirimkan permintaan pertemanan kepada %s.\n", friend_name);
     }
-};
+}
 
 void print_friend_requests() {
     if (current_user == -1) {
@@ -169,7 +169,7 @@ void print_friend_requests() {
     int length = length_priority_queue_friend_request(users[current_user].friend_requests);
     printf("\nTerdapat %d permintaan pertemanan untuk Anda.\n", length);
     print_friend_request(users[current_user].friend_requests);
-};
+}
 
 void accept_friend_request() {
     if (current_user == -1) {
@@ -207,4 +207,4 @@ void accept_friend_request() {
     } else {
         printf("\nPermintaan pertemanan dari %s telah ditolak.\n", users[req.user_id].name);
     }
-};
+}
