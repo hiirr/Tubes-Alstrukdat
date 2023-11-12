@@ -3,9 +3,12 @@
 
 // Include file features di yang sudah diimplementasikan
 #include "features/muat.h"
+#include "features/ubah_kicauan.h"
+
 #include "features/balas.h"
 #include "features/balasan.h"
 #include "features/hapus_balasan.h"
+
 
 #include "ADT/Wordmachine.h"
 
@@ -40,6 +43,12 @@ int main() {
             printf("Anda telah keluar dari program BurBir. Sampai jumpa di penjelajahan berikutnya.\n");
         }
 
+        else if (is_current_word_equal("UBAH_KICAUAN")) {
+            get_word();
+            int id_kicau = word_to_int();
+            printf("ID_kicau = %d\n", id_kicau);
+            ubah_kicauan(id_kicau);
+        }
         else if (is_current_word_equal("BALAS")) {
             get_word();
             int id_kicau = word_to_int();
@@ -103,6 +112,7 @@ int main() {
             // ini buat print input (bisa word atau paragraph). ini bisa buat debugging kalau ada masalah.
         }
         
+
         
         else {
             printf("Belum...\n");
