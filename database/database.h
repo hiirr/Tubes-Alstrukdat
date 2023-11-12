@@ -4,7 +4,7 @@
 #include "../assets/User.h"
 #include "../assets/Tweet.h"
 
-#include "../ADT/Matrix.h"
+#include "../ADT/GraphMatrix.h"
 #include "../ADT/ReplyTree.h"
 
 #define MAX_TWEET 1000
@@ -13,7 +13,7 @@
 extern int current_user;
 extern int total_user;
 extern User users[MAX_USER];
-extern  Matrix friends;
+extern GraphMatrix friends;
 
 extern int latest_tweet;
 extern Tweet tweets[MAX_TWEET];

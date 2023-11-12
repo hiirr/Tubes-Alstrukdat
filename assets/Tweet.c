@@ -2,6 +2,19 @@
 #include "../database/database.h"
 #include <stdlib.h>
 #include "../ADT/Wordmachine.h"
+#include "../ADT/Datetime.h"
+
+Tweet new_tweet(char *text, int tweet_id, int author_id) {
+    Tweet tweet;
+
+    tweet.id = tweet_id;
+    tweet.text = text;
+    tweet.likes = 0;
+    tweet.author_id = author_id;
+    tweet.datetime = current_time();
+
+    return tweet;
+}
 
 void set_tweet_text_from_id(int id, char *text) {
     free(tweets[id].text);
@@ -50,6 +63,34 @@ void print_tweet(Tweet *t, int spaces) {
 
     for (int i = 0; i < spaces; ++i) printf("\t");
     printf("Datetime: %s\n", t->datetime);
+    // printf("ID: %d\n"
+    //     "Text: %s\n"
+    //     "Likes: %d\n"
+    //     "Author: %s\n"
+    //     "Datetime: %s\n",
+        
+    //     t->id,
+    //     t->text,
+    //     t->likes,
+    //     users[t->author_id].name,
+    //     t->datetime);
+}
+
+void print_private_tweet(Tweet *t, int spaces) {
+    for (int i = 0; i < spaces; ++i) printf("\t");
+    printf("ID: %d\n", t->id);
+
+    for (int i = 0; i < spaces; ++i) printf("\t");
+    printf("PRIVAT");
+
+    for (int i = 0; i < spaces; ++i) printf("\t");
+    printf("PRIVAT");
+
+    for (int i = 0; i < spaces; ++i) printf("\t");
+    printf("PRIVAT");
+
+    for (int i = 0; i < spaces; ++i) printf("\t");
+    printf("PRIVAT");
     // printf("ID: %d\n"
     //     "Text: %s\n"
     //     "Likes: %d\n"

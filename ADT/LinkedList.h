@@ -3,55 +3,38 @@
 
 #include "boolean.h"
 
-typedef int ElType;
-typedef struct node* Address;
-typedef struct node {
-    ElType info;
-    Address next;
-} Node;
+typedef struct LinkedNode *LinkedNodeAddress;
+typedef LinkedNodeAddress LinkedList;
 
-#define INFO(p) (p)->info
-#define NEXT(p) (p)->next
+typedef struct LinkedNode {
+    int value;
+    LinkedNodeAddress next;
+} LinkedNode;
 
-Address newNode(ElType val);
+LinkedNodeAddress new_node_linked_list(int value);
 
-typedef Address List;
+void create_linked_list(LinkedList *l);
 
-#define IDX_UNDEF (-1)
-#define FIRST(l) (l)
+boolean is_empty_linked_list(LinkedList l);
 
-/****************** PEMBUATAN LIST KOSONG ******************/
-void create_linked_list(List *l);
+int length_linked_list(LinkedList l);
 
-/****************** TEST LIST KOSONG ******************/
-boolean isEmpty_linked_list(List l);
+int get_element_linked_list(LinkedList l, int idx);
 
-/****************** GETTER SETTER ******************/
-ElType getElmt_linked_list(List l, int idx);
+void set_element_linked_list(LinkedList *l, int idx, int val);
 
-void setElmt_linked_list(List *l, int idx, ElType val);
+int index_of_linked_list(LinkedList l, int val);
 
-int indexOf_linked_list(List l, ElType val);
+void insert_first_linked_list(LinkedList *l, int val);
 
-/****************** PRIMITIF BERDASARKAN NILAI ******************/
-/*** PENAMBAHAN ELEMEN ***/
-void insertFirst_linked_list(List *l, ElType val);
+void insert_last_linked_list(LinkedList *l, int val);
 
-void insertLast_linked_list(List *l, ElType val);
+void insert_at_linked_list(LinkedList *l, int val, int idx);
 
-void insertAt_linked_list(List *l, ElType val, int idx);
+void delete_first_linked_list(LinkedList *l, int *val);
 
-/*** PENGHAPUSAN ELEMEN ***/
-void deleteFirst_linked_list(List *l, ElType *val);
+void delete_last_linked_list(LinkedList *l, int *val);
 
-void deleteLast_linked_list(List *l, ElType *val);
-
-void deleteAt_linked_list(List *l, int idx, ElType *val);
-
-
-/****************** PROSES SEMUA ELEMEN LIST ******************/
-void displayList_linked_list(List l);
-
-int length_linked_list(List l);
+void delete_at_linked_list(LinkedList *l, int idx, int *val);
 
 #endif

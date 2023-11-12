@@ -2,192 +2,128 @@
 #include <stdlib.h>
 #include "LinkedList.h"
 
-Address newNode(ElType val){
-    Address p = (Address)malloc(sizeof(Node));
-    if (p!=NULL){
-        INFO(p) = val;
-        NEXT(p) = NULL;
+LinkedNodeAddress new_node_linked_list(int value) {
+    LinkedNodeAddress new = malloc(sizeof(LinkedNode));
+    new->value = value;
+    new->next = 0;
+    return new;
+}
+
+void create_linked_list(LinkedList *l) {
+    (*l) = 0;
+}
+
+boolean is_empty_linked_list(LinkedList l) {
+    return l == 0;
+}
+
+int length_linked_list(LinkedList l) {
+    int size = 0;
+    LinkedNodeAddress current = l;
+    while (current != 0) {
+        ++size;
+        current = current->next;
     }
-    return p;
-};
 
-/****************** PEMBUATAN LIST KOSONG ******************/
-void create_linked_list(List *l){
-    FIRST(*l) = NULL;
+    return size;
 }
 
-/****************** TEST LIST KOSONG ******************/
-boolean isEmpty_linked_list(List l){
-    return FIRST(l) == NULL;
-}
-
-/****************** GETTER SETTER ******************/
-ElType getElmt_linked_list(List l, int idx){
-    Address p = FIRST(l);
-    int i = 0;
-    while (i < idx && p != NULL){
-        p = NEXT(p);
-        i++;
+int get_element_linked_list(LinkedList l, int idx) {
+    LinkedNodeAddress current = l;
+    for (int i = 0; i < idx; ++i) {
+        current = current->next;
     }
-    return INFO(p);
+    return current->value;
 }
 
-void setElmt_linked_list(List *l, int idx, ElType val){
-    Address p = FIRST(*l);
-    int i = 0;
-    while(p != NULL && i < idx){
-        p = NEXT(p);
-        i += 1;
+void set_element_linked_list(LinkedList *l, int idx, int val) {
+    LinkedNodeAddress current = *l;
+    for (int i = 0; i < idx; ++i) {
+        current = current->next;
     }
-    INFO(p) = val;
+    current->value = val;
 }
 
-int indexOf_linked_list(List l, ElType val){
-    Address p = FIRST(l);
-    int cnt = 0;
-    boolean isFound = false;
-    while(p != NULL && !isFound){
-        if(INFO(p) == val){
-            isFound = true;
+int index_of_linked_list(LinkedList l, int val) {
+    LinkedNodeAddress current = l;
+    for (int i = 0; i < length_linked_list(l); ++i) {
+        if (current->value == val) return i;
+        current = current->next;
+    }
+    return -1;
+}
+
+void insert_first_linked_list(LinkedList *l, int val) {
+    LinkedNodeAddress first = new_node_linked_list(val);
+    if (first == 0) return;
+
+    first->next = *l;
+    *l = first;
+}
+
+void insert_last_linked_list(LinkedList *l, int val) {
+    if (is_empty_linked_list(*l)) {
+        insert_first_linked_list(l, val);
+    } else {
+        LinkedNodeAddress last = new_node_linked_list(val);
+        if (last == 0) return;
+
+        LinkedNodeAddress current = *l;
+        for (int i = 1; i < length_linked_list(*l); ++i) {
+            current = current->next;
         }
-        else{
-            cnt += 1;
-            p = NEXT(p);
+        current->next = last;
+    }
+}
+
+void insert_at_linked_list(LinkedList *l, int val, int idx) {
+    if (idx == 0) insert_first_linked_list(l, val);
+    else {
+        LinkedNodeAddress new_node = new_node_linked_list(val);
+        if (new_node == 0) return;
+
+        LinkedNodeAddress current = *l;
+        for (int i = 0; i < idx-1; ++i) {
+            current = current->next;
         }
-    }
-    if(isFound){
-        return cnt;
-    }
-    else{
-        return IDX_UNDEF;
+        new_node->next = current->next;
+        current->next = new_node;
     }
 }
 
-/****************** PRIMITIF BERDASARKAN NILAI ******************/
-/*** PENAMBAHAN ELEMEN ***/
-void insertFirst_linked_list(List *l, ElType val){
-    Address p;
-    p = newNode(val);
-    if(p != NULL){
-        NEXT(p) = *l;
-        *l = p;
-    }
+void delete_first_linked_list(LinkedList *l, int *val) {
+    *val = (*l)->value;
+    LinkedNodeAddress temp = *l;
+    *l = (*l)->next;
+    free(temp);
 }
 
-void insertLast_linked_list(List *l, ElType val){
-    if(isEmpty_linked_list(*l)){
-        insertFirst_linked_list(l, val);
-    }
-    else{
-        Address p, loc;
-        p = newNode(val);
-        if(p != NULL){
-            loc = *l;
-            while(NEXT(loc) != NULL){
-                loc = NEXT(loc);
-            }
-            NEXT(loc) = p;
+void delete_last_linked_list(LinkedList *l, int *val) {
+    if (length(*l) == 1) {
+        delete_first_linked_list(l, val);
+    } else {
+        LinkedNodeAddress current = *l;
+        for (int i = 2; i < length_linked_list(*l); ++i) {
+            current = current->next;
         }
+
+        *val = current->next->value;
+        free(current->next);
+        current->next = 0;
     }
 }
 
-void insertAt_linked_list(List *l, ElType val, int idx){
-    int cnt = 0;
-    Address p, loc;
-    if(idx == 0){
-        insertFirst_linked_list(l, val);
-    }
-    else{
-        p = newNode(val);
-        if(p != NULL){
-            loc = *l;
-            while(cnt < idx-1){
-                cnt += 1;
-                loc = NEXT(loc);
-            }
-            NEXT(p) = NEXT(loc);
-            NEXT(loc) = p;
+void delete_at_linked_list(LinkedList *l, int idx, int *val) {
+    if (idx == 0) delete_first_linked_list(l, val);
+    else if (idx == length_linked_list(*l) - 1) delete_last_linked_list(l, val);
+    else {
+        LinkedNodeAddress current = *l;
+        for (int i = 0; i < idx - 1; ++i) {
+            current = current->next;
         }
+        LinkedNodeAddress temp = current->next;
+        *val = temp->value;
+        current->next = temp->next;
+        free(temp);
     }
-}
-
-/*** PENGHAPUSAN ELEMEN ***/
-void deleteFirst_linked_list(List *l, ElType *val){
-    Address p = FIRST(*l);
-    *val = INFO(p);
-    FIRST(*l) = NEXT(p);
-    free(p);
-}
-
-void deleteLast_linked_list(List *l, ElType *val){
-    Address p = FIRST(*l);
-    Address loc = NULL;
-    while(NEXT(p) != NULL){
-        loc = p;
-        p = NEXT(p);
-    }
-    if(loc == NULL){
-        FIRST(*l) = NULL;
-    }
-    else{
-        NEXT(loc) = NULL;
-    }
-    *val = INFO(p);
-    free(p);
-}
-
-void deleteAt_linked_list(List *l, int idx, ElType *val){
-    if(idx == 0){
-        deleteFirst_linked_list(l, val);
-    }
-    else{
-        int cnt = 0;
-        Address p, loc;
-        loc = FIRST(*l);
-        while(cnt < idx - 1){
-            cnt += 1;
-            loc = NEXT(loc);
-        }
-        p = NEXT(loc);
-        *val = INFO(p);
-        NEXT(loc) = NEXT(p);
-        free(p);
-    }
-}
-
-
-/****************** PROSES SEMUA ELEMEN LIST ******************/
-void displayList_linked_list(List l){
-    Address p = FIRST(l);
-    if (isEmpty_linked_list(l)){
-        printf("[]");
-    }
-    else{
-        printf("[");
-        while(p != NULL){
-            if(NEXT(p) == NULL){
-                printf("%i", INFO(p));
-            }
-            else{
-                printf("%i,", INFO(p));
-            }
-            p = NEXT(p);
-        }
-        printf("]");
-    }
-}
-
-int length_linked_list(List l){
-    Address p = FIRST(l);
-    int cnt = 0;
-    if(isEmpty_linked_list(l)){
-        return cnt;
-    }
-    else{
-        while(p != NULL){
-            cnt += 1;
-            p = NEXT(p);
-        }
-    }
-    return cnt;
 }
