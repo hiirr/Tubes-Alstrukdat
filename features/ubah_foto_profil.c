@@ -15,13 +15,22 @@ void ubah_foto_profil() {
     } else {
         printf("Foto profil Anda saat ini adalah\n");
         print_profile_picture(&users[current_user]);
-        print("\n");
+        printf("\n");
 
         Matrix new_profil;
         printf("Masukkan foto profil yang baru\n");
         create_matrix(&new_profil, 5, 10);
-        read_matrix(&new_profil, 5, 10);
-        copy_matrix(&new_profil, &users[current_user].profile_picture);
         clear_next_character();
+        get_paragraph();
+        for (int row = 0; row < 5; ++row) {
+            for (int col = 0; col < 5; ++col) {
+                new_profil.matrix[row][2 * col] = current_input.input[20 * row + 4 * col];
+                new_profil.matrix[row][2 * col + 1] = current_input.input[20 * row + 4 * col + 2];
+            }
+        }
+        copy_matrix(&new_profil, &users[current_user].profile_picture);
+        printf("Foto profil berhasil diubah.\n\n");
+        print_profile_picture(&users[current_user]);
+        printf("\n");
     }
 }

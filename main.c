@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "database/database.h"
+#include "ADT/Charmachine.h"
 #include "ADT/Wordmachine.h"
 
 #include "features/daftar.h"
@@ -21,12 +22,14 @@
 #include "features/balas.h"
 #include "features/balasan.h"
 #include "features/hapus_balasan.h"
-
+#include "features/buat_draft.h"
+#include "features/lihat_draft.h"
+// UTAS
+#include "features/simpan.h"
 #include "features/muat.h"
 
 
 int main() {
-    
     printf(
 ".______    __    __  .______      .______    __  .______      \n"
 "|   _  \\  |  |  |  | |   _  \\     |   _  \\  |  | |   _  \\     \n"
@@ -36,15 +39,14 @@ int main() {
 "|______/   \\______/  | _| `._____||______/  |__| | _| `._____|\n\n\n");
 
     create_database();
-    // load();
+    // muat();
 
-    START();
+    SET_STDIN();
 
     while (true) {
         printf(">> ");
 
         get_word();
-
         if (is_input_equal("DAFTAR")) {
             daftar();
         } else if (is_input_equal("MASUK")) {
@@ -57,7 +59,6 @@ int main() {
         } else if (is_input_equal("GANTI_PROFIL")) {
             ganti_profil();
         } else if (is_input_equal("LIHAT_PROFIL")) {
-            clear_next_character();
             get_paragraph();
             char *name = input_to_string();
             lihat_profil(name);
@@ -81,12 +82,10 @@ int main() {
         } else if (is_input_equal("KICAUAN")) {
             kicauan();
         } else if (is_input_equal("SUKA_KICAUAN")) {
-            clear_next_character();
             get_word();
             int tweet_id = input_to_int();
             suka_kicauan(tweet_id);
         } else if (is_input_equal("UBAH_KICAUAN")) {
-            clear_next_character();
             get_word();
             int tweet_id = input_to_int();
             ubah_kicauan(tweet_id);
@@ -106,94 +105,36 @@ int main() {
             get_word();
             int reply_id = input_to_int();
             hapus_balasan(tweet_id, reply_id);
-        } 
-
-
-
-        else if (is_current_word_equal("UBAH_KICAUAN")) {
-            get_word();
-            int id_kicau = word_to_int();
-            printf("ID_kicau = %d\n", id_kicau);
-            ubah_kicauan(id_kicau);
+        } else if (is_input_equal("BUAT_DRAF")) {
+            buat_draft();
+        } else if (is_input_equal("LIHAT_DRAF")) {
+            lihat_draft();
         }
-        else if (is_current_word_equal("BALAS")) {
-            get_word();
-            int id_kicau = word_to_int();
+        // Start utas (belum)
+        else if (is_input_equal("UTAS")) {
+            printf("Belum diimplementasi.\n");
+        } else if (is_input_equal("SAMBUNG_UTAS")) {
+            printf("Belum diimplementasi.\n");
+        } else if (is_input_equal("HAPUS_UTAS")) {
+            printf("Belum diimplementasi.\n");
+        } else if (is_input_equal("CETAK_ UTAS")) {
+            printf("Belum diimplementasi.\n");
         }
-        else if (is_current_word_equal("KICAUAN")) {
-            kicauan();
-            get_word();
-            int id_balasan = word_to_int();
-            // printf("Id_kicau = %d, id_balasan = %d\n", id_kicau, id_balasan);
-        }
-        else if (is_current_word_equal("KICAU")) {
-            int id_kicau;
-            int id_balasan;
-            kicau();
-            balas(id_kicau, id_balasan);
-        } else if (is_current_word_equal("BALASAN")) {
-            get_word();
-            int id_kicau = word_to_int();
-            balasan(id_kicau);
-        } else if (is_current_word_equal("HAPUS_BALASAN")) {
-            get_word();
-            int id_kicau = word_to_int();
-
-            get_word();
-            int id_balasan = word_to_int();
-            // printf("Id_kicau = %d, id_balasan = %d\n", id_kicau, id_balasan);
-
-            hapus_balasan(id_kicau, id_balasan);
-        }
-
-        else if (is_current_word_equal("CONTOH_1")) {
-            // Misal contoh commandnya "CONTOH_1 22 27;".
-            // Mau dapetin 22 dan 27.
-            // Caranya gini:
-            
-            
-            get_word();
-            int a = word_to_int(); // 22
-
-            get_word();
-            int b = word_to_int(); // 27;
-
-            printf("a = %d, b = %d\n", a, b); // Bakal ngeprint "a = 22, b = 27";
-
-            // Terus buat file contoh_1.c dan contoh_1.h. Terus buat fungsi
-            // void contoh_1() yang pake get_word dan yg lain-lainnya. nanti kodenya di fungsi itu ya.
-
-
-    
-        } else if (is_current_word_equal("CONTOH_2")) {
-            // Misal contoh commandnya "CONTOH_2;"
-            // Terus nanti dimintain paragraf (bisa bio, dll).
-            // Caranya gini:
-
-            clear_next_character();
-            // next_character di sini, characternya selalu newline. karena setelah user mengetik "CONTOH_2;", karakter selanjuatnya yang 
-            // diketik adalah newline, sehingga agar newline tidak termasuk paragraf, harus di dipanggil fungsi clear_next_character();
-
-
-            START();
-            // Start penting karena tadi sudah ketemu ; waktu parsing "CONTOH_2;", jadi harus START ulang lagi 
-            
-            get_paragraph();
-            
-
-            print_input();
-            // ini buat print input (bisa word atau paragraph). ini bisa buat debugging kalau ada masalah.
-        }
+        // End utas
         
-        else if (is_current_word_equal("KICAUAN")) {
 
+        // Start simpan (belum)
+        else if (is_input_equal("SIMPAN")) {
+            printf("Belum diimplementasi.\n");
+            // simpan();
+        } else if (is_input_equal("MUAT")) {
+            printf("Belum diimplementasi.\n");
+            // muat();
         }
-
-
-
+        // End simpan
         
         else {
-            printf("Belum...\n");
+            printf("Perintah tidak dikenal ");
             print_input();
         }
     }

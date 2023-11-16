@@ -12,14 +12,14 @@ void hapus_teman() {
         return;
     }
     printf("\nMasukkan nama pengguna:\n");
+    clear_next_character();
     get_paragraph();
 
     char *friend_name = input_to_string();
     int friend_id = search_id_by_name(friend_name);
-    free(friend_name);
 
     if (friend_id == -1) {
-        printf("\n%s tidak terdaftar dalam layanan BurBir.\n", friend_name);
+        printf("\nUser tidak terdaftar dalam layanan BurBir.\n");
         return;
     }
     if (friend_id == current_user) {
@@ -27,17 +27,20 @@ void hapus_teman() {
         return;
     }
     if (friends.matrix[current_user][friend_id] == 0) {
-        printf("\n%s bukan teman Anda.\n", friend_name);
+        printf("\nBukan bukan teman Anda.\n");
         return;
     }
-    printf("\nApakah anda yakin ingin menghapus %s dari daftar teman anda? (YA/TIDAK) ", friend_name);
+    printf("\nApakah anda yakin ingin menghapus dia dari daftar teman anda? (YA/TIDAK) ");
+    clear_next_character();
     get_word();
     if (is_input_equal("YA")) {
         delete_relation(&friends, current_user, friend_id);
         users[current_user].total_friends--;
         users[friend_id].total_friends--;
-        printf("\n%s berhasil dihapus dari daftar teman Anda.\n", friend_name);
-    } else {
+        printf("\nTeman yang bersangkutan berhasil dihapus dari daftar teman Anda.\n");
+    } else if (is_input_equal("TIDAK")) {
         printf("\nPenghapusan teman dibatalkan.\n");
+    } else {
+        printf("Jawaban tidak valid.\n");
     }
 }

@@ -21,6 +21,7 @@ void create_reply_tree(ReplyTree *t) {
 void add_reply_edge(ReplyTree *t, int parent, int child, Tweet child_tweet) {
     t->nodes[child] = true;
     insert_last_dynamic_list(&(t->adj[parent]), child);
+    printf("Inserting: parent = %d, child = %d\n", parent, child);
     t->parent[child] = parent;
     t->tweets[child] = child_tweet;
 }
@@ -39,7 +40,6 @@ void delete_reply_node(ReplyTree *t, int node) {
 }
 
 void print_reply_tree_from_any_node(ReplyTree *t, int node, int space) {
-    // for (int i = 0; i < space; ++i) printf("\t");
     print_tweet(&t->tweets[node], space);
 
     for (int i = 0; i < t->adj[node].length; ++i) {

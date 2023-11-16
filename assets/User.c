@@ -22,11 +22,14 @@ User create_user() {
     }
 
     user.total_friends = 0;
+    
     create_priority_queue_friend_request(&user.friend_requests);
 
     create_dynamic_list(&user.tweets, 1);
 
     create_stack_draft(&user.drafts);
+
+    return user;
 }
 
 void set_user_name(User *s, char *name) {

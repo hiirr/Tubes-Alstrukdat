@@ -9,7 +9,6 @@ void conditionally_print(ReplyTree *t, int node, int space) {
     } else {
         print_tweet(&t->tweets[node], space);
     }
-
     for (int i = 0; i < t->adj[node].length; ++i) {
         conditionally_print(t, t->adj[node].list[i], space + 1);
     }
@@ -20,7 +19,7 @@ void balasan(int tweet_id) {
         printf("Anda belum log in.");
         return;
     }
-    if (tweet_id >= latest_tweet) {
+    if (tweet_id <= 0 || tweet_id >= latest_tweet) {
         printf("Tidak ada kicauan dengan ID %d\n", tweet_id);
         return;
     }

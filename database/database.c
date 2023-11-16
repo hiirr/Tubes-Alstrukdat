@@ -15,8 +15,7 @@ int total_user = 0;
 User users[MAX_USER];
 GraphMatrix friends;
 
-// int latest_tweet = 1;
-int total_tweets = 0;
+int latest_tweet = 1;
 Tweet tweets[MAX_TWEET];
 int latest_reply[MAX_TWEET];
 ReplyTree replies[MAX_TWEET];
@@ -24,6 +23,7 @@ ReplyTree replies[MAX_TWEET];
 void create_database() {
     // current_user
     current_user = -1;
+    // total_user
     total_user = 0;
     // users
     for (int i = 0; i < MAX_USER; ++i) {
@@ -32,8 +32,7 @@ void create_database() {
     // friends
     create_graph_matrix(&friends, 20, 20);
     // latest_tweet
-    // latest_tweet = 1;
-    total_tweets = 0;
+    latest_tweet = 1;
     // tweets
     for (int i = 0; i < MAX_TWEET; ++i) {
         tweets[i] = create_tweet();
@@ -47,6 +46,7 @@ void create_database() {
         create_reply_tree(&replies[i]);
     }
 }
+
 int search_id_by_name(char *name) {
     for (int i = 0; i < total_user; i++) {
         if (is_two_string_equal(users[i].name, name)) {

@@ -4,6 +4,9 @@
 #include "boolean.h"
 
 void create_stack_draft(StackDraft *s) {
+    for (int i = 0; i < STACK_DRAFT_CAPACITY; ++i) {
+        s->stack[i] = create_draft();
+    }
     s->top = -1;
 }
 
@@ -22,6 +25,8 @@ void push_stack_draft(StackDraft *s, Draft element) {
 
 void pop_stack_draft(StackDraft *s, Draft *element) {
     *element = s->stack[s->top];
+    s->stack[s->top].text = NULL;
+    s->stack[s->top].datetime = NULL;
     --(s->top);
 }
 

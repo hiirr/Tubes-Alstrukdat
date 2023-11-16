@@ -3,7 +3,7 @@
 #include "../database/database.h"
 
 void masuk() {
-    if (current_user != -1){
+    if (current_user != -1) {
         printf("Wah Anda sudah masuk. Keluar dulu yuk!\n");
         return;
     }
@@ -11,25 +11,21 @@ void masuk() {
     int idx;
     while (true) {
         printf("Masukkan nama:\n");
+        clear_next_character();
         get_paragraph();
         char *name = input_to_string();
-        boolean is_found = false;
-        for (int i = 0; i < total_user; i++){
-            if (is_two_string_equal(name, users[i].name)) {
-                free(name);
-                is_found = true;
-                idx = i;
-                break;
-            }
-        }
-        if (!is_found) {
-            free(name);
+        idx = search_id_by_name(name);
+        free(name);
+        if (idx == -1) {
             printf("Wah, nama yang Anda cari tidak ada. Masukkan nama lain!\n");
+        } else {
+            break;
         }
     }
 
     while (true) {
         printf("Masukkan kata sandi:\n");
+        clear_next_character();
         get_paragraph();
         char *password = input_to_string();
         if (is_two_string_equal(password, users[idx].password)) {

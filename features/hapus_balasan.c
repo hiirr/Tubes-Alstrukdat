@@ -8,11 +8,11 @@ void hapus_balasan(int tweet_id, int reply_id) {
         printf("Anda belum login.\n\n");
         return;
     }
-    if (tweet_id >= latest_tweet) {
+    if (tweet_id <= 0 || tweet_id >= latest_tweet) {
         printf("Tidak ada kicauan dengan ID %d\n\n", tweet_id);
         return;
     }
-    if (!replies[tweet_id].nodes[reply_id]) {
+    if (reply_id <= 0 || reply_id >= latest_reply[tweet_id] || !replies[tweet_id].nodes[reply_id]) {
         printf("Tidak ada balasan dengan ID %d\n\n", reply_id);
         return;
     }

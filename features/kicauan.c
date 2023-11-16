@@ -24,7 +24,7 @@ void kicauan() {
     }
 
     for (int i = 0; i < total_user; ++i) {
-        if (!friends.matrix[current_user][i]) continue;
+        if (current_user != i && !friends.matrix[current_user][i]) continue;
         if (users[i].is_public) continue;
         for (int j = 0; j < users[i].tweets.length; ++j) {
             insert_last_dynamic_list(&visible_tweets, users[i].tweets.list[j]);
@@ -34,7 +34,7 @@ void kicauan() {
     sort_descending_dynamic_list(&visible_tweets);    
 
     for (int i = 0; i < visible_tweets.length; ++i) {
-        print_tweet(&tweets[i], 0);
+        print_tweet(&tweets[visible_tweets.list[i]], 0);
         printf("\n\n");
     }
 

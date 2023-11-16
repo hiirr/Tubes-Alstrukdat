@@ -7,6 +7,8 @@
 
 extern char current_char;
 
+void SET_STDIN();
+
 void START();
 
 void ADV();

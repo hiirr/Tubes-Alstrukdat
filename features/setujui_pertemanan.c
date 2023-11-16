@@ -21,6 +21,7 @@ void setujui_pertemanan() {
     printf("\n| %s\n", users[req.user_id].name);
     printf("| Jumlah teman: %d\n", req.current_total_friends);
     printf("\nApakah Anda ingin menyetujui permintaan pertemanan ini? (YA/TIDAK) ");
+    clear_next_character();
     get_word();
 
     if (is_input_equal("YA")) {

@@ -19,6 +19,7 @@ extern int latest_tweet;
 extern Tweet tweets[MAX_TWEET];
 extern int latest_reply[MAX_TWEET];
 extern ReplyTree replies[MAX_TWEET];
+extern StackDraft user_drafts[MAX_USER];
 
 void create_database();
 

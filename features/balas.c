@@ -9,7 +9,7 @@ void balas(int tweet_id, int reply_id) {
         printf("Anda belum login.\n\n");
         return;
     }
-    if (tweet_id >= latest_tweet) {
+    if (tweet_id <= 0 || tweet_id >= latest_tweet) {
         printf("Tidak ada kicauan dengan ID %d.\n\n", tweet_id);
         return;
     }
@@ -22,22 +22,23 @@ void balas(int tweet_id, int reply_id) {
         char *text;
         while (true) {
             printf("Masukkan balasan:\n");
+            clear_next_character();
             get_paragraph();
-            if (current_input.length > 280) {
-                printf("Teks terlalu panjang (%d karakter); melebihi 280 karakter.\n");
+            if (current_input.length > MAX_TWEET_LENGTH) {
+                printf("Teks terlalu panjang (%d karakter); melebihi %d karakter.\n", current_input.length, MAX_TWEET_LENGTH);
                 continue;
             }
             text = input_to_string();
             break;
         }
-        Tweet reply = new_tweet(text, latest_reply[tweet_id], current_user);
+        Tweet reply = new_tweet(latest_reply[tweet_id], text, current_user);
         add_reply_edge(&replies[tweet_id], 0, latest_reply[tweet_id], reply);
         printf("Balasan telah diterbitkan.\n");
         print_tweet(&replies[tweet_id].tweets[latest_reply[tweet_id]], 0);
         ++latest_reply[tweet_id];
         return;
     }
-    if (!replies[tweet_id].nodes[reply_id]) {
+    if (reply_id <= 0 || reply_id >= latest_reply[tweet_id] || !replies[tweet_id].nodes[reply_id]) {
         printf("Tidak ada balasan dengan ID %d.\n", reply_id);
         return;
     }
@@ -50,22 +51,21 @@ void balas(int tweet_id, int reply_id) {
     char *text;
     while (true) {
         printf("Masukkan balasan:\n");
+        clear_next_character();
         get_paragraph();
-        if (current_input.length > 280) {
-            printf("Teks terlalu panjang (%d karakter); melebihi 280 karakter.\n");
+        if (current_input.length > MAX_TWEET_LENGTH) {
+            printf("Teks terlalu panjang (%d karakter); melebihi %d karakter.\n", current_input.length, MAX_TWEET_LENGTH);
             continue;
         }
         text = input_to_string();
         break;
     }
-    Tweet reply = new_tweet(text, latest_reply[tweet_id], current_user);
+    Tweet reply = new_tweet(latest_reply[tweet_id], text, current_user);
 
-
-    add_reply_edge(&replies[tweet_id], tweet_id, latest_reply[tweet_id], reply);
+    add_reply_edge(&replies[tweet_id], reply_id, latest_reply[tweet_id], reply);
     ++latest_reply[tweet_id];
 
     printf("Balasan telah diterbitkan.\n\n");
 
     print_tweet(&reply, 0);
-    printf("\n\n");
 }

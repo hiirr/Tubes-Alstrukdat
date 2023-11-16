@@ -31,7 +31,7 @@ void get_paragraph() {
     }
     while (current_char != MARK && !my_isspace(current_char)) ADV();
     current_input.length = i;
-    ADV(); // Advance Mark.
+    ADV(); // Advance mark.
 }
 
 void get_word() {
@@ -48,7 +48,7 @@ void get_word() {
         while (current_char != MARK && !my_isspace(current_char)) ADV();
         current_input.length = i;
     }
-    ADV(); // Advance Mark.
+    ADV(); // Advance mark.
 }
 
 void clear_next_character() {
@@ -94,7 +94,13 @@ boolean is_two_string_equal(char *first, char *second) {
 int input_to_int() {
     int num = 0;
     for (int i = 0; i < current_input.length; ++i) {
+        if (current_input.input[i] == '-') {
+            continue;
+        }
         num = 10 * num + (current_input.input[i] - '0');
+    }
+    if (current_input.input[0] == '-') {
+        num *= -1;
     }
     return num;
 }

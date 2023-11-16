@@ -14,15 +14,9 @@ void lihat_profil(char *name) {
         return;
     }
 
-    int id_user = -1;
-    for (int i = 0; i < total_user; i++){
-        if (is_two_string_equal(name, users[i].name)){
-            id_user = i;
-            break;
-        }
-    }
+    int id_user = search_id_by_name(name);
     if (id_user == -1) {
-        printf("Tidak ada profil dengan nama tersebut!");
+        printf("Tidak ada profil dengan nama tersebut!\n");
     } else {
         if (!users[id_user].is_public && !friends.matrix[current_user][id_user]) {
             printf("Sayangnya akun %s diprivat:( Ikuti dulu yuk biar bisa lihat profil %s!\n", users[id_user].name, users[id_user].name);

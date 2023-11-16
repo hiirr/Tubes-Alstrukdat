@@ -19,16 +19,17 @@ void ubah_kicauan(int tweet_id) {
 
     while (true) {
         printf("Masukkan kicauan baru:\n");
+        clear_next_character();
         get_paragraph();
-        if (current_input.length > 280) {
-            printf("Kicauan (%d karakter) melewati batas 280 karakter. Silakan ulangi.\n\n", current_input.length);
+        if (current_input.length > MAX_TWEET_LENGTH) {
+            printf("Kicauan (%d karakter) melewati batas %d karakter. Silakan ulangi.\n\n", current_input.length, MAX_TWEET_LENGTH);
             continue;
         }
         char *text = input_to_string();
         set_tweet_text(&tweets[tweet_id], text);
+        set_tweet_text(&replies[tweet_id].tweets[0], text);
         printf("Kicauan berhasil diubah.\n\n");
         print_tweet(&tweets[tweet_id], 0);
-        printf("\n\n");
         break;
     }
 }

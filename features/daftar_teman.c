@@ -1,5 +1,5 @@
 #include "daftar_teman.h"
-#include "teman.h"
+// #include "teman.h"
 #include "../assets/User.h"
 #include "../ADT/GraphMatrix.h"
 #include "../database/database.h"
@@ -22,4 +22,5 @@ void daftar_teman() {
             printf("| %s\n", users[i].name);
         }
     }
+    printf("\n");
 }

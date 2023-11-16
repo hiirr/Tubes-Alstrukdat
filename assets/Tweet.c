@@ -92,16 +92,16 @@ void print_private_tweet(Tweet *t, int spaces) {
     printf("ID: %d\n", t->id);
 
     for (int i = 0; i < spaces; ++i) printf("\t");
-    printf("PRIVAT");
+    printf("PRIVAT\n");
 
     for (int i = 0; i < spaces; ++i) printf("\t");
-    printf("PRIVAT");
+    printf("PRIVAT\n");
 
     for (int i = 0; i < spaces; ++i) printf("\t");
-    printf("PRIVAT");
+    printf("PRIVAT\n");
 
     for (int i = 0; i < spaces; ++i) printf("\t");
-    printf("PRIVAT");
+    printf("PRIVAT\n\n");
     // printf("ID: %d\n"
     //     "Text: %s\n"
     //     "Likes: %d\n"

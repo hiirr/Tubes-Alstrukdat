@@ -17,13 +17,14 @@ void tambah_teman() {
     }
 
     printf("\nMasukkan nama pengguna:\n");
+    clear_next_character();
     get_paragraph();
     char *friend_name = input_to_string();
     int friend_id = search_id_by_name(friend_name);
     free(friend_name);
     
     if (friend_id == -1) {
-        printf("\nPengguna bernama %s tidak ditemukan.\n", friend_name);
+        printf("\nPengguna tidak ditemukan.\n");
         return;
     }
     if (friend_id == current_user) {
@@ -31,15 +32,15 @@ void tambah_teman() {
         return;
     }
     if (friends.matrix[friend_id][current_user] == 1) {
-        printf("\nAnda sudah berteman dengan %s. Tidak dapat mengirim permintaan pertemanan.\n", friend_name);
+        printf("\nAnda sudah berteman dengannya. Tidak dapat mengirim permintaan pertemanan.\n");
         return;
     }
     FriendRequest req;
     create_friend_request(&req, current_user, users[current_user].total_friends);
     if (is_in_priority_queue_friend_request(users[friend_id].friend_requests, req.user_id)) {
-        printf("\nAnda sudah mengirimkan permintaan pertemanan kepada %s. Silakan tunggu hingga permintaan Anda disetujui.\n", friend_name);
+        printf("\nAnda sudah mengirimkan permintaan pertemanan kepadanya. Silakan tunggu hingga permintaan Anda disetujui.\n");
         return;
     }
     enqueue_friend_request(&users[friend_id].friend_requests, req);
-    printf("\nPermintaan pertemanan kepada %s telah dikirim. Tunggu beberapa saat hingga permintaan Anda disetujui.\n", friend_name);
+    printf("\nPermintaan pertemanan kepadanya telah dikirim. Tunggu beberapa saat hingga permintaan Anda disetujui.\n");
 }

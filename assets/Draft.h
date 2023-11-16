@@ -6,7 +6,11 @@ typedef struct Draft {
     char *text;
 } Draft;
 
+Draft create_draft();
+
 Draft new_draft(char *text);
+
+void delete_draft(Draft *d);
 
 void print_draft(Draft *d);
 

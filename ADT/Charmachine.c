@@ -6,6 +6,12 @@ char current_char;
 static FILE *pita;
 static int return_value;
 
+
+void SET_STDIN() {
+    pita = stdin;
+    current_char = ' ';
+}
+
 void START() {
     pita = stdin;
     ADV();

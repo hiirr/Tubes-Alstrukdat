@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "suka_kicauan.h"
 #include "../database/database.h"
 
@@ -18,7 +19,8 @@ void suka_kicauan(int tweet_id) {
     }
 
     ++tweets[tweet_id].likes;
+    ++replies[tweet_id].tweets[0].likes;
+    
     printf("Tweet berhasil di like.\n");
     print_tweet(&tweets[tweet_id], 0);
-    printf("\n\n");
 }
