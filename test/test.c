@@ -1,30 +1,13 @@
+#include <stdio.h>
 #include "../ADT/Wordmachine.h"
-
-void debug_input() {
-    printf("(");
-    for (int i = 0; i < current_input.length; ++i) {
-        printf("%c", current_input.input[i]);
-    }
-    printf(")");
-}
+#include "../ADT/DynamicList.h"
 
 int main() {
-    // int a[3][3];
-    // int (*p)[3][3] = a;
-    
-    // while (true) { 
-    START();
-    // get_word();
-    // debug_input();
-    // get_word();
-    // debug_input();
-    // get_word();
-    // debug_input();
-
-    get_paragraph();
-    debug_input();
-    clear_next_character();
-    get_paragraph();
-    debug_input();
-    // }
+    FILE *file = fopen("test.txt", "r");
+    char line[100];
+    my_getline(line, 100, file);
+    DynamicList result = split_to_ints(line);
+    print_dynamic_list(&result);
+    // deallocate_dynamic_list(result);
+    return 0;
 }

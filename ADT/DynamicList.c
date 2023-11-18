@@ -49,6 +49,10 @@ void erase_all_dynamic_list(DynamicList *l) {
     l->length = 0;
 }
 
+void deallocate_dynamic_list(DynamicList *l) {
+    free(l->list);
+}
+
 void print_dynamic_list(DynamicList *l) {
     printf("[");
     for (int i = 0; i < l->length - 1; ++i) {

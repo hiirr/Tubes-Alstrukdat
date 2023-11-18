@@ -1,11 +1,11 @@
-#include "lihat_draft.h"
+#include "lihat_draf.h"
 #include "../ADT/StackDraft.h"
 #include "../assets/Draft.h"
 #include "../database/database.h"
 #include "../ADT/Wordmachine.h"
-#include "buat_draft.h"
+#include "buat_draf.h"
 
-void lihat_draft() {
+void lihat_draf() {
     if (current_user == -1) {
         printf("Anda belum login\n\n");
         return;
@@ -19,7 +19,8 @@ void lihat_draft() {
         print_draft(&latest_draft);
         char *text = latest_draft.text;
 
-        printf("Apakah anda ingin mengubah, menghapus, atau menerbitkan draf ini? (KEMBALI jika ingin kembali)");
+        printf("Apakah anda ingin mengubah (UBAH), menghapus (HAPUS), atau menerbitkan (TERBIT) draf ini? (KEMBALI jika ingin kembali)\n");
+        clear_next_character();
         get_word();
 
         if (is_input_equal("HAPUS")) {
@@ -27,46 +28,52 @@ void lihat_draft() {
             pop_stack_draft(&users[current_user].drafts, &deleted_draft);
             delete_draft(&deleted_draft);
             printf("Draf telah berhasil dihapus!\n");
-        } else if (is_input_equal("UBAH")) {
-            Draft deleted_draft;
+        } else if (is_input_equal("UBAH")) {            
+            Draft deleted_draft = create_draft();
             pop_stack_draft(&users[current_user].drafts, &deleted_draft);
+
             delete_draft(&deleted_draft);
 
-            printf("Masukkan draf yang baru:\n");
 
+            printf("Masukkan draf yang baru:\n");
+            clear_next_character();
             get_paragraph();
 
-            Draft edited = new_draft(input_to_string());
-            push_stack_draft(&users[current_user].drafts, edited);
-            printf("Draft berhasil diubah.\n\n");
-            print_draft(&edited);
+            char *text = input_to_string();
 
-            printf("\n\n");
-
-            printf("Apakah anda ingin menghapus, menyimpan, atau menerbitkan draf ini?\n");
+            printf("Apakah anda ingin menghapus (HAPUS), menyimpan (SIMPAN), atau menerbitkan (TERBIT) draf ini?\n");
+            clear_next_character();
             get_word();
             if (is_input_equal("SIMPAN")) {
-                char *text = input_to_string();
                 Draft latest_draft = new_draft(text);
                 if (!is_stack_draft_full(&users[current_user].drafts)) {
                     push_stack_draft(&users[current_user].drafts, latest_draft);
                     printf("Draf berhasil disimpan.\n");
                 } else {
                     printf("Draf tidak berhasil disimpan karena sudah mencapai kapasitas.\n");
+                    free(text);
                 }
             } else if (is_input_equal("TERBIT")) {
-                char *text = input_to_string();
                 terbit_draft(text);
+                printf("Draf berhasil diterbitkan.\n");
+                print_tweet(&tweets[latest_tweet - 1], 0);
             } else if (is_input_equal("HAPUS")) {
                 printf("Draf telah berhasil dihapus!\n");
+                free(text);
+            } else {
+                printf("Jawaban tidak valid.\n");
+                free(text);
             }
     
         } else if (is_input_equal("TERBIT")) {
             terbit_draft(text);
             Draft deleted;
             pop_stack_draft(&users[current_user].drafts, &deleted);
-            delete_draft(&deleted);
-            printf("Draf berhasil dihapus.\n");
+            printf("\nDraf berhasil diterbitkan.\n");
+        } else if (is_input_equal("KEMBALI")) {
+            printf("Kembali.\n");
+        } else {
+            printf("Jawaban tidak valid.\n");
         }
     }
 }

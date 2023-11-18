@@ -5,6 +5,7 @@
 #include "Charmachine.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "DynamicList.h"
 
 #define INPUT_CAPACITY 1000
 
@@ -12,6 +13,8 @@ typedef struct Input {
 	char input[INPUT_CAPACITY];
 	int length;
 } Input;
+
+
 
 extern Input current_input;
 
@@ -52,5 +55,7 @@ int my_strcmp(const char *s1, const char *s2);
 void my_getline(char *line, int size, FILE *file);
 
 void remove_new_line(char* string);
+
+DynamicList split_to_ints(char *string);
 
 #endif

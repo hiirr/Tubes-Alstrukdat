@@ -3,12 +3,14 @@
 
 void muat();
 
-// void load();
+void muat_pengguna(char *folder_name);
 
-// void load_users(char *folder_name);
+void muat_kicauan(char *folder_name);
 
-// void load_tweets(char *folder_name);
+void muat_balasan(char *folder_name);
 
-// void load_replies(char *folder_name);
+void muat_draf(char *folder_name);
+
+void muat_utas(char *folder_name);
 
 #endif

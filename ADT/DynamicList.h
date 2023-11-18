@@ -17,6 +17,8 @@ void remove_by_value_dynamic_list(DynamicList *l, int element);
 
 void erase_all_dynamic_list(DynamicList *l);
 
+void deallocate_dynamic_list(DynamicList *l);
+
 void print_dynamic_list(DynamicList *l);
 
 void sort_descending_dynamic_list(DynamicList *l);

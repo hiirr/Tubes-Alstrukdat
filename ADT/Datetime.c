@@ -13,5 +13,13 @@ char *current_time() {
     char *cur_time = asctime(time_info);
     remove_new_line(cur_time);
 
-    return cur_time;
+    size_t len;
+    my_strlen(cur_time, &len);
+    char *result = malloc((len + 1) * sizeof(char));
+    result[len] = '\0';
+    for (int i = 0; i < len; ++i) {
+        result[i] = cur_time[i];
+    }
+
+    return result;
 }

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "boolean.h"
 #include "Wordmachine.h"
+#include "DynamicList.h"
 
 Input current_input;
 
@@ -192,4 +193,36 @@ void remove_new_line(char* string) {
     if((length > 0) && (string[length-1] == '\n')) {
         string[length-1] ='\0';
     }
+}
+
+DynamicList split_to_ints(char *string) {
+    DynamicList result;
+    create_dynamic_list(&result, 1);
+
+    boolean is_positive = true;
+    int num = 0;
+    size_t len;
+    my_strlen(string, &len);
+    for (int i = 0; i < len; ++i) {
+        if (string[i] == '-') {
+            is_positive = !is_positive;
+        } else if (string[i] - '0' >= 0 && string[i] - '0' <= 9) {
+            int digit = string[i] - '0';
+            num = 10 * num + digit;
+        } else if (string[i] == ' ') {
+            if (!is_positive) {
+                num = -num;
+            }
+            insert_last_dynamic_list(&result, num);
+            num = 0;
+            is_positive = true;
+        } else {
+            printf("Unknown character in parsing.\n");
+        }
+    }
+    if (!is_positive) {
+        num = -num;
+    }
+    insert_last_dynamic_list(&result, num);
+    return result;
 }

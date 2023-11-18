@@ -24,7 +24,8 @@ void push_stack_draft(StackDraft *s, Draft element) {
 }
 
 void pop_stack_draft(StackDraft *s, Draft *element) {
-    *element = s->stack[s->top];
+    element->text = s->stack[s->top].text;
+    element->datetime = s->stack[s->top].datetime;
     s->stack[s->top].text = NULL;
     s->stack[s->top].datetime = NULL;
     --(s->top);

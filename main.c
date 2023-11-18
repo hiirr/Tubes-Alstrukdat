@@ -2,7 +2,9 @@
 #include "database/database.h"
 #include "ADT/Charmachine.h"
 #include "ADT/Wordmachine.h"
+#include "ADT/Datetime.h"
 
+#include "features/inisialisi.h"
 #include "features/daftar.h"
 #include "features/masuk.h"
 #include "features/keluar.h"
@@ -22,27 +24,20 @@
 #include "features/balas.h"
 #include "features/balasan.h"
 #include "features/hapus_balasan.h"
-#include "features/buat_draft.h"
-#include "features/lihat_draft.h"
+#include "features/buat_draf.h"
+#include "features/lihat_draf.h"
 // UTAS
 #include "features/simpan.h"
 #include "features/muat.h"
 
 
 int main() {
-    printf(
-".______    __    __  .______      .______    __  .______      \n"
-"|   _  \\  |  |  |  | |   _  \\     |   _  \\  |  | |   _  \\     \n"
-"|  |_)  | |  |  |  | |  |_)  |    |  |_)  | |  | |  |_)  |    \n"
-"|   _  <  |  |  |  | |      /     |   _  <  |  | |      /     \n"
-"|  |_)  | |  `--'  | |  |\\  \\----.|  |_)  | |  | |  |\\  \\----.\n"
-"|______/   \\______/  | _| `._____||______/  |__| | _| `._____|\n\n\n");
-
     create_database();
-    // muat();
 
     SET_STDIN();
 
+    inisialisi();
+    
     while (true) {
         printf(">> ");
 
@@ -106,9 +101,9 @@ int main() {
             int reply_id = input_to_int();
             hapus_balasan(tweet_id, reply_id);
         } else if (is_input_equal("BUAT_DRAF")) {
-            buat_draft();
+            buat_draf();
         } else if (is_input_equal("LIHAT_DRAF")) {
-            lihat_draft();
+            lihat_draf();
         }
         // Start utas (belum)
         else if (is_input_equal("UTAS")) {
@@ -128,8 +123,7 @@ int main() {
             printf("Belum diimplementasi.\n");
             // simpan();
         } else if (is_input_equal("MUAT")) {
-            printf("Belum diimplementasi.\n");
-            // muat();
+            muat();
         }
         // End simpan
         

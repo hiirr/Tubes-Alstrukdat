@@ -20,7 +20,7 @@ Draft new_draft(char *text) {
 }
 
 void delete_draft(Draft *d) {
-    if (d->text == NULL) {
+    if (d->text == NULL || d->datetime == NULL) {
         return;
     }
     free(d->text);
