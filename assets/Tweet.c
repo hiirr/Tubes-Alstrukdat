@@ -11,7 +11,7 @@ Tweet create_tweet() {
     tweet.likes = 0;
     tweet.author_id = -1;
     tweet.datetime = NULL;
-
+    create_linked_thread(&tweet.thread);
     return tweet;
 }
 

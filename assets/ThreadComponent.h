@@ -2,11 +2,11 @@
 #define THREAD_COMPONENT_H
 
 typedef struct ThreadComponent {
-    int idx;
+    int tweet_id;
     char *datetime;
     char *text;
 } ThreadComponent;
 
-void print_utas(ThreadComponent *t);
+// void print_utas(ThreadComponent *t, int spaces);
 
 #endif

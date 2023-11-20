@@ -26,7 +26,10 @@
 #include "features/hapus_balasan.h"
 #include "features/buat_draf.h"
 #include "features/lihat_draf.h"
-// UTAS
+#include "features/utas.h"
+#include "features/sambung_utas.h"
+#include "features/hapus_utas.h"
+#include "features/cetak_utas.h"
 #include "features/simpan.h"
 #include "features/muat.h"
 
@@ -107,26 +110,33 @@ int main() {
         }
         // Start utas (belum)
         else if (is_input_equal("UTAS")) {
-            printf("Belum diimplementasi.\n");
+            get_word();
+            int tweet_id = input_to_int();
+            utas(tweet_id);
         } else if (is_input_equal("SAMBUNG_UTAS")) {
-            printf("Belum diimplementasi.\n");
+            get_word();
+            int tweet_id = input_to_int();
+            get_word();
+            int index = input_to_int();
+            sambung_utas(tweet_id, index);
         } else if (is_input_equal("HAPUS_UTAS")) {
-            printf("Belum diimplementasi.\n");
-        } else if (is_input_equal("CETAK_ UTAS")) {
-            printf("Belum diimplementasi.\n");
+            get_word();
+            int tweet_id = input_to_int();
+            get_word();
+            int index = input_to_int();
+            hapus_utas(tweet_id, index);
+        } else if (is_input_equal("CETAK_UTAS")) {
+            get_word();
+            int tweet_id = input_to_int();
+            cetak_utas(tweet_id);
         }
-        // End utas
-        
-
         // Start simpan (belum)
         else if (is_input_equal("SIMPAN")) {
             printf("Belum diimplementasi.\n");
             // simpan();
         } else if (is_input_equal("MUAT")) {
             muat();
-        }
-        // End simpan
-        
+        }        
         else {
             printf("Perintah tidak dikenal ");
             print_input();

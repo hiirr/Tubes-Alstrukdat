@@ -283,22 +283,128 @@ void muat_balasan(char *folder_name) {
 }
 
 void muat_draf(char *folder_name) {
-    return;
-    // char draf_file_location[1024];
-    // my_strcpy(draf_file_location, folder_name);
-    // my_strcat(draf_file_location, "/draf.config");
+    char draf_file_location[1024];
+    my_strcpy(draf_file_location, folder_name);
+    my_strcat(draf_file_location, "/draf.config");
 
-    // FILE *file;
-    // file = fopen(draf_file_location, "r");
+    FILE *file;
+    file = fopen(draf_file_location, "r");
 
-    // if (!file) {
-    //     printf("%s tidak ada atau tidak dapat diakses karena tidak memiliki permission\n", draf_file_location);
-    //     return;
-    // }
-    // char line[1024];
-    // DynamicList result;
+    if (!file) {
+        printf("%s tidak ada atau tidak dapat diakses karena tidak memiliki permission\n", draf_file_location);
+        return;
+    }
+    char line[1024];
+    DynamicList result;
+
+    my_getline(line, 1024, file);
+    result = split_to_ints(line);
+    int total_user_with_drafts = result.list[0];
+    deallocate_dynamic_list(&result);
+
+    for (int i = 0; i < total_user_with_drafts; ++i) {
+        my_getline(line, 1024, file);
+        
+        size_t length;
+        my_strlen(line, &length);
+        int start_num_idx = length - 1;
+        while (start_num_idx-1 >= 0 && '0' <= line[start_num_idx-1] && line[start_num_idx-1] <= '9') {
+            --start_num_idx;
+        }
+
+        char *name = malloc(start_num_idx * sizeof(name));
+        name[start_num_idx-1] = '\0';
+        for (int i = 0; i < start_num_idx-1; ++i) {
+            name[i] = line[i];
+        }
+
+        int total_drafts = 0;
+        for (int i = start_num_idx; i < length; ++i) {
+            total_drafts = 10 * total_drafts + (line[i] - '0');
+        }
+        StackDraft sd;
+        create_stack_draft(&sd);
+
+        for (int j = 0; j < total_drafts; ++j) {
+            Draft d = create_draft();
+            
+            my_getline(line, 1024, file);
+            char *text = malloc(300 * sizeof(char));
+            my_strcpy(text, line);
+            d.text = text;
+
+            my_getline(line, 1024, file);
+            char *datetime = malloc(100 * sizeof(char));
+            my_strcpy(datetime, line);
+            d.datetime = datetime;
+
+            push_stack_draft(&sd, d);
+        }
+
+        int draft_author_id = search_id_by_name(name);
+        if (draft_author_id == -1) {
+            printf("Ada file config yang tidak valid.\n");
+            exit(0);
+        }
+
+        for (int j = 0; j < total_drafts; ++j) {
+            Draft popped = create_draft();
+            pop_stack_draft(&sd, &popped);
+            
+            push_stack_draft(&users[draft_author_id].drafts, popped);
+        }
+    }
 }
 
 void muat_utas(char *folder_name) {
-    return;
+    char utas_file_location[1024];
+    my_strcpy(utas_file_location, folder_name);
+    my_strcat(utas_file_location, "/utas.config");
+
+    FILE *file;
+    file = fopen(utas_file_location, "r");
+
+    if (!file) {
+        printf("%s tidak ada atau tidak dapat diakses karena tidak memiliki permission\n", utas_file_location);
+        return;
+    }
+    char line[1024];
+    DynamicList result;
+
+    my_getline(line, 1024, file);
+    result = split_to_ints(line);
+    int total_tweets_with_utas = result.list[0];
+    deallocate_dynamic_list(&result);
+
+    for (int i = 0; i < total_tweets_with_utas; ++i) {
+        my_getline(line, 1024, file);
+        result = split_to_ints(line);
+        int tweet_id = result.list[0];
+        deallocate_dynamic_list(&result);
+
+        my_getline(line, 1024, file);
+        result = split_to_ints(line);
+        int total_utas = result.list[0];
+        deallocate_dynamic_list(&result);
+        for (int j = 0; j < total_utas; ++j) {
+            ThreadComponent utas;
+            // Text
+            char *text = malloc(300 * sizeof(char));
+            my_getline(line, 1024, file);
+            my_strcpy(text, line);
+            utas.text = text;
+            
+            // Name
+            my_getline(line, 1024, file);
+
+            char *datetime = malloc(300 * sizeof(char));
+            my_getline(line, 1024, file);
+            my_strcpy(datetime, line);
+            utas.datetime = datetime;
+
+            utas.tweet_id = tweet_id;
+
+            insert_last_linked_thread(&tweets[tweet_id].thread, utas);
+        }
+    }
 }
