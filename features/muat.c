@@ -27,6 +27,8 @@ void muat() {
     muat_balasan(folder_name);
     muat_draf(folder_name);
     muat_utas(folder_name);
+
+    printf("Pemuatan konfigurasi dari folder %s telah selesai.");
 }
 
 void muat_pengguna(char *folder_name) {
@@ -39,7 +41,7 @@ void muat_pengguna(char *folder_name) {
     file = fopen(pengguna_file_location, "r");
 
     if (!file) {
-        printf("%s tidak ada atau tidak dapat diakses karena tidak memiliki permission\n", pengguna_file_location);
+        printf("%s tidak ada atau tidak dapat diakses karena tidak memiliki izin.\n", pengguna_file_location);
         return;
     }
 
@@ -139,7 +141,7 @@ void muat_kicauan(char *folder_name) {
     file = fopen(kicauan_file_location, "r");
 
     if (!file) {
-        printf("%s tidak ada atau tidak dapat diakses karena tidak memiliki permission\n", kicauan_file_location);
+        printf("%s tidak ada atau tidak dapat diakses karena tidak memiliki izin.\n", kicauan_file_location);
         return;
     }
 
@@ -214,7 +216,7 @@ void muat_balasan(char *folder_name) {
     file = fopen(balasan_file_location, "r");
 
     if (!file) {
-        printf("%s tidak ada atau tidak dapat diakses karena tidak memiliki permission\n", balasan_file_location);
+        printf("%s tidak ada atau tidak dapat diakses karena tidak memiliki izin.\n", balasan_file_location);
         return;
     }
     char line[1024];
@@ -291,7 +293,7 @@ void muat_draf(char *folder_name) {
     file = fopen(draf_file_location, "r");
 
     if (!file) {
-        printf("%s tidak ada atau tidak dapat diakses karena tidak memiliki permission\n", draf_file_location);
+        printf("%s tidak ada atau tidak dapat diakses karena tidak memiliki izin.\n", draf_file_location);
         return;
     }
     char line[1024];
@@ -365,7 +367,7 @@ void muat_utas(char *folder_name) {
     file = fopen(utas_file_location, "r");
 
     if (!file) {
-        printf("%s tidak ada atau tidak dapat diakses karena tidak memiliki permission\n", utas_file_location);
+        printf("%s tidak ada atau tidak dapat diakses karena tidak memiliki izin.\n", utas_file_location);
         return;
     }
     char line[1024];

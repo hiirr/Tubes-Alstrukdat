@@ -5,7 +5,7 @@
 
 void hapus_balasan(int tweet_id, int reply_id) {
     if (current_user == -1) {
-        printf("Anda belum login.\n\n");
+        printf("Anda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n\n");
         return;
     }
     if (tweet_id <= 0 || tweet_id >= latest_tweet) {
@@ -18,7 +18,7 @@ void hapus_balasan(int tweet_id, int reply_id) {
     }
     int author_id = replies[tweet_id].tweets[reply_id].author_id;
     if (author_id != current_user) {
-        printf("Balasan bukan milik anda.\n\n");
+        printf("Hei, ini balasan punya siapa? Jangan dihapus ya!\n\n");
         return;
     }
     delete_reply_node(&replies[tweet_id], reply_id);
