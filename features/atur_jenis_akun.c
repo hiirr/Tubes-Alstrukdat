@@ -10,7 +10,7 @@
 
 void atur_jenis_akun() {
     if (current_user == -1) {
-        printf("Anda belum login\n");
+        printf("Anda belum login. Silakan login terlebih dahulu.\n");
         return;
     }
 
@@ -21,7 +21,7 @@ void atur_jenis_akun() {
         char *answer = input_to_string();
         if (is_two_string_equal("YA", answer)) {
             users[current_user].is_public = false;
-            printf("Akun anda telah diubah menjadi akun Privat\n");
+            printf("Akun anda telah diubah menjadi akun Privat.\n");
         } else if (is_two_string_equal("TIDAK", answer)) {
             printf("Perubahan menjadi akun privat tidak jadi dilakukan.\n");
         } else {
@@ -35,7 +35,7 @@ void atur_jenis_akun() {
         char *answer = input_to_string();
         if (is_two_string_equal("YA", answer)) {
             users[current_user].is_public = true;
-            printf("Akun anda telah diubah menjadi akun Publik\n");
+            printf("Akun anda telah diubah menjadi akun Publik.\n");
         } else if (is_input_equal("TIDAK")){
             printf("Perubahan menjadi akun publik tidak jadi dilakukan.\n");
         } else {

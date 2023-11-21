@@ -4,11 +4,11 @@
 
 void suka_kicauan(int tweet_id) {
     if (current_user == -1) {
-        printf("Anda belum login. Silakan login.\n");
+        printf("Anda belum login. Silakan login terlebih dahulu.\n");
         return;
     }
     if (tweet_id >= latest_tweet) {
-        printf("Tidak ditemukan kicauan dengan ID %d.\n", tweet_id);
+        printf("Tidak ditemukan kicauan dengan ID = %d.\n", tweet_id);
         return;
     }
 
@@ -21,6 +21,6 @@ void suka_kicauan(int tweet_id) {
     ++tweets[tweet_id].likes;
     ++replies[tweet_id].tweets[0].likes;
     
-    printf("Tweet berhasil di like.\n");
+    printf("Tweet berhasil disukai.\n");
     print_tweet(&tweets[tweet_id], 0);
 }
