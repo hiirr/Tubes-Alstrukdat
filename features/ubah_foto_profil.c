@@ -11,7 +11,7 @@
 
 void ubah_foto_profil() {
     if (current_user == -1){
-        printf("Anda belum login\n");
+        printf("Anda belum login. Silakan login terlebih dahulu.\n");
     } else {
         printf("Foto profil Anda saat ini adalah\n");
         print_profile_picture(&users[current_user]);
@@ -29,7 +29,7 @@ void ubah_foto_profil() {
             }
         }
         copy_matrix(&new_profil, &users[current_user].profile_picture);
-        printf("Foto profil berhasil diubah.\n\n");
+        printf("Foto profil anda sudah berhasil diganti!\n");
         print_profile_picture(&users[current_user]);
         printf("\n");
     }

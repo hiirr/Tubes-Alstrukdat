@@ -27,7 +27,7 @@ void hapus_teman() {
         return;
     }
     if (friends.matrix[current_user][friend_id] == 0) {
-        printf("\nBukan bukan teman Anda.\n");
+        printf("\nBukan teman Anda.\n");
         return;
     }
     printf("\nApakah anda yakin ingin menghapus dia dari daftar teman anda? (YA/TIDAK) ");

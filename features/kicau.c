@@ -8,7 +8,7 @@
 
 void kicau() {
     if (current_user == -1) {
-        printf("Anda belum login\n\n");
+        printf("Anda belum login. Silakan login terlebih dahulu.\n");
         return;
     }
 

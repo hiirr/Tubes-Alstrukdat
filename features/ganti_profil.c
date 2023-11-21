@@ -10,7 +10,7 @@
 
 void ganti_profil() {
     if (current_user == -1) {
-        printf("Anda belum log in. Silakan log in terlebih dahulu.\n");
+        printf("Anda belum login. Silakan login terlebih dahulu.\n");
         return;
     }
 
