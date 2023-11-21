@@ -28,7 +28,7 @@ void muat() {
     muat_draf(folder_name);
     muat_utas(folder_name);
 
-    printf("Pemuatan konfigurasi dari folder %s telah selesai.");
+    printf("Pemuatan konfigurasi dari folder %s telah selesai.\n", folder_name);
 }
 
 void muat_pengguna(char *folder_name) {
