@@ -38,6 +38,8 @@ int input_to_int();
 
 char *input_to_string();
 
+char *input_to_string_limited();
+
 boolean is_all_int(char *string);
 
 boolean is_all_space(char *string);
