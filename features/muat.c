@@ -92,9 +92,14 @@ void muat_pengguna(char *folder_name) {
     // Matriks pertemanan
     for (int i = 0; i < total_user; ++i) {
         my_getline(line, 1024, file);
+        int total_friends = 0;
         for (int j = 0; j < total_user; ++j) {
-            friends.matrix[i][j] = line[2 * j] - '0';
+            if (i != j) {
+                friends.matrix[i][j] = line[2 * j] - '0';
+                total_friends += friends.matrix[i][j]; 
+            }
         }
+        users[i].total_friends = total_friends;
     }
     // Permintaan pertemanan
     my_getline(line, 1024, file);
