@@ -38,7 +38,7 @@ void tambah_teman() {
     FriendRequest req;
     create_friend_request(&req, current_user, users[current_user].total_friends);
     if (is_in_priority_queue_friend_request(users[friend_id].friend_requests, req.user_id)) {
-        printf("\nAnda sudah mengirimkan permintaan pertemanan kepadanya. Silakan tunggu hingga permintaan Anda disetujui.\n");
+        printf("\nAnda sudah mengirimkan permintaan pertemanan kepadanya. Silakan tunggu hingga permintaan Anda disetujui.\n\n");
         return;
     }
     enqueue_friend_request(&users[friend_id].friend_requests, req);

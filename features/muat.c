@@ -28,7 +28,6 @@ void muat() {
     muat_draf(folder_name);
     muat_utas(folder_name);
 
-    printf("Pemuatan konfigurasi dari folder %s telah selesai.\n", folder_name);
 }
 
 void muat_pengguna(char *folder_name) {
@@ -130,6 +129,8 @@ void muat_pengguna(char *folder_name) {
     //     print_profile_picture(&users[i]);
     //     printf("\n\n");
     // }
+    
+    printf("Pemuatan konfigurasi dari %s telah selesai.\n", pengguna_file_location);
 }
 
 void muat_kicauan(char *folder_name) {
@@ -205,6 +206,8 @@ void muat_kicauan(char *folder_name) {
     //     printf("\n\n");
     // }
     // printf("Latest tweet: %d\n", latest_tweet);
+
+    printf("Pemuatan konfigurasi dari %s telah selesai.\n", kicauan_file_location);
 }
 
 void muat_balasan(char *folder_name) {
@@ -282,6 +285,8 @@ void muat_balasan(char *folder_name) {
         }
         latest_reply[tweet_id] = max_reply_id + 1;
     }
+
+    printf("Pemuatan konfigurasi dari %s telah selesai.\n", balasan_file_location);
 }
 
 void muat_draf(char *folder_name) {
@@ -356,6 +361,8 @@ void muat_draf(char *folder_name) {
             push_stack_draft(&users[draft_author_id].drafts, popped);
         }
     }
+
+    printf("Pemuatan konfigurasi dari %s telah selesai.\n", draf_file_location);
 }
 
 void muat_utas(char *folder_name) {
@@ -409,4 +416,6 @@ void muat_utas(char *folder_name) {
             insert_last_linked_thread(&tweets[tweet_id].thread, utas);
         }
     }
+
+    printf("Pemuatan konfigurasi dari %s telah selesai.\n", utas_file_location);
 }
