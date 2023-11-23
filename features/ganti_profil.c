@@ -10,7 +10,7 @@
 
 void ganti_profil() {
     if (current_user == -1) {
-        printf("Anda belum login. Silakan login terlebih dahulu.\n");
+        printf("\nAnda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n\n");
         return;
     }
 

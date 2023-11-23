@@ -5,7 +5,7 @@
 
 void daftar() {
     if (current_user != -1) {
-        printf("Anda sudah masuk. Keluar terlebih dahulu untuk melakukan daftar.\n");
+        printf("\nAnda sudah masuk. Keluar terlebih dahulu untuk melakukan daftar.\n\n");
         return;
     } else if (total_user == MAX_USER) {
         printf("Daftar tidak bisa karena sudah mencapai jumlah pengguna maksimal yaitu %d.\n", MAX_USER);

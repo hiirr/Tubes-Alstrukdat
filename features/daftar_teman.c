@@ -8,7 +8,7 @@
 
 void daftar_teman() {
     if (current_user == -1) {
-        printf("\nAnda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n");
+        printf("\nAnda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n\n");
         return;
     }
     if (users[current_user].total_friends == 0) {

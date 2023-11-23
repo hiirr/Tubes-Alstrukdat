@@ -9,7 +9,7 @@
 
 void sambung_utas(int id_kicau, int idx) {
     if (current_user == -1) {
-        printf("\nAnda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n");
+        printf("\nAnda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n\n");
         return;
     }
     if (id_kicau <= 0 || id_kicau >= latest_tweet) {

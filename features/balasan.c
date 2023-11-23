@@ -16,7 +16,7 @@ void conditionally_print(ReplyTree *t, int node, int space) {
 
 void balasan(int tweet_id) {
     if (current_user == -1) {
-        printf("Anda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n");
+        printf("\nAnda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n\n");
         return;
     }
     if (tweet_id <= 0 || tweet_id >= latest_tweet) {
