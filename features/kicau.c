@@ -17,11 +17,10 @@ void kicau() {
     get_paragraph();
 
     if (current_input.length > MAX_TWEET_LENGTH) {
-        printf("Panjang kicauan (%d karakter) melebihi %d karakter.\n", current_input.length, MAX_TWEET_LENGTH);
-        return;
+        printf("Teks terlalu panjang (%d karakter); melebihi %d karakter. Kicauan Anda akan dipotong.\n\n", current_input.length, MAX_TWEET_LENGTH);
     }
 
-    char *text = input_to_string();
+    char *text = input_to_string_limited(280);
     if (is_all_space(text)) {
         free(text);
         printf("Tidak boleh hanya mengandung spasi saja.\n");

@@ -3,6 +3,7 @@
 #include "boolean.h"
 #include "Wordmachine.h"
 #include "DynamicList.h"
+#include "math.h"
 
 Input current_input;
 
@@ -116,13 +117,14 @@ char *input_to_string() {
 }
 
 char *input_to_string_limited(int limit) {
-    char *string = malloc((limit + 1) * sizeof(char));
+    int length = min(limit, current_input.length);
+    char *string = malloc((length + 1) * sizeof(char));
 
-    for (int i = 0; i < limit; ++i) {
+    for (int i = 0; i < length; ++i) {
         string[i] = current_input.input[i];
     }
 
-    string[limit] = '\0';
+    string[length] = '\0';
     return string;
 }
 

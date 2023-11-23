@@ -29,7 +29,10 @@ void utas(int id_kicau) {
         printf("Masukkan kicauan:\n");
         clear_next_character();
         get_paragraph();
-        utas.text = input_to_string();
+        if (current_input.length > MAX_TWEET_LENGTH) {
+            printf("Teks terlalu panjang (%d karakter); melebihi %d karakter. Kicauan Anda akan dipotong.\n\n", current_input.length, MAX_TWEET_LENGTH);
+        }
+        utas.text = input_to_string_limited(280);
         utas.datetime = current_time();
         utas.tweet_id = id_kicau;
 

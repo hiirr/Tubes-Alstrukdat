@@ -18,10 +18,9 @@ void buat_draf() {
     clear_next_character();
     get_paragraph();
     if (current_input.length > MAX_TWEET_LENGTH) {
-        printf("Teks terlalu panjang (%d karakter); batas maksimal adalah %d karakter.\n", current_input.length, MAX_TWEET_LENGTH);
-        return;
+        printf("Teks terlalu panjang (%d karakter); batas maksimal adalah %d karakter. Draf Anda akan dipotong.\n\n", current_input.length, MAX_TWEET_LENGTH);
     }
-    char *text = input_to_string();
+    char *text = input_to_string_limited(280);
 
     printf("Apakah anda ingin menghapus (HAPUS), menyimpan (SIMPAN), atau menerbitkan (TERBIT) draf ini?\n");
     clear_next_character();

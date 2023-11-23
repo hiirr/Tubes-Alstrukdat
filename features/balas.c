@@ -20,17 +20,15 @@ void balas(int tweet_id, int reply_id) {
     }
     if (reply_id == -1) {
         char *text;
-        while (true) {
-            printf("Masukkan balasan:\n");
-            clear_next_character();
-            get_paragraph();
-            if (current_input.length > MAX_TWEET_LENGTH) {
-                printf("Teks terlalu panjang (%d karakter); melebihi %d karakter.\n", current_input.length, MAX_TWEET_LENGTH);
-                continue;
-            }
-            text = input_to_string();
-            break;
+
+        printf("Masukkan balasan:\n");
+        clear_next_character();
+        get_paragraph();
+        if (current_input.length > MAX_TWEET_LENGTH) {
+            printf("Teks terlalu panjang (%d karakter); melebihi %d karakter. Balasan Anda akan dipotong.\n\n", current_input.length, MAX_TWEET_LENGTH);
         }
+        text = input_to_string_limited(280);
+        
         Tweet reply = new_tweet(latest_reply[tweet_id], text, current_user);
         add_reply_edge(&replies[tweet_id], 0, latest_reply[tweet_id], reply);
         printf("Balasan telah diterbitkan.\n");

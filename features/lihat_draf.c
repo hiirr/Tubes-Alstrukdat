@@ -38,8 +38,10 @@ void lihat_draf() {
             printf("Masukkan draf yang baru:\n");
             clear_next_character();
             get_paragraph();
-
-            char *text = input_to_string();
+            if (current_input.length > MAX_TWEET_LENGTH) {
+                printf("Teks terlalu panjang (%d karakter); batas maksimal adalah %d karakter. Draf Anda akan dipotong.\n\n", current_input.length, MAX_TWEET_LENGTH);
+            }
+            char *text = input_to_string_limited(280);
 
             printf("Apakah anda ingin menghapus (HAPUS), menyimpan (SIMPAN), atau menerbitkan (TERBIT) draf ini?\n");
             clear_next_character();
