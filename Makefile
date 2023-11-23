@@ -31,6 +31,9 @@ help:
 	@echo "make test_reply_tree"
 	@echo "make test_stack_draft"
 	@echo "make test_word"
+	@echo "____________________________________"
+	@echo "Command to clean all compiled files:"
+	@echo "make clean"
 
 # Main target
 run: $(MAIN_SOURCES)
@@ -103,5 +106,6 @@ clean:
 	@rm -f $(TARGET) test_prio_queue test_matrix test_char test_graph test_stack_draft test_dynamic_list test_reply_tree test_word test_linked test_datetime
 	@rm -f $(TARGET).exe test_prio_queue.exe test_matrix.exe test_char.exe test_graph.exe test_stack_draft.exe test_dynamic_list.exe test_reply_tree.exe test_word.exe test_linked.exe test_datetime.exe
 	@echo "Cleaned all compiled files"
+
 # PHONY targets
 .PHONY: clean test_prio_queue test_matrix test_char test_graph test_stack_draft test_dynamic_list test_reply_tree test_word test_linked test_datetime
