@@ -30,20 +30,25 @@ void buat_draf() {
         if (!is_stack_draft_full(&users[current_user].drafts)) {
             push_stack_draft(&users[current_user].drafts, latest_draft);
             printf("Draf berhasil disimpan.\n");
+            return;
         } else {
             printf("Draf tidak berhasil disimpan karena sudah mencapai kapasitas.\n");
             free(text);
+            return;
         }
     } else if (is_input_equal("TERBIT")) {
         terbit_draft(text);
         printf("Draf berhasil diterbitkan.\n");
         print_tweet(&tweets[latest_tweet - 1], 0);
+        return;
     } else if (is_input_equal("HAPUS")) {
         printf("Draf telah berhasil dihapus!\n");
         free(text);
+        return;
     } else {
         printf("Jawaban tidak valid.\n");
         free(text);
+        return;
     }
 }
 
