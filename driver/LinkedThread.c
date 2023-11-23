@@ -49,8 +49,8 @@ int main() {
     delete_last_linked_thread(&linkedThread);
     assert(is_empty_linked_thread(linkedThread));
 
-    free_thread_component(&comp1);
-    free_thread_component(&comp2);
+    // free_thread_component(&comp1);
+    // free_thread_component(&comp2);
 
     printf("All tests passed successfully.\n");
 

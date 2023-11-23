@@ -30,9 +30,9 @@ int main() {
     assert(myTree.nodes[2] == false);
     assert(myTree.nodes[3] == false);
 
-    delete_tweet(&tweet1);
-    delete_tweet(&tweet2);
-    delete_tweet(&tweet3);
+    // delete_tweet(&tweet1);
+    // delete_tweet(&tweet2);
+    // delete_tweet(&tweet3);
 
     printf("All tests passed successfully.\n");
 

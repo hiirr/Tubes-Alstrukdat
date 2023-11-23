@@ -34,6 +34,9 @@ int main() {
     delete_draft(&draft1);
     delete_draft(&draft2);
 
+    // free(text1);
+    // free(text2);
+
     printf("All tests passed successfully.\n");
 
     return 0;
