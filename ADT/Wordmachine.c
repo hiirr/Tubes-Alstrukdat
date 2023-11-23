@@ -115,6 +115,17 @@ char *input_to_string() {
     return string;
 }
 
+char *input_to_string_limited() {
+    char *string = malloc(281 * sizeof(char));
+
+    for (int i = 0; i < 280; ++i) {
+        string[i] = current_input.input[i];
+    }
+
+    string[280] = '\0';
+    return string;
+}
+
 boolean is_all_int(char *string) {
     size_t length;
     my_strlen(string, &length);
