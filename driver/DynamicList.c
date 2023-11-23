@@ -1,62 +1,39 @@
-#include "ADT/DynamicList.h"
+#include "../ADT/DynamicList.h"
 #include <stdio.h>
-
-DynamicList l;
-
-void fill() {
-    print_dynamic_list(&l);
-    insert_last_dynamic_list(&l, 1);
-    print_dynamic_list(&l);
-    insert_last_dynamic_list(&l, 2);
-    print_dynamic_list(&l);
-    insert_last_dynamic_list(&l, 3);
-    print_dynamic_list(&l);
-    insert_last_dynamic_list(&l, 4);
-    print_dynamic_list(&l);
-    insert_last_dynamic_list(&l, 5);
-    print_dynamic_list(&l);
-}
-
-void test_remove_last() {
-    int removed;
-    remove_last_dynamic_list(&l, &removed);
-    printf("removed = %d\n", removed);
-    print_dynamic_list(&l);
-    remove_last_dynamic_list(&l, &removed);
-    printf("removed = %d\n", removed);
-    print_dynamic_list(&l);
-    remove_last_dynamic_list(&l, &removed);
-    printf("removed = %d\n", removed);
-    print_dynamic_list(&l);
-    remove_last_dynamic_list(&l, &removed);
-    printf("removed = %d\n", removed);
-    print_dynamic_list(&l);
-    remove_last_dynamic_list(&l, &removed);
-    printf("removed = %d\n", removed);
-    print_dynamic_list(&l);
-}
-
-void test_remove_by_value() {
-    remove_by_value_dynamic_list(&l, 3);
-    print_dynamic_list(&l);
-    remove_by_value_dynamic_list(&l, 4);
-    print_dynamic_list(&l);
-    remove_by_value_dynamic_list(&l, 5);
-    print_dynamic_list(&l);
-    remove_by_value_dynamic_list(&l, 1);
-    print_dynamic_list(&l);
-    remove_by_value_dynamic_list(&l, 2);
-    print_dynamic_list(&l);
-}
+#include <stdlib.h>
+#include <assert.h>
 
 int main() {
-    create_dynamic_list(&l, 2);
+    DynamicList myList;
+    create_dynamic_list(&myList, 5);
+    assert(myList.list != NULL && myList.length == 0 && myList.capacity == 5);
 
-    fill();
+    for (int i = 0; i < 5; ++i) {
+        insert_last_dynamic_list(&myList, i);
+        assert(myList.length == i + 1);
+    }
+    assert(myList.capacity == 5);
 
-    test_remove_last();
+    insert_last_dynamic_list(&myList, 5);
+    assert(myList.capacity == 10);
 
-    fill();
+    int removedElement;
+    remove_last_dynamic_list(&myList, &removedElement);
+    assert(removedElement == 5 && myList.length == 5);
 
-    test_remove_by_value();
+    remove_by_value_dynamic_list(&myList, 2);
+    assert(myList.length == 4);
+
+    sort_descending_dynamic_list(&myList);
+    for (int i = 0; i < myList.length - 1; ++i) {
+        assert(myList.list[i] >= myList.list[i + 1]);
+    }
+
+    erase_all_dynamic_list(&myList);
+    assert(myList.length == 0);
+
+    deallocate_dynamic_list(&myList);
+
+    printf("All tests passed successfully.\n");
+    return 0;
 }

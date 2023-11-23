@@ -27,7 +27,7 @@ void insert_at_static_list(StaticList *l, int val, int idx);
 void insert_last_static_list(StaticList *l, int val);
 
 void delete_first_static_list(StaticList *l, int val);
-void delet_at_static_list(StaticList *l, int val, int idx);
+void delete_at_static_list(StaticList *l, int val, int idx);
 void delete_last_static_list(StaticList *l, int val);
 
 #endif

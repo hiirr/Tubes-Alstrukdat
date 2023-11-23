@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "ADT/Wordmachine.h"
+#include "../ADT/Wordmachine.h"
 
 int main() {
     while (true) {
@@ -8,35 +8,34 @@ int main() {
 
         get_word();
 
-        if (is_current_word_equal("DAFTAR")) {
+        if (is_input_equal("DAFTAR")) {
             
-        } else if (is_current_word_equal("MASUK")) {
+        } else if (is_input_equal("MASUK")) {
 
-        } else if (is_current_word_equal("KELUAR")) { 
-        
-        } else if (is_current_word_equal("TUTUP_PROGRAM")) {
+        } else if (is_input_equal("KELUAR")) { 
+            break;
+        } else if (is_input_equal("TUTUP_PROGRAM")) {
 
-        } else if (is_current_word_equal("SIMPAN")) {
+        } else if (is_input_equal("SIMPAN")) {
 
-        } else if (is_current_word_equal("MUAT")) {
+        } else if (is_input_equal("MUAT")) {
 
-        } else if (is_current_word_equal("TEST")) {
-            clear_new_line();
+        } else if (is_input_equal("TEST")) {
             printf("Input Bio 1: ");
             START();
 
             get_paragraph();
-            print_word();
+            print_input();
 
             printf("Input paragraph 2: ");
             START();
             get_paragraph();
 
-            print_word();
+            print_input();
         } 
         else {
             printf("Belum...\n");
-            print_word();
+            print_input();
         }
     }
 }

@@ -1,44 +1,35 @@
-#include "ADT/PriorityQueue.h"
+#include "../ADT/PriorityQueueFriendRequest.h"
 #include <stdio.h>
+#include <assert.h>
 
 int main() {
-    PriorityQueueElement e1, e2, e3;
-    e1.priority = 1;
-    e1.value = 10;
-
-    e2.priority = 2;
-    e2.value = 30;
-
-    e3.priority = 3;
-    e3.value = 20;
-
+    PriorityQueueFriendRequest myQueue;
+    FriendRequest req1, req2, req3;
     
-    PriorityQueue p;
-    create_priority_queue(&p);
+    create_friend_request(&req1, 1, 5);
+    create_friend_request(&req2, 2, 10);
+    create_friend_request(&req3, 3, 7);
 
-    print_priority_queue(&p);
-    enqueue(&p, e3);
-    print_priority_queue(&p);
-    enqueue(&p, e2);
-    print_priority_queue(&p);
-    enqueue(&p, e1);
-    print_priority_queue(&p);
+    create_priority_queue_friend_request(&myQueue);
+    assert(is_empty_priority_queue_friend_request(myQueue));
 
-    PriorityQueueElement removed;
-    dequeue(&p, &removed);
-    printf("removed element with value %d and priority %d\n", removed.value, removed.priority);
-    print_priority_queue(&p);
-    dequeue(&p, &removed);
-    printf("removed element with value %d and priority %d\n", removed.value, removed.priority);
-    print_priority_queue(&p);
-    dequeue(&p, &removed);
-    printf("removed element with value %d and priority %d\n", removed.value, removed.priority);
-    print_priority_queue(&p);
+    enqueue_friend_request(&myQueue, req1);
+    enqueue_friend_request(&myQueue, req2);
+    enqueue_friend_request(&myQueue, req3);
+    assert(length_priority_queue_friend_request(myQueue) == 3);
 
-    enqueue(&p, e3);
-    print_priority_queue(&p);
-    enqueue(&p, e2);
-    print_priority_queue(&p);
-    enqueue(&p, e1);
-    print_priority_queue(&p);
+    assert(is_in_priority_queue_friend_request(myQueue, 1));
+    assert(is_in_priority_queue_friend_request(myQueue, 2));
+    assert(is_in_priority_queue_friend_request(myQueue, 3));
+
+    FriendRequest dequeued;
+    dequeue_friend_request(&myQueue, &dequeued);
+    assert(dequeued.user_id == 2);
+
+    remove_request_from_queue(&myQueue, 1);
+    assert(!is_in_priority_queue_friend_request(myQueue, 1));
+
+    printf("All tests passed successfully.\n");
+
+    return 0;
 }

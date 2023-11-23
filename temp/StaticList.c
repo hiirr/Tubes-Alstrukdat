@@ -63,7 +63,7 @@ void delete_first_static_list(StaticList *l, int *val) {
 
     elmt_static_list(*l, listLength(*l)-1) = MARK;
 }
-void delet_at_static_list(StaticList *l, int *val, int idx) {
+void delete_at_static_list(StaticList *l, int *val, int idx) {
     *val = elmt_static_list(*l, idx);
 
     for (int i = idx; i < static_list_length(*l)-1; i++) {

@@ -1,6 +1,13 @@
 {
     "files.associations": {
         "*.pl": "prolog",
-        "typeinfo": "c"
+        "typeinfo": "c",
+        "stdlib.h": "c",
+        "priorityqueuefriendrequest.h": "c",
+        "replytree.h": "c",
+        "dynamiclist.h": "c",
+        "wordmachine.h": "c",
+        "charmachine.h": "c",
+        "threadcomponent.h": "c"
     }
 }
