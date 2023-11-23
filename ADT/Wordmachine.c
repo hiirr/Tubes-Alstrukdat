@@ -115,14 +115,14 @@ char *input_to_string() {
     return string;
 }
 
-char *input_to_string_limited() {
-    char *string = malloc(281 * sizeof(char));
+char *input_to_string_limited(int limit) {
+    char *string = malloc((limit + 1) * sizeof(char));
 
-    for (int i = 0; i < 280; ++i) {
+    for (int i = 0; i < limit; ++i) {
         string[i] = current_input.input[i];
     }
 
-    string[280] = '\0';
+    string[limit] = '\0';
     return string;
 }
 

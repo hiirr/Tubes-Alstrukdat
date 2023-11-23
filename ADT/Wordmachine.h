@@ -38,7 +38,7 @@ int input_to_int();
 
 char *input_to_string();
 
-char *input_to_string_limited();
+char *input_to_string_limited(int limit);
 
 boolean is_all_int(char *string);
 
