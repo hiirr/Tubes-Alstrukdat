@@ -19,18 +19,14 @@ void ganti_profil() {
     printf("| No HP: %s\n", users[current_user].phone);
     printf("| Weton: %s\n", users[current_user].weton);
 
-    while (true) {
-        printf("Masukkan Bio Akun: \n");
-        clear_next_character();
-        get_paragraph();
-        if (current_input.length > MAX_BIO_LENGTH) {
-            printf("Bio terlalu panjang (%d karakter). Panjang maksimum bio adalah %d karakter.\n", current_input.length, MAX_BIO_LENGTH);
-            continue;
-        }
-        break;
+    
+    printf("Masukkan Bio Akun: \n");
+    clear_next_character();
+    get_paragraph();
+    if (current_input.length > MAX_BIO_LENGTH) {
+        printf("Bio terlalu panjang (%d karakter). Panjang maksimum bio adalah %d karakter. Bio Anda akan dipotong.\n", current_input.length, MAX_BIO_LENGTH);
     }
-
-    char *new_bio = input_to_string();
+    char *new_bio = input_to_string_limited(MAX_BIO_LENGTH);
     set_user_bio(&users[current_user], new_bio);
 
     printf("Masukkan No HP: \n");
@@ -59,7 +55,8 @@ void ganti_profil() {
             is_two_string_equal("kliwon", new_weton) ||
             is_two_string_equal("wage", new_weton) ||
             is_two_string_equal("pon", new_weton) ||
-            is_two_string_equal("legi", new_weton)) {
+            is_two_string_equal("legi", new_weton) || 
+            is_two_string_equal("", new_weton)) {
             set_user_weton(&users[current_user], new_weton);
             break;
         } else {
