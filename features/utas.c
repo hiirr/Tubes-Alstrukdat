@@ -36,15 +36,16 @@ void utas(int id_kicau) {
         utas.datetime = current_time();
         utas.tweet_id = id_kicau;
 
-        insert_last_linked_thread(&tweets[id_kicau].thread, utas);
         printf("Apakah Anda ingin melanjutkan utas ini? (YA/TIDAK) ");
         get_word();
         if (is_input_equal("TIDAK")) {
+            insert_last_linked_thread(&tweets[id_kicau].thread, utas);
             return;
         } else if (!is_input_equal("YA")) {
             printf("Jawaban tidak valid. Utas tidak dilanjutkan.\n");
             return;
         }
+        insert_last_linked_thread(&tweets[id_kicau].thread, utas);
     }
 
 }

@@ -59,8 +59,6 @@ void lihat_draf() {
                 }
             } else if (is_input_equal("TERBIT")) {
                 terbit_draft(text);
-                printf("Draf berhasil diterbitkan.\n");
-                print_tweet(&tweets[latest_tweet - 1], 0);
                 return;
             } else if (is_input_equal("HAPUS")) {
                 printf("Draf telah berhasil dihapus!\n");
