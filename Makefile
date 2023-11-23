@@ -2,7 +2,6 @@ CC = gcc
 CFLAGS = -Wall
 TARGET = main
 
-# Define your source files here
 MAIN_SOURCES = main.c ADT/*.c assets/*.c database/*.c features/*.c
 PRIO_QUEUE_SOURCES = driver/PriorityQueue.c ADT/PriorityQueueFriendRequest.c assets/FriendRequest.c
 MATRIX_SOURCES = driver/Matrix.c ADT/Matrix.c
@@ -15,7 +14,7 @@ WORD_SOURCES = driver/Wordmachine.c ADT/Datetime.c ADT/Charmachine.c ADT/Wordmac
 LINKED_SOURCES = driver/LinkedThread.c ADT/LinkedThread.c
 DATETIME_SOURCES = driver/Datetime.c ADT/Datetime.c ADT/Wordmachine.c ADT/Charmachine.c ADT/DynamicList.c ADT/math.c
 
-# Help target
+# Help
 help:
 	@echo "Command to run main:"
 	@echo "make run"
