@@ -32,8 +32,9 @@ Tweet new_tweet(int tweet_id, char *text, int author_id) {
     t.text = text;
     t.likes = 0;
     t.author_id = author_id;
-    DATETIME current_datetime = get_current_DATETIME();
-    set_tweet_datetime(&t, &current_datetime);
+    DATETIME *current_datetime = malloc(sizeof(DATETIME));
+    *current_datetime = get_current_DATETIME();
+    set_tweet_datetime(&t, current_datetime);
     return t;
 }
 
