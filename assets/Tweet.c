@@ -32,7 +32,8 @@ Tweet new_tweet(int tweet_id, char *text, int author_id) {
     t.text = text;
     t.likes = 0;
     t.author_id = author_id;
-    set_tweet_datetime(&t, current_time());
+    DATETIME current_datetime = get_current_DATETIME();
+    set_tweet_datetime(&t, &current_datetime);
     return t;
 }
 
@@ -46,17 +47,12 @@ void set_tweet_text(Tweet *t, char *text) {
     my_strcpy(t->text, text);
 }
 
-void set_tweet_datetime(Tweet *t, char *datetime) {
+void set_tweet_datetime(Tweet *t, DATETIME *datetime) {
     if (t->datetime != NULL) {
         free(t->datetime);
     }
-    size_t length;
-    my_strlen(datetime, &length);
-    t->datetime = malloc((length + 1) * sizeof(char));
-    my_strcpy(t->datetime, datetime);
+    t->datetime = datetime;
 }
-
-
 
 void print_tweet(Tweet *t, int spaces) {
     for (int i = 0; i < spaces; ++i) printf("\t");
@@ -72,7 +68,9 @@ void print_tweet(Tweet *t, int spaces) {
     printf("Author: %s\n", users[t->author_id].name);
 
     for (int i = 0; i < spaces; ++i) printf("\t");
-    printf("Datetime: %s\n", t->datetime);
+    char *datetime_str = DATETIME_to_string(*(t->datetime));
+    printf("Datetime: %s\n", datetime_str);
+    free(datetime_str);
 
     printf("\n\n");
     // printf("ID: %d\n"

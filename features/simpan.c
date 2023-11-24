@@ -132,7 +132,7 @@ void simpan_kicauan() {
 
         fprintf(file, "%s\n", users[tweets[tweet_id].author_id].name);
 
-        fprintf(file, "%s\n", tweets[tweet_id].datetime);
+        fprintf(file, "%s\n", DATETIME_to_string(*tweets[tweet_id].datetime));
     }
 
     fclose(file);
@@ -162,7 +162,7 @@ void simpan_balasan() {
                 fprintf(file, "-1 %d\n", id);
                 fprintf(file, "%s\n", replies[tweet_id].tweets[id].text);
                 fprintf(file, "%s\n", users[replies[tweet_id].tweets[id].author_id].name);
-                fprintf(file, "%s\n", replies[tweet_id].tweets[id].datetime);
+                fprintf(file, "%s\n", DATETIME_to_string(*replies[tweet_id].tweets[id].datetime));
             }
             // nonroot
             for (int reply = 1; reply < latest_reply[tweet_id] - 1; ++reply) {
@@ -171,7 +171,7 @@ void simpan_balasan() {
                     fprintf(file, "%d %d\n", reply, id);
                     fprintf(file, "%s\n", replies[tweet_id].tweets[id].text);
                     fprintf(file, "%s\n", users[replies[tweet_id].tweets[id].author_id].name);
-                    fprintf(file, "%s\n", replies[tweet_id].tweets[id].datetime);
+                    fprintf(file, "%s\n", DATETIME_to_string(*replies[tweet_id].tweets[id].datetime));
                 }
             }
         }

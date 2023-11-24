@@ -23,7 +23,9 @@ void cetak_utas(int id_kicau) {
 
     printf("| ID = %d\n", tweets[id_kicau].id);
     printf("| %s\n", users[tweets[id_kicau].author_id].name);
-    printf("| %s\n", tweets[id_kicau].datetime);
+    char *datetime_str = DATETIME_to_string(*tweets[id_kicau].datetime);
+    printf("| %s\n", datetime_str);
+    free(datetime_str);
     printf("| %s\n\n", tweets[id_kicau].text);
 
     int length = length_linked_thread(tweets[id_kicau].thread);
