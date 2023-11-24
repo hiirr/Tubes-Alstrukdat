@@ -32,6 +32,7 @@
 #include "features/cetak_utas.h"
 #include "features/simpan.h"
 #include "features/muat.h"
+#include "features/kelompok_teman.h"
 
 
 int main() {
@@ -75,6 +76,8 @@ int main() {
             daftar_permintaan_pertemanan();
         } else if (is_input_equal("SETUJUI_PERTEMANAN")) {
             setujui_pertemanan();
+        } else if (is_input_equal("KELOMPOK_TEMAN")) {
+            cari_kelompok_teman();
         } else if (is_input_equal("KICAU")) {
             kicau();
         } else if (is_input_equal("KICAUAN")) {
