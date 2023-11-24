@@ -13,8 +13,6 @@
 
 ## Tentang Program
 Burbir merupakan sebuah program simulasi berbasis command line interface (CLI) dalam bahasa C yang menggunakan struktur data abstrak. Tujuan dibuatnya Burbir adalah untuk membantu Ande-Ande Lumut yang ingin membuat aplikasi sosial media baru karena iba mendengar kisah perundungan Klenting Kuning oleh ibu tirinya di aplikasi sosial media Y. Fitur utama dari Burbir adalah pengguna dapat mengirimkan kicauan serta melihat dan membalas kicauan teman.
-Laporan ini berisikan tentang penjelasan setiap struktur data abstrak atau abstract data type (ADT) yang digunakan dalam pembuatan program simulasi dan penjelasan mengenai program utamanya. Selain itu, terdapat pula penjelasan mengenai data test dan test script hasil uji coba program, pembagian kerja dalam kelompok, dan lampiran.
-Kesimpulan yang dapat diambil dari pengerjaan tugas besar ini adalah bagaimana cara kami mengimplementasikan tipe ADT yang tepat sebagai solusi untuk merealisasikan suatu ide pembuatan program simulasi sosial media berbasis teks.
 
 ## Cara Kompilasi Program
 Clone git ini, lalu ketik `gcc -o main -Wall main.c ADT/*.c assets/*.c database/*.c features/*.c` pada terminal.
@@ -52,6 +50,7 @@ Clone git ini, lalu ketik `gcc -o main -Wall main.c ADT/*.c assets/*.c database/
 - SIMPAN: pengguna menyimpan kondisi dari BurBir daat itu ke dalam suatu folder berisi berkas-berkas konfigurasi
 - MUAT: pengguna memuat kondisi folder berisi berkas-berkas konfigurasi ke dalam BurBir
 
+semua fitur pada program ini selesai dan dapat digunakan
 
 ## Pembagian Tugas
 | **NIM** | **Nama Anggota** | **Tugas**|
