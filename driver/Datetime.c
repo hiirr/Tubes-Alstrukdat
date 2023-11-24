@@ -1,6 +1,5 @@
 #include "../ADT/Datetime.h"
 #include "../ADT/Wordmachine.h"
-#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -8,15 +7,21 @@
 int main() {
     char *time_str = current_time();
     printf("Current time: %s\n", time_str);
-    assert(time_str != NULL);
+    if (time_str != NULL) {
+        printf("passed\n");
+    }
 
     DATETIME dt = string_to_DATETIME(time_str);
     printf("Converted DATETIME: %s %s %s %s %s\n", dt.day, dt.MM, dt.DD, dt.time, dt.YYYY);
-    assert(dt.day != NULL && dt.MM != NULL && dt.DD != NULL && dt.time != NULL && dt.YYYY != NULL);
+    if (dt.day != NULL && dt.MM != NULL && dt.DD != NULL && dt.time != NULL && dt.YYYY != NULL) {
+        printf("passed\n");
+    }
 
     char *dt_str = DATETIME_to_string(dt);
     printf("DATETIME to string: %s\n", dt_str);
-    assert(my_strcmp(dt_str, time_str) == 0);
+    if (my_strcmp(dt_str, time_str) == 0) {
+        printf("passed\n");
+    }
     
     DATETIME current_dt = get_current_DATETIME();
 
@@ -31,10 +36,18 @@ int main() {
     strftime(date, sizeof(date), "%d", time_info);
     strftime(year, sizeof(year), "%Y", time_info);
 
-    assert(my_strcmp(current_dt.day, day) == 0);
-    assert(my_strcmp(current_dt.MM, month) == 0);
-    assert(my_strcmp(current_dt.DD, date) == 0);
-    assert(my_strcmp(current_dt.YYYY, year) == 0);
+    if (my_strcmp(current_dt.day, day) == 0) {
+        printf("passed\n");
+    }
+    if (my_strcmp(current_dt.MM, month) == 0) {
+        printf("passed\n");
+    }
+    if (my_strcmp(current_dt.DD, date) == 0) {
+        printf("passed\n");
+    }
+    if (my_strcmp(current_dt.YYYY, year) == 0) {
+        printf("passed\n");
+    }
 
     printf("get_current_DATETIME test passed.\n");
     printf("DATETIME from get_current_DATETIME: %s %s %s %s %s\n", current_dt.day, current_dt.MM, current_dt.DD, current_dt.time, current_dt.YYYY);

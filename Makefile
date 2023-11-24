@@ -11,8 +11,9 @@ STACK_DRAFT_SOURCES = driver/StackDraft.c ADT/StackDraft.c assets/Draft.c ADT/Da
 DYNAMIC_LIST_SOURCES = driver/DynamicList.c ADT/DynamicList.c
 REPLY_TREE_SOURCES = driver/ReplyTree.c ADT/*.c assets/*.c database/*.c
 WORD_SOURCES = driver/Wordmachine.c ADT/Datetime.c ADT/Charmachine.c ADT/Wordmachine.c ADT/DynamicList.c ADT/math.c
-LINKED_SOURCES = driver/LinkedThread.c ADT/LinkedThread.c
+LINKED_SOURCES = driver/LinkedThread.c ADT/LinkedThread.c ADT/Wordmachine.c ADT/DynamicList.c ADT/math.c ADT/Charmachine.c
 DATETIME_SOURCES = driver/Datetime.c ADT/Datetime.c ADT/Wordmachine.c ADT/Charmachine.c ADT/DynamicList.c ADT/math.c
+STATICLIST_SOURCES = driver/StaticList.c ADT/StaticList.c
 
 # Help
 help:
@@ -100,11 +101,17 @@ test_datetime:
 	@echo "Running test..\n"
 	@./test_datetime
 
+test_static_list:
+	@$(CC) $(CFLAGS) -o test_static_list $(STATICLIST_SOURCES)
+	@echo "Compiled.."
+	@echo "Running test..\n"
+	@./test_static_list
+
 # Clean target
 clean:
-	@rm -f $(TARGET) test_prio_queue test_matrix test_char test_graph test_stack_draft test_dynamic_list test_reply_tree test_word test_linked test_datetime
-	@rm -f $(TARGET).exe test_prio_queue.exe test_matrix.exe test_char.exe test_graph.exe test_stack_draft.exe test_dynamic_list.exe test_reply_tree.exe test_word.exe test_linked.exe test_datetime.exe
+	@rm -f $(TARGET) test_prio_queue test_matrix test_char test_graph test_stack_draft test_dynamic_list test_reply_tree test_word test_linked test_datetime test_static_list
+	@rm -f $(TARGET).exe test_prio_queue.exe test_matrix.exe test_char.exe test_graph.exe test_stack_draft.exe test_dynamic_list.exe test_reply_tree.exe test_word.exe test_linked.exe test_datetime.exe test_static_list.exe
 	@echo "Cleaned all compiled files"
 
 # PHONY targets
-.PHONY: clean test_prio_queue test_matrix test_char test_graph test_stack_draft test_dynamic_list test_reply_tree test_word test_linked test_datetime
+.PHONY: clean test_prio_queue test_matrix test_char test_graph test_stack_draft test_dynamic_list test_reply_tree test_word test_linked test_datetime test_static_list

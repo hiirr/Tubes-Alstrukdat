@@ -186,6 +186,22 @@ char *my_strcat(char *destination, const char *source) {
     return r_destination;
 }
 
+char* my_strdup(const char* s) {
+    if (s == NULL) {
+        return NULL;
+    }
+
+    size_t len;
+    my_strlen(s, &len);
+    char* duplicate = (char*)malloc(len + 1);
+    if (duplicate == NULL) {
+        return NULL;
+    }
+
+    my_strcpy(duplicate, s);
+    return duplicate;
+}
+
 int my_strcmp(const char *s1, const char *s2) {
     while(*s1 && (*s1 == *s2)) {
         s1++;

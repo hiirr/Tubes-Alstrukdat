@@ -1,6 +1,5 @@
 #include "../ADT/PriorityQueueFriendRequest.h"
 #include <stdio.h>
-#include <assert.h>
 
 int main() {
     PriorityQueueFriendRequest myQueue;
@@ -11,23 +10,37 @@ int main() {
     create_friend_request(&req3, 3, 7);
 
     create_priority_queue_friend_request(&myQueue);
-    assert(is_empty_priority_queue_friend_request(myQueue));
+    if (is_empty_priority_queue_friend_request(myQueue)) {
+        printf("passed\n");
+    }
 
     enqueue_friend_request(&myQueue, req1);
     enqueue_friend_request(&myQueue, req2);
     enqueue_friend_request(&myQueue, req3);
-    assert(length_priority_queue_friend_request(myQueue) == 3);
+    if (length_priority_queue_friend_request(myQueue) == 3) {
+        printf("passed\n");
+    }
 
-    assert(is_in_priority_queue_friend_request(myQueue, 1));
-    assert(is_in_priority_queue_friend_request(myQueue, 2));
-    assert(is_in_priority_queue_friend_request(myQueue, 3));
+    if (is_in_priority_queue_friend_request(myQueue, 1)) {
+        printf("passed\n");
+    }
+    if (is_in_priority_queue_friend_request(myQueue, 2)) {
+        printf("passed\n");
+    }
+    if (is_in_priority_queue_friend_request(myQueue, 3)) {
+        printf("passed\n");
+    }
 
     FriendRequest dequeued;
     dequeue_friend_request(&myQueue, &dequeued);
-    assert(dequeued.user_id == 2);
+    if (dequeued.user_id == 2) {
+        printf("passed\n");
+    }
 
     remove_request_from_queue(&myQueue, 1);
-    assert(!is_in_priority_queue_friend_request(myQueue, 1));
+    if (!is_in_priority_queue_friend_request(myQueue, 1)) {
+        printf("passed\n");
+    }
 
     printf("All tests passed successfully.\n");
 

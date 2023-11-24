@@ -14,6 +14,8 @@ int static_list_length(StaticList l) {
             count++;
         }
     }
+
+    return count;
 }
 
 boolean is_static_list_empty(StaticList l) {
@@ -51,7 +53,7 @@ void insert_at_static_list(StaticList *l, int val, int idx) {
     elmt_static_list(*l, idx) = val;
 }
 void insert_last_static_list(StaticList *l, int val) {
-    elmt_static_list(*l, listLength(*l)) = val;
+    elmt_static_list(*l, static_list_length(*l)) = val;
 }
 
 void delete_first_static_list(StaticList *l, int *val) {
@@ -61,7 +63,7 @@ void delete_first_static_list(StaticList *l, int *val) {
         elmt_static_list(*l, i) = elmt_static_list(*l, i+1);
     }
 
-    elmt_static_list(*l, listLength(*l)-1) = MARK;
+    elmt_static_list(*l, static_list_length(*l)-1) = MARK;
 }
 void delete_at_static_list(StaticList *l, int *val, int idx) {
     *val = elmt_static_list(*l, idx);

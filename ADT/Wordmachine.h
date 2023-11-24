@@ -50,6 +50,8 @@ void my_strlen(const char *str, size_t *len);
 
 char *my_strcpy(char *str_destination, const char *str_source);
 
+char* my_strdup(const char* s);
+
 char *my_strcat(char *destination, const char *source);
 
 int my_strcmp(const char *s1, const char *s2);
