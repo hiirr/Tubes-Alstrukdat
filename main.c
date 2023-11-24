@@ -132,8 +132,7 @@ int main() {
         }
         // Start simpan (belum)
         else if (is_input_equal("SIMPAN")) {
-            printf("Belum diimplementasi.\n");
-            // simpan();
+            simpan();
         } else if (is_input_equal("MUAT")) {
             muat();
         }        

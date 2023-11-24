@@ -60,4 +60,6 @@ void remove_new_line(char* string);
 
 DynamicList split_to_ints(char *string);
 
+char *int_to_string(int num);
+
 #endif

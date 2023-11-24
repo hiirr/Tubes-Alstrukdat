@@ -24,4 +24,6 @@ void print_reply_tree_from_any_node(ReplyTree *t, int node, int space);
 
 void print_reply_tree(ReplyTree *t);
 
+void deallocate_reply_tree(ReplyTree *t);
+
 #endif

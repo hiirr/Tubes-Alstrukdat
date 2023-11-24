@@ -239,3 +239,19 @@ DynamicList split_to_ints(char *string) {
     insert_last_dynamic_list(&result, num);
     return result;
 }
+
+char *int_to_string(int num) {
+    int length = 0, temp = num;
+    while (temp != 0) {
+        temp /= 10;
+        ++length;
+    }
+
+    char *string = malloc(sizeof(char) * (length + 1));
+    for (int i = 0; i < length; ++i) {
+        string[length-1-i] = (num % 10) + '0';
+        num /= 10;
+    }
+    string[length] = '\0';
+    return string;
+}

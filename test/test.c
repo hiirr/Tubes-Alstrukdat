@@ -1,27 +1,24 @@
 #include <stdio.h>
-#include "../ADT/Wordmachine.h"
-#include "../ADT/DynamicList.h"
+#include <sys/stat.h>
+#include <sys/types.h>
+#include "boolean.h"
 
-int main() {
-    char *s = "azmi 123";
-    size_t length;
-    my_strlen(s, &length);
+struct stat info;
 
-    int l = length - 1;
-    while (l-1 >= 0 && '0' <= s[l-1] && s[l-1] <= '9') --l;
+int main()
+{
+    char *path = "/home/azzmi/projects/Tubes-Alstrukdat/compile.sh";
+    // if (stat(path, &info) != 0)
+    //     printf("cannot access %s\n", path);
+    // else if (info.st_mode & __S_IFDIR)
+    //     printf("%s is a directory\n", path);
+    // else
+    //     printf("%s is no directory\n", path);
 
-    char *name = malloc(l * sizeof(name));
-    name[l-1] = '\0';
-    for (int i = 0; i < l-1; ++i) {
-        name[i] = s[i];
+    if (stat(path, &info) != 0 || !(info.st_mode & __S_IFDIR)) {
+        printf("Folder tidak ada. Folder akan dibuat...");
+        // mkdir(path);
     }
-
-
-    int num = 0;
-    for (int i = l; i < length; ++i) {
-        num = 10 * num + (s[i] - '0');
-    }
-    printf("l is %d\nnum is %d\nname is (%s)\n", l, num, name);
 
     return 0;
 }

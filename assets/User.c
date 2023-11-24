@@ -94,3 +94,24 @@ void print_profile_picture(User *s) {
         printf("\n");
     }
 }
+
+void deallocate_user(User *s) {
+    if (s->name != NULL)
+        free(s->name);
+
+    if (s->password != NULL)
+        free(s->password);
+
+    if (s->bio != NULL)
+        free(s->bio);
+    
+    if (s->phone != NULL)
+        free(s->phone);
+
+    if (s->weton != NULL)
+        free(s->weton);
+
+    create_priority_queue_friend_request(&s->friend_requests);
+    deallocate_dynamic_list(&s->tweets);
+    create_stack_draft(&s->drafts);
+}

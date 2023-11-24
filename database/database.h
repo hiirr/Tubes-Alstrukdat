@@ -23,6 +23,8 @@ extern StackDraft user_drafts[MAX_USER];
 
 void create_database();
 
+void restart_database();
+
 int search_id_by_name(char *name);
 
 #endif

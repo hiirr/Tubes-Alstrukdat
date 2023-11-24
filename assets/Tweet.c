@@ -23,6 +23,7 @@ void delete_tweet(Tweet *t) {
     t->author_id = -1;
     free(t->datetime);
     t->datetime = NULL;
+    while (length_linked_thread(t->thread)) delete_first_linked_thread(&t->thread);
 }
 
 Tweet new_tweet(int tweet_id, char *text, int author_id) {
