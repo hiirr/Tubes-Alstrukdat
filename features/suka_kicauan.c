@@ -7,7 +7,7 @@ void suka_kicauan(int tweet_id) {
         printf("\nAnda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n\n");
         return;
     }
-    if (tweet_id >= latest_tweet) {
+    if (tweet_id >= latest_tweet || tweet_id <= 0) {
         printf("Tidak ditemukan kicauan dengan ID = %d.\n", tweet_id);
         return;
     }

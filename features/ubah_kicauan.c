@@ -24,9 +24,11 @@ void ubah_kicauan(int tweet_id) {
             printf("Teks terlalu panjang (%d karakter); melebihi %d karakter. Kicauan Anda akan dipotong.\n\n", current_input.length, MAX_TWEET_LENGTH);
         }
         char *text = input_to_string_limited(280);
-        set_tweet_text(&tweets[tweet_id], text);
-        set_tweet_text(&replies[tweet_id].tweets[0], text);
-        printf("Kicauan berhasil diubah.\n\n");
+        free(tweets[tweet_id].text);
+        tweets[tweet_id].text = text;
+        replies[tweet_id].tweets[0].text = text;
+        // set_tweet_text(&tweets[tweet_id], text);
+        // set_tweet_text(&replies[tweet_id].tweets[0], text);
         print_tweet(&tweets[tweet_id], 0);
     
 }
