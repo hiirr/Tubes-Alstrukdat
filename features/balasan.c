@@ -23,6 +23,12 @@ void balasan(int tweet_id) {
         printf("Tidak ada kicauan dengan ID %d\n", tweet_id);
         return;
     }
+
+    if (latest_reply[tweet_id] == 1) {
+        printf("Belum terdapat balasan apapun pada kicauan tersebut. Yuk balas kicauan tersebut!\n");
+        return;
+    }
+
     int author_id = tweets[tweet_id].author_id;
     if (author_id != current_user && !users[author_id].is_public && !friends.matrix[current_user][author_id]) {
         printf("Tidak dapat melihat balasan karena kicauan privat dan anda belum berteman dengan pemilik kicauan.\n\n");
