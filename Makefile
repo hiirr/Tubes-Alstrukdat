@@ -31,6 +31,7 @@ help:
 	@echo "make test_reply_tree"
 	@echo "make test_stack_draft"
 	@echo "make test_word"
+	@echo "make test_static_list"
 	@echo "____________________________________"
 	@echo "Command to clean all compiled files:"
 	@echo "make clean"
