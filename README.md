@@ -1,7 +1,6 @@
 # TUGAS BESAR - Algoritma & Struktur Data
 ## K02 - KELOMPOK A
-#### Tugas Besar 2 Aljabar Linier dan Geometri IF2123
-#### Aplikasi Aljabar Vektor dalam Sistem Temu Balik Gambar
+#### Layanan BurBir
 
 | **NIM** | **Nama Anggota** |
 |:---:|:---:|
