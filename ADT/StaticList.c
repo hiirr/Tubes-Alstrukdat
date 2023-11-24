@@ -3,14 +3,14 @@
 
 void create_static_list(StaticList *l) {
     for (int i = 0; i < CAPACITY; i++) {
-        elmt_static_list(*l, i) = MARK;
+        elmt_static_list(*l, i) = STATIC_LIST_MARK;
     }
 }
 int static_list_length(StaticList l) {
     int count = 0;
     
     for (int i = 0; i < CAPACITY; i++) {
-        if (elmt_static_list(l,i) != MARK) {
+        if (elmt_static_list(l,i) != STATIC_LIST_MARK) {
             count++;
         }
     }
@@ -63,7 +63,7 @@ void delete_first_static_list(StaticList *l, int *val) {
         elmt_static_list(*l, i) = elmt_static_list(*l, i+1);
     }
 
-    elmt_static_list(*l, static_list_length(*l)-1) = MARK;
+    elmt_static_list(*l, static_list_length(*l)-1) = STATIC_LIST_MARK;
 }
 void delete_at_static_list(StaticList *l, int *val, int idx) {
     *val = elmt_static_list(*l, idx);
@@ -72,9 +72,9 @@ void delete_at_static_list(StaticList *l, int *val, int idx) {
         elmt_static_list(*l, i) = elmt_static_list(*l, i+1);
     }
 
-    elmt_static_list(*l, static_list_length(*l)-1) = MARK;
+    elmt_static_list(*l, static_list_length(*l)-1) = STATIC_LIST_MARK;
 }
 void delete_last_static_list(StaticList *l, int *val) {
     *val = elmt_static_list(*l, static_list_length(*l)-1);
-    elmt_static_list(*l, static_list_length(*l)-1) = MARK;
+    elmt_static_list(*l, static_list_length(*l)-1) = STATIC_LIST_MARK;
 }

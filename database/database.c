@@ -7,18 +7,19 @@
 #include "../ADT/GraphMatrix.h"
 #include "../ADT/ReplyTree.h"
 #include "../ADT/Wordmachine.h"
+#include "../ADT/StaticList.h"
 
 #include <stdlib.h>
 
 int current_user = -1;
 int total_user = 0;
-User users[MAX_USER];
+StaticListUser users;
 GraphMatrix friends;
 
 int latest_tweet = 1;
-Tweet tweets[MAX_TWEET];
-int latest_reply[MAX_TWEET];
-ReplyTree replies[MAX_TWEET];
+StaticListTweet tweets;
+StaticListReplyID latest_reply;
+StaticListReply replies;
 
 void create_database() {
     // current_user

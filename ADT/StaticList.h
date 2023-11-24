@@ -2,11 +2,14 @@
 #define Static_List_H
 
 #include "boolean.h"
+#include "../database/database.h"
 
 #define CAPACITY 1000
 #define IDX_MIN 0
 #define IDX_UNDEF -1
-#define MARK -9999
+#define STATIC_LIST_MARK -99999
+
+// With struct
 
 typedef struct {
    int contents[CAPACITY];
@@ -29,5 +32,13 @@ void insert_last_static_list(StaticList *l, int val);
 void delete_first_static_list(StaticList *l, int *val);
 void delete_at_static_list(StaticList *l, int *val, int idx);
 void delete_last_static_list(StaticList *l, int *val);
+
+
+// No struct
+
+typedef User StaticListUser[MAX_USER];
+typedef Tweet StaticListTweet[MAX_TWEET];
+typedef int StaticListReplyID[MAX_TWEET];
+typedef ReplyTree StaticListReply[MAX_TWEET];
 
 #endif
