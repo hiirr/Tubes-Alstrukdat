@@ -132,7 +132,7 @@ void simpan_kicauan() {
 
         fprintf(file, "%s\n", users[tweets[tweet_id].author_id].name);
 
-        fprintf(file, "%s\n", tweets[tweet_id].datetime);
+        fprintf(file, "%s\n", DATETIME_to_string(*tweets[tweet_id].datetime));
     }
 
     fclose(file);
@@ -146,33 +146,45 @@ void simpan_balasan() {
 
     int total_tweets_with_reply = 0;
     for (int tweet_id = 1; tweet_id < latest_tweet; ++tweet_id) {
-        if (latest_reply[tweet_id] > 1) {
-            ++total_tweets_with_reply;
+        for (int j = 1; j < latest_reply[tweet_id]; ++j) {
+            if (replies[tweet_id].nodes[j]) {
+                ++total_tweets_with_reply;
+                break;
+            }
         }
+        // if (latest_reply[tweet_id] > 1) {
+        //     ++total_tweets_with_reply;
+        // }
     }
     fprintf(file, "%d\n", total_tweets_with_reply);
 
     for (int tweet_id = 1; tweet_id < latest_tweet; ++tweet_id) {
-        if (latest_reply[tweet_id] > 1) {
-            fprintf(file, "%d\n", tweet_id);
-            fprintf(file, "%d\n", latest_reply[tweet_id] - 1);
-            // root
-            for (int i = 0; i < replies[tweet_id].adj[0].length; ++i) {
-                int id = replies[tweet_id].adj[0].list[i];
-                fprintf(file, "-1 %d\n", id);
+        int total_replies = 0;
+        for (int j = 1; j < latest_reply[tweet_id]; ++j) {
+            if (replies[tweet_id].nodes[j]) {
+                ++total_replies;
+            }
+        }
+        if (total_replies == 0) continue;
+        fprintf(file, "%d\n", tweet_id);
+
+        fprintf(file, "%d\n", total_replies);
+        // root
+        for (int i = 0; i < replies[tweet_id].adj[0].length; ++i) {
+            int id = replies[tweet_id].adj[0].list[i];
+            fprintf(file, "-1 %d\n", id);
+            fprintf(file, "%s\n", replies[tweet_id].tweets[id].text);
+            fprintf(file, "%s\n", users[replies[tweet_id].tweets[id].author_id].name);
+            fprintf(file, "%s\n", DATETIME_to_string(*replies[tweet_id].tweets[id].datetime));
+        }
+        // nonroot
+        for (int reply = 1; reply < latest_reply[tweet_id] - 1; ++reply) {
+            for (int i = 0; i < replies[tweet_id].adj[reply].length; ++i) {
+                int id = replies[tweet_id].adj[reply].list[i];
+                fprintf(file, "%d %d\n", reply, id);
                 fprintf(file, "%s\n", replies[tweet_id].tweets[id].text);
                 fprintf(file, "%s\n", users[replies[tweet_id].tweets[id].author_id].name);
-                fprintf(file, "%s\n", replies[tweet_id].tweets[id].datetime);
-            }
-            // nonroot
-            for (int reply = 1; reply < latest_reply[tweet_id] - 1; ++reply) {
-                for (int i = 0; i < replies[tweet_id].adj[reply].length; ++i) {
-                    int id = replies[tweet_id].adj[reply].list[i];
-                    fprintf(file, "%d %d\n", reply, id);
-                    fprintf(file, "%s\n", replies[tweet_id].tweets[id].text);
-                    fprintf(file, "%s\n", users[replies[tweet_id].tweets[id].author_id].name);
-                    fprintf(file, "%s\n", replies[tweet_id].tweets[id].datetime);
-                }
+                fprintf(file, "%s\n", DATETIME_to_string(*replies[tweet_id].tweets[id].datetime));
             }
         }
     }

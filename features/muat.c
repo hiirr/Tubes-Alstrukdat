@@ -197,7 +197,16 @@ void muat_kicauan(char *folder_name) {
 
         // Datetime
         my_getline(line, 1024, file);
-        set_tweet_datetime(tweets + id, line);
+        // set_tweet_datetime(tweets + id, line);
+        size_t datetime_length;
+        my_strlen(line, &datetime_length);
+        char *datetime_str = malloc(sizeof(char) * (datetime_length + 1));
+        my_strcpy(datetime_str, line);
+        datetime_str[datetime_length] = '\0';
+        DATETIME *parsed_datetime = malloc(sizeof(DATETIME));
+        *parsed_datetime = string_to_DATETIME(datetime_str);
+        set_tweet_datetime(tweets + id, parsed_datetime);
+        free(datetime_str);
         
         // Akomodasi database
         insert_last_dynamic_list(&users[tweets[id].author_id].tweets, id);
@@ -209,7 +218,8 @@ void muat_kicauan(char *folder_name) {
     //     printf("Text: %s\n", tweets[i].text);
     //     printf("Likes: %d\n", tweets[i].likes);
     //     printf("Author id: %d\n", tweets[i].author_id);
-    //     printf("Datetime: %s\n", tweets[i].datetime);
+    //     printf("Datetime: %s\n", DATETIME_to_string(*tweets[i].datetime));
+    //     printf("It's %d\n", *(tweets[i].datetime->YYYY));
     //     printf("\n\n");
     // }
     // printf("Latest tweet: %d\n", latest_tweet);
@@ -279,7 +289,18 @@ void muat_balasan(char *folder_name) {
 
             // Datetime
             my_getline(line, 1024, file);
-            set_tweet_datetime(&child_tweet, line);
+            // set_tweet_datetime(&child_tweet, line);
+            size_t datetime_length;
+            my_strlen(line, &datetime_length);
+            char *datetime_str = malloc(sizeof(char) * (datetime_length + 1));
+            my_strcpy(datetime_str, line);
+            // exit(0);
+            datetime_str[datetime_length] = '\0';
+            DATETIME *parsed_datetime = malloc(sizeof(DATETIME));
+            *parsed_datetime = string_to_DATETIME(datetime_str);
+            set_tweet_datetime(&child_tweet, parsed_datetime);
+            free(datetime_str);
+            // printf("Print from balasan: (%s)\n", DATETIME_to_string(*child_tweet.datetime));
 
             if (a == -1) { 
                 add_reply_edge(&replies[tweet_id], 0, b, child_tweet);

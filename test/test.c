@@ -2,23 +2,15 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include "boolean.h"
+#include "../ADT/Datetime.h"
 
 struct stat info;
 
 int main()
 {
-    char *path = "/home/azzmi/projects/Tubes-Alstrukdat/compile.sh";
-    // if (stat(path, &info) != 0)
-    //     printf("cannot access %s\n", path);
-    // else if (info.st_mode & __S_IFDIR)
-    //     printf("%s is a directory\n", path);
-    // else
-    //     printf("%s is no directory\n", path);
-
-    if (stat(path, &info) != 0 || !(info.st_mode & __S_IFDIR)) {
-        printf("Folder tidak ada. Folder akan dibuat...");
-        // mkdir(path);
-    }
+    DATETIME d = get_current_DATETIME();
+    char *s = DATETIME_to_string(d);
+    printf("(%s)\n", s);
 
     return 0;
 }

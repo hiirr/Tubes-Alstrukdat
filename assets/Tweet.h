@@ -2,6 +2,8 @@
 #define TWEET_H
 
 #include "../ADT/LinkedThread.h"
+#include "../ADT/Datetime.h"
+
 #define MAX_TWEET_LENGTH 280
 
 typedef struct Tweet {
@@ -9,7 +11,7 @@ typedef struct Tweet {
     char *text;
     int likes;
     int author_id;
-    char *datetime;
+    DATETIME *datetime;
 
     LinkedThread thread;
     int latest_thread;
@@ -23,7 +25,7 @@ Tweet new_tweet(int tweet_id, char *text, int author_id);
 
 void set_tweet_text(Tweet *t, char *text);
 
-void set_tweet_datetime(Tweet *t, char *datetime);
+void set_tweet_datetime(Tweet *t, DATETIME *datetime);
 
 void print_tweet(Tweet *t, int spaces);
 
