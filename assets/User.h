@@ -43,4 +43,6 @@ void set_user_weton(User *s, char *weton);
 
 void print_profile_picture(User *s);
 
+void deallocate_user(User *s);
+
 #endif

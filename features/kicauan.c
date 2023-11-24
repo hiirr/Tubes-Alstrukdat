@@ -16,20 +16,33 @@ void kicauan() {
     DynamicList visible_tweets;
     create_dynamic_list(&visible_tweets, 1);
 
-    for (int i = 0; i < total_user; ++i) {
-        if (!users[i].is_public) continue;;
-        for (int j = 0; j < users[i].tweets.length; ++j) {
-            insert_last_dynamic_list(&visible_tweets, users[i].tweets.list[j]);
-        }
+    for (int i = 0; i < users[current_user].tweets.length; ++i) {
+        insert_last_dynamic_list(&visible_tweets, users[current_user].tweets.list[i]);
     }
 
     for (int i = 0; i < total_user; ++i) {
-        if (current_user != i && !friends.matrix[current_user][i]) continue;
-        if (users[i].is_public) continue;
-        for (int j = 0; j < users[i].tweets.length; ++j) {
-            insert_last_dynamic_list(&visible_tweets, users[i].tweets.list[j]);
+        if (i == current_user) continue;
+        if (friends.matrix[i][current_user]) {
+            for (int j = 0; j < users[i].tweets.length; ++j) {
+                insert_last_dynamic_list(&visible_tweets, users[i].tweets.list[j]);
+            }
         }
     }
+
+    // for (int i = 0; i < total_user; ++i) {
+    //     if (!users[i].is_public) continue;
+    //     for (int j = 0; j < users[i].tweets.length; ++j) {
+    //         insert_last_dynamic_list(&visible_tweets, users[i].tweets.list[j]);
+    //     }
+    // }
+
+    // for (int i = 0; i < total_user; ++i) {
+    //     if (current_user != i && !friends.matrix[current_user][i]) continue;
+    //     if (users[i].is_public) continue;
+    //     for (int j = 0; j < users[i].tweets.length; ++j) {
+    //         insert_last_dynamic_list(&visible_tweets, users[i].tweets.list[j]);
+    //     }
+    // }
 
     sort_descending_dynamic_list(&visible_tweets);    
 

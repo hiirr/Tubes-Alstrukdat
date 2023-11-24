@@ -49,3 +49,9 @@ void print_reply_tree_from_any_node(ReplyTree *t, int node, int space) {
 void print_reply_tree(ReplyTree *t) {
     print_reply_tree_from_any_node(t, 0, 0);
 }
+
+void deallocate_reply_tree(ReplyTree *t) {
+    for (int i = 0; i < REPLY_TREE_CAPACITY; ++i) {
+        deallocate_dynamic_list(&t->adj[i]);
+    }
+}

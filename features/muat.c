@@ -22,6 +22,8 @@ void muat() {
     get_paragraph();
     char *folder_name = input_to_string();
 
+    restart_database();
+
     muat_pengguna(folder_name);
     muat_kicauan(folder_name);
     muat_balasan(folder_name);

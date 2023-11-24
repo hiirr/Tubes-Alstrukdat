@@ -47,6 +47,19 @@ void create_database() {
     }
 }
 
+void restart_database() {
+    for (int user_id = 0; user_id < total_user; ++user_id) {
+        deallocate_user(&users[user_id]);
+    }
+    for (int tweet_id = 1; tweet_id < latest_tweet; ++tweet_id) {
+        delete_tweet(&tweets[tweet_id]);
+    }
+    for (int i = 0; i < MAX_TWEET; ++i) {
+        deallocate_reply_tree(&replies[i]);
+    }
+    create_database();
+}
+
 int search_id_by_name(char *name) {
     for (int i = 0; i < total_user; i++) {
         if (is_two_string_equal(users[i].name, name)) {

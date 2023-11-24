@@ -18,7 +18,7 @@ void lihat_profil(char *name) {
     if (id_user == -1) {
         printf("Tidak ada profil dengan nama tersebut!\n");
     } else {
-        if (!users[id_user].is_public && !friends.matrix[current_user][id_user]) {
+        if (current_user != id_user && !users[id_user].is_public && !friends.matrix[current_user][id_user]) {
             printf("Sayangnya akun %s diprivat:( Ikuti dulu yuk biar bisa lihat profil %s!\n", users[id_user].name, users[id_user].name);
         } else {
             printf("| Nama: %s\n", users[id_user].name);
